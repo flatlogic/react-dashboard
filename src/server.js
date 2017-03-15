@@ -44,6 +44,7 @@ global.navigator.userAgent = global.navigator.userAgent || 'all';
 // Register Node.js middleware
 // -----------------------------------------------------------------------------
 app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.static(path.join(__dirname, 'assets')));
 app.use(cookieParser());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
@@ -118,10 +119,11 @@ app.get('*', async (req, res, next) => {
       store,
     };
 
-    // data.scripts = [
-    //   assets.vendor.js,
-    //   assets.client.js,
-    // ];
+    data.scripts = [
+      assets.vendor.js,
+      assets.client.js,
+    ];
+
     data.state = context.store.getState();
     // if (assets[route.chunk]) {
     //   data.scripts.push(assets[route.chunk].js);

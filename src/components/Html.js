@@ -48,7 +48,6 @@ class Html extends React.Component {
 
   render() {
     const { title, description, styles, scripts, state, children } = this.props;
-    console.log('styles', styles);
     return (
       <html className="no-js" lang="en">
         <head>

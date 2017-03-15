@@ -17,6 +17,7 @@ import { BrowserRouter as Router, Switch, Route } from 'react-router';
 
 import Home from '../../routes/home/Home';
 import NotFound from '../../routes/notFound/NotFound';
+import Contact from '../../routes/contact/Contact';
 
 class Layout extends React.Component {
   static propTypes = {
@@ -29,6 +30,7 @@ class Layout extends React.Component {
         <Header />
         <Switch>
           <Route path="/" exact component={Home} />
+          <Route path="/contact" exact component={Contact} />
           <Route component={NotFound} />
         </Switch>
         <Feedback />
