@@ -47,14 +47,18 @@ const ContextType = {
 class App extends React.PureComponent {
 
   static propTypes = {
-    context: PropTypes.shape(ContextType).isRequired,
     children: PropTypes.element.isRequired,
+  };
+
+  static contextTypes = {
+    router: PropTypes.any,
   };
 
   static childContextTypes = ContextType;
 
   getChildContext() {
-    return this.props.context;
+    console.log('acn', this.context);
+    return this.context.router.staticContext;
   }
 
   render() {

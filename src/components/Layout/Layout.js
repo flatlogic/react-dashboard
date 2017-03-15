@@ -13,6 +13,10 @@ import s from './Layout.css';
 import Header from '../Header';
 import Feedback from '../Feedback';
 import Footer from '../Footer';
+import { BrowserRouter as Router, Switch, Route } from 'react-router';
+
+import Home from '../../routes/home/Home';
+import NotFound from '../../routes/notFound/NotFound';
 
 class Layout extends React.Component {
   static propTypes = {
@@ -23,7 +27,10 @@ class Layout extends React.Component {
     return (
       <div>
         <Header />
-        {this.props.children}
+        <Switch>
+          <Route path="/" exact component={Home} />
+          <Route component={NotFound} />
+        </Switch>
         <Feedback />
         <Footer />
       </div>

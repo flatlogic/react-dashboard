@@ -10,6 +10,21 @@
 import React, { PropTypes } from 'react';
 import serialize from 'serialize-javascript';
 import { analytics } from '../config';
+import Layout from './Layout';
+import App from './App';
+
+const ContextType = {
+  // Enables critical path CSS rendering
+  // https://github.com/kriasoft/isomorphic-style-loader
+  insertCss: PropTypes.func.isRequired,
+  // Integrate Redux
+  // http://redux.js.org/docs/basics/UsageWithReact.html
+  store: PropTypes.shape({
+    subscribe: PropTypes.func.isRequired,
+    dispatch: PropTypes.func.isRequired,
+    getState: PropTypes.func.isRequired,
+  }).isRequired,
+};
 
 class Html extends React.Component {
   static propTypes = {
@@ -33,6 +48,7 @@ class Html extends React.Component {
 
   render() {
     const { title, description, styles, scripts, state, children } = this.props;
+    console.log('styles', styles);
     return (
       <html className="no-js" lang="en">
         <head>
