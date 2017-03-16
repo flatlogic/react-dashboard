@@ -48,7 +48,13 @@ class App extends React.PureComponent {
 
   static propTypes = {
     children: PropTypes.element.isRequired,
+    context: PropTypes.shape(ContextType),
   };
+
+  static defaultProps = {
+    context: null,
+  };
+
 
   static contextTypes = {
     router: PropTypes.any,
@@ -57,7 +63,8 @@ class App extends React.PureComponent {
   static childContextTypes = ContextType;
 
   getChildContext() {
-    return this.context.router.staticContext;
+    // fixme. Temporary solution until redux is integrated
+    return this.props.context || this.context.router.staticContext;
   }
 
   render() {
