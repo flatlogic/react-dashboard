@@ -15,6 +15,7 @@ import expressJwt from 'express-jwt';
 import expressGraphQL from 'express-graphql';
 import jwt from 'jsonwebtoken';
 import React from 'react';
+import { StaticRouter } from 'react-router';
 import ReactDOM from 'react-dom/server';
 import PrettyError from 'pretty-error';
 import App from './components/App';
@@ -28,7 +29,6 @@ import schema from './data/schema';
 import configureStore from './store/configureStore';
 import { setRuntimeVariable } from './actions/runtime';
 import { port, auth } from './config';
-import { StaticRouter } from 'react-router';
 import assets from './assets.json'; // eslint-disable-line import/no-unresolved
 
 const app = express();
@@ -164,20 +164,20 @@ const pe = new PrettyError();
 pe.skipNodeFiles();
 pe.skipPackage('express');
 
-// app.use((err, req, res, next) => { // eslint-disable-line no-unused-vars
-//   console.log(pe.render(err)); // eslint-disable-line no-console
-//   const html = ReactDOM.renderToStaticMarkup(
-//     <Html
-//       title="Internal Server Error"
-//       description={err.message}
-//       styles={[{ id: 'css', cssText: errorPageStyle._getCss() }]} // eslint-disable-line no-underscore-dangle
-//     >
-//       {ReactDOM.renderToString(<ErrorPageWithoutStyle error={err} />)}
-//     </Html>,
-//   );
-//   res.status(err.status || 500);
-//   res.send(`<!doctype html>${html}`);
-// });
+app.use((err, req, res, next) => { // eslint-disable-line no-unused-vars
+  console.log(pe.render(err)); // eslint-disable-line no-console
+  const html = ReactDOM.renderToStaticMarkup(
+    <Html
+      title="Internal Server Error"
+      description={err.message}
+      styles={[{ id: 'css', cssText: errorPageStyle._getCss() }]} // eslint-disable-line no-underscore-dangle
+    >
+      {ReactDOM.renderToString(<ErrorPageWithoutStyle error={err} />)}
+    </Html>,
+  );
+  res.status(err.status || 500);
+  res.send(`<!doctype html>${html}`);
+});
 
 //
 // Launch the server

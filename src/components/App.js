@@ -57,7 +57,6 @@ class App extends React.PureComponent {
   static childContextTypes = ContextType;
 
   getChildContext() {
-    console.log('acn', this.context);
     return this.context.router.staticContext;
   }
 

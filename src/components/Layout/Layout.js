@@ -9,11 +9,11 @@
 
 import React, { PropTypes } from 'react';
 import withStyles from 'isomorphic-style-loader/lib/withStyles';
+import { Switch, Route } from 'react-router';
 import s from './Layout.css';
 import Header from '../Header';
 import Feedback from '../Feedback';
 import Footer from '../Footer';
-import { BrowserRouter as Router, Switch, Route } from 'react-router';
 
 import Home from '../../routes/home/Home';
 import NotFound from '../../routes/notFound/NotFound';
