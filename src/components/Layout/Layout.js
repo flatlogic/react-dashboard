@@ -19,25 +19,17 @@ import Home from '../../routes/home/Home';
 import NotFound from '../../routes/notFound/NotFound';
 import Contact from '../../routes/contact/Contact';
 
-class Layout extends React.Component {
-  static propTypes = {
-    children: PropTypes.node.isRequired,
-  };
-
-  render() {
-    return (
-      <div>
-        <Header />
-        <Switch>
-          <Route path="/" exact component={Home} />
-          <Route path="/contact" exact component={Contact} />
-          <Route component={NotFound} />
-        </Switch>
-        <Feedback />
-        <Footer />
-      </div>
-    );
-  }
-}
+const Layout = () => (
+  <div>
+    <Header />
+    <Switch>
+      <Route path="/" exact component={Home} />
+      <Route path="/contact" exact component={Contact} />
+      <Route component={NotFound} />
+    </Switch>
+    <Feedback />
+    <Footer />
+  </div>
+);
 
 export default withStyles(s)(Layout);

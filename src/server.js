@@ -103,7 +103,10 @@ app.get('*', async (req, res, next) => {
 
     const css = new Set();
 
-    const data = {};
+    const data = {
+      title: 'React Dashboard',
+      description: 'React Dashboard Starter project based on react-router 4, redux, graphql, bootstrap',
+    };
 
     // Global (context) variables that can be easily accessed from any React component
     // https://facebook.github.io/react/docs/context.html

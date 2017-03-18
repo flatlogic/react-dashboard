@@ -17,7 +17,7 @@ import App from './components/App';
 import configureStore from './store/configureStore';
 import { updateMeta } from './core/DOMUtils';
 import { ErrorReporter, deepForceUpdate } from './core/devUtils';
-import Layout from './components/Layout/Layout';
+import Layout from './components/Layout';
 
 // Global (context) variables that can be easily accessed from any React component
 // https://facebook.github.io/react/docs/context.html
