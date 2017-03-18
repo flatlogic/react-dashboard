@@ -14,7 +14,7 @@ import s from './Contact.css';
 const Contact = () => (
   <div className={s.root}>
     <div className={s.container}>
-      <h1>Contact</h1>
+      <h1>Contactssss11</h1>
       <p>...</p>
     </div>
   </div>

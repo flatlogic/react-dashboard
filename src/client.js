@@ -175,21 +175,21 @@ if (__DEV__) {
 
  // Enable Hot Module Replacement (HMR)
 if (module.hot) {
-  // module.hot.accept('./routes', () => {
-  //  // routes = require('./routes').default; // eslint-disable-line global-require
-  //
-  //  if (appInstance) {
-  //    try {
-  //      // Force-update the whole tree, including components that refuse to update
-  //      deepForceUpdate(appInstance);
-  //    } catch (error) {
-  //      appInstance = null;
-  //      document.title = `Hot Update Error: ${error.message}`;
-  //      ReactDOM.render(<ErrorReporter error={error} />, container);
-  //      return;
-  //    }
-  //  }
-  //
-  //  onLocationChange(currentLocation);
-  // });
+  module.hot.accept('./components/Layout', () => {
+   // routes = require('./routes').default; // eslint-disable-line global-require
+
+   if (appInstance) {
+     try {
+       // Force-update the whole tree, including components that refuse to update
+       deepForceUpdate(appInstance);
+     } catch (error) {
+       appInstance = null;
+       document.title = `Hot Update Error: ${error.message}`;
+       ReactDOM.render(<ErrorReporter error={error} />, container);
+       return;
+     }
+   }
+
+   onLocationChange(currentLocation);
+  });
 }

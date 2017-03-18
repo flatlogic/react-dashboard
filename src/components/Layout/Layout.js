@@ -14,22 +14,27 @@ import s from './Layout.css';
 import Header from '../Header';
 import Feedback from '../Feedback';
 import Footer from '../Footer';
+import Bundle from '../../core/Bundle';
 
-import Home from '../../routes/home/Home';
-import NotFound from '../../routes/notFound/NotFound';
-import Contact from '../../routes/contact/Contact';
+import loadContact from 'bundle-loader?lazy!../../routes/contact/Contact'
+import loadHome from 'bundle-loader?lazy!../../routes/home/Home';
+import loadNotFound from 'bundle-loader?lazy!../../routes/notFound/NotFound';
+
+
+const ContactBundle = Bundle.generateBundle(loadContact);
+const HomeBundle = Bundle.generateBundle(loadHome);
+const NotFoundBundle = Bundle.generateBundle(loadNotFound);
 
 const Layout = () => (
   <div>
     <Header />
     <Switch>
-      <Route path="/" exact component={Home} />
-      <Route path="/contact" exact component={Contact} />
-      <Route component={NotFound} />
+      <Route path="/" exact component={HomeBundle} />
+      <Route path="/contact" exact component={ContactBundle} />
+      <Route component={NotFoundBundle} />
     </Switch>
     <Feedback />
     <Footer />
   </div>
 );
-
 export default withStyles(s)(Layout);
