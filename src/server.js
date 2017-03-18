@@ -22,7 +22,7 @@ import App from './components/App';
 import Html from './components/Html';
 import Layout from './components/Layout';
 import { ErrorPageWithoutStyle } from './routes/error/ErrorPage';
-import errorPageStyle from './routes/error/ErrorPage.css';
+import errorPageStyle from './routes/error/ErrorPage.scss';
 import passport from './core/passport';
 import models from './data/models';
 import schema from './data/schema';
@@ -30,6 +30,7 @@ import configureStore from './store/configureStore';
 import { setRuntimeVariable } from './actions/runtime';
 import { port, auth } from './config';
 import assets from './assets.json'; // eslint-disable-line import/no-unresolved
+import theme from './styles/theme.scss';
 
 const app = express();
 
@@ -121,7 +122,7 @@ app.get('*', async (req, res, next) => {
       // http://redux.js.org/docs/basics/UsageWithReact.html
       store,
     };
-
+    css.add(theme._getCss());
     data.scripts = [
       assets.vendor.js,
       assets.client.js,

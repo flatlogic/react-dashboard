@@ -10,8 +10,12 @@
 /*
  * Typography
  * ======================================================================== */
-
+$font-size-base: 16px;
 $font-family-base: 'Segoe UI', 'HelveticaNeue-Light', sans-serif;
+
+//== Iconography
+//
+$icon-font-path: '../../node_modules/bootstrap-sass/assets/fonts/bootstrap/'; // overriding bootstrap variable
 
 /*
  * Layout

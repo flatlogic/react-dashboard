@@ -9,7 +9,7 @@
 
 import React, { PropTypes } from 'react';
 import withStyles from 'isomorphic-style-loader/lib/withStyles';
-import s from './ErrorPage.css';
+import s from './ErrorPage.scss';
 
 class ErrorPage extends React.Component {
   static propTypes = {

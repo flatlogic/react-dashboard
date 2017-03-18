@@ -105,6 +105,24 @@ const config = {
         ],
       },
       {
+        test: /theme.scss$/,
+        loaders: [
+          'isomorphic-style-loader',
+          `css-loader?${isDebug ? 'sourceMap&' : 'minimize&'}modules&localIdentName=[local]&importLoaders=2`,
+          'sass-loader',
+        ],
+      },
+      {
+        test: /\.scss$/,
+        exclude: [/theme.scss$/],
+        use: [
+          'isomorphic-style-loader',
+          `css-loader?${isDebug ? 'sourceMap&' : 'minimize&'}modules&localIdentName=
+          ${isDebug ? '[name]_[local]_[hash:base64:3]' : '[hash:base64:4]'}&importLoaders=2`,
+          'sass-loader',
+        ],
+      },
+      {
         test: /\.md$/,
         loader: path.resolve(__dirname, './lib/markdown-loader.js'),
       },

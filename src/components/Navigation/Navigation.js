@@ -10,7 +10,7 @@
 import React from 'react';
 import cx from 'classnames';
 import withStyles from 'isomorphic-style-loader/lib/withStyles';
-import s from './Navigation.css';
+import s from './Navigation.scss';
 import Link from '../Link';
 
 class Navigation extends React.Component {

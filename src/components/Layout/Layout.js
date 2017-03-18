@@ -10,7 +10,7 @@
 import React, { PropTypes } from 'react';
 import withStyles from 'isomorphic-style-loader/lib/withStyles';
 import { Switch, Route } from 'react-router';
-import s from './Layout.css';
+import s from './Layout.scss';
 import Header from '../Header';
 import Feedback from '../Feedback';
 import Footer from '../Footer';
