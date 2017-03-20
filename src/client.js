@@ -20,6 +20,7 @@ import { ErrorReporter, deepForceUpdate } from './core/devUtils';
 import Layout from './components/Layout';
 import theme from './styles/theme.scss';
 
+// eslint-disable-next-line no-underscore-dangle
 theme._insertCss();
 
 // Global (context) variables that can be easily accessed from any React component
@@ -179,20 +180,20 @@ if (__DEV__) {
  // Enable Hot Module Replacement (HMR)
 if (module.hot) {
   module.hot.accept('./components/Layout', () => {
-   // routes = require('./routes').default; // eslint-disable-line global-require
+    // routes = require('./routes').default; // eslint-disable-line global-require
 
-   if (appInstance) {
-     try {
-       // Force-update the whole tree, including components that refuse to update
-       deepForceUpdate(appInstance);
-     } catch (error) {
-       appInstance = null;
-       document.title = `Hot Update Error: ${error.message}`;
-       ReactDOM.render(<ErrorReporter error={error} />, container);
-       return;
-     }
-   }
+    if (appInstance) {
+      try {
+        // Force-update the whole tree, including components that refuse to update
+        deepForceUpdate(appInstance);
+      } catch (error) {
+        appInstance = null;
+        document.title = `Hot Update Error: ${error.message}`;
+        ReactDOM.render(<ErrorReporter error={error} />, container);
+        return;
+      }
+    }
 
-   onLocationChange(currentLocation);
+    onLocationChange(currentLocation);
   });
 }

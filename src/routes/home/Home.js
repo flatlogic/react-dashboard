@@ -7,10 +7,11 @@
  * LICENSE.txt file in the root directory of this source tree.
  */
 
-import React, { PropTypes } from 'react';
+import React from 'react';
 import withStyles from 'isomorphic-style-loader/lib/withStyles';
-import s from './Home.scss';
 import { Button, ButtonGroup, DropdownButton, MenuItem } from 'react-bootstrap';
+
+import s from './Home.scss';
 
 class Home extends React.Component {
 

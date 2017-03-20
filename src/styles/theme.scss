@@ -3,12 +3,9 @@
  * This file is loaded via separate loader thus allowing to use original bootstrap classes (e.g. .btn-default) through out the app.
  */
 
-@import "variables";
-@import "../../node_modules/bootstrap-sass/assets/stylesheets/bootstrap";
-
-@import "mixins";
-
-@import "general";
-
-@import "utils";
+@import 'variables';
+@import '../../node_modules/bootstrap-sass/assets/stylesheets/bootstrap';
+@import 'mixins';
+@import 'general';
+@import 'utils';
 
