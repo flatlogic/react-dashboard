@@ -10,6 +10,7 @@
 import React, { PropTypes } from 'react';
 import withStyles from 'isomorphic-style-loader/lib/withStyles';
 import s from './Home.scss';
+import { Button, ButtonGroup, DropdownButton, MenuItem } from 'react-bootstrap';
 
 class Home extends React.Component {
 
@@ -18,7 +19,17 @@ class Home extends React.Component {
       <div className={s.root}>
         <div className={s.container}>
           <h1>React.js News</h1>
-          <button className="btn btn-default">test</button>
+          <p><Button bsStyle="info">Default</Button></p>
+          <p>
+            <ButtonGroup>
+              <Button>1</Button>
+              <Button>2</Button>
+              <DropdownButton title="Dropdown" id="bg-nested-dropdown">
+                <MenuItem eventKey="1">Dropdown link</MenuItem>
+                <MenuItem eventKey="2">Dropdown link</MenuItem>
+              </DropdownButton>
+            </ButtonGroup>
+          </p>
         </div>
       </div>
     );
