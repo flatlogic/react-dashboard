@@ -7,6 +7,7 @@
  * LICENSE.txt file in the root directory of this source tree.
  */
 
+import { connect } from 'react-redux';
 import React from 'react';
 import withStyles from 'isomorphic-style-loader/lib/withStyles';
 import s from './Header.scss';
@@ -16,6 +17,11 @@ import logoUrl from './logo-small.png';
 import logoUrl2x from './logo-small@2x.png';
 
 class Header extends React.Component {
+  constructor(props) {
+    super(props);
+    console.log(props);
+  }
+
   render() {
     return (
       <div className={s.root}>
@@ -35,4 +41,9 @@ class Header extends React.Component {
   }
 }
 
-export default withStyles(s)(Header);
+function mapStateToProps(state) {
+  return {
+    init: state.runtime.initialNow,
+  };
+}
+export default connect(mapStateToProps)(withStyles(s)(Header));

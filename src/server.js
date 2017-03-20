@@ -141,9 +141,7 @@ app.get('*', async (req, res, next) => {
         location={req.url}
         context={context}
       >
-        <App>
-          <Layout />
-        </App>
+        <App />
       </StaticRouter>,
     );
 

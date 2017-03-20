@@ -9,7 +9,7 @@
 
 import React from 'react';
 import withStyles from 'isomorphic-style-loader/lib/withStyles';
-import { Switch, Route } from 'react-router';
+import { Switch, Route, withRouter } from 'react-router';
 
 /* eslint-disable */
 import loadContact from 'bundle-loader?lazy!../../routes/contact/Contact';
@@ -24,7 +24,6 @@ import loadAdmin from 'bundle-loader?lazy!../../routes/admin/Admin';
 
 import s from './Layout.scss';
 import Header from '../Header';
-import Feedback from '../Feedback';
 import Footer from '../Footer';
 import Bundle from '../../core/Bundle';
 
@@ -42,17 +41,16 @@ const Layout = () => (
   <div>
     <Header />
     <Switch>
-      <Route path="/" exact component={HomeBundle} />
-      <Route path="/contact" exact component={ContactBundle} />
-      <Route path="/about" exact component={AboutBundle} />
+      <Route path="/layout" exact component={HomeBundle} />
+      <Route path="/layout/contact" exact component={ContactBundle} />
+      <Route path="/layout/about" exact component={AboutBundle} />
       <Route path="/login" exact component={LoginBundle} />
       <Route path="/register" exact component={RegisterBundle} />
       <Route path="/privacy" exact component={PrivacyBundle} />
       <Route path="/admin" exact component={AdminBundle} />
       <Route component={NotFoundBundle} />
     </Switch>
-    <Feedback />
     <Footer />
   </div>
 );
-export default withStyles(s)(Layout);
+export default withRouter(withStyles(s)(Layout));

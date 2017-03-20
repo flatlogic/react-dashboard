@@ -135,11 +135,7 @@ async function onLocationChange(location, action) {
       <Router
         history={history}
       >
-        <App
-          context={context}
-        >
-          <Layout />
-        </App>
+        <App context={context} />
       </Router>,
       container,
       () => onRenderComplete({ title: 'blah', description: 'description' }, location),

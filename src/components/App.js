@@ -8,6 +8,16 @@
  */
 
 import React, { Children, PropTypes } from 'react';
+import { Switch, Route, Redirect, BrowserRouter as Router, withRouter } from 'react-router';
+
+import Bundle from '../core/Bundle';
+import Layout from './../components/Layout';
+
+/* eslint-disable */
+import loadLayout from 'bundle-loader?lazy!../components/Layout/Layout';
+/* eslint-enable */
+
+const LayoutBundle = Bundle.generateBundle(loadLayout);
 
 const ContextType = {
   // Enables critical path CSS rendering
@@ -47,7 +57,6 @@ const ContextType = {
 class App extends React.PureComponent {
 
   static propTypes = {
-    children: PropTypes.element.isRequired,
     context: PropTypes.shape(ContextType),
   };
 
@@ -68,11 +77,14 @@ class App extends React.PureComponent {
   }
 
   render() {
-    // NOTE: If you need to add or modify header, footer etc. of the app,
-    // please do that inside the Layout component.
-    return Children.only(this.props.children);
+    return (
+      <Switch>
+        <Route path="/" exact render={() => <Redirect to="/layout" />} />
+        <Route path="/layout" component={LayoutBundle} />
+      </Switch>
+    );
   }
 
 }
 
-export default App;
+export default withRouter(App);
