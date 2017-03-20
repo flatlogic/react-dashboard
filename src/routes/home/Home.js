@@ -18,6 +18,7 @@ class Home extends React.Component {
       <div className={s.root}>
         <div className={s.container}>
           <h1>React.js News</h1>
+          <button className="btn btn-default">test</button>
         </div>
       </div>
     );
