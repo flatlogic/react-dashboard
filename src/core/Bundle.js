@@ -3,7 +3,7 @@ import React, { Component, PropTypes } from 'react';
 class Bundle extends Component {
   static propTypes = {
     load: PropTypes.func.isRequired,
-    children: PropTypes.element.isRequired,
+    children: PropTypes.func.isRequired,
   };
 
   static generateBundle = loadModule => () => (
