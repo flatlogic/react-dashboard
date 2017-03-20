@@ -122,7 +122,10 @@ app.get('*', async (req, res, next) => {
       // http://redux.js.org/docs/basics/UsageWithReact.html
       store,
     };
+
+    // eslint-disable-next-line no-underscore-dangle
     css.add(theme._getCss());
+
     data.scripts = [
       assets.vendor.js,
       assets.client.js,

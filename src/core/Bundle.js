@@ -1,17 +1,23 @@
-import React, { Component } from 'react'
+import React, { Component, PropTypes } from 'react';
 
 class Bundle extends Component {
-  static generateBundle = (loadModule) => {
-    return () => (
-      <Bundle load={loadModule}>
-        {(Mod) => Mod ? <Mod /> : <div style={{textAlign: 'center'}}>Loading</div>}
-      </Bundle>
-    );
+  static propTypes = {
+    load: PropTypes.func.isRequired,
+    children: PropTypes.element.isRequired,
   };
+
+  static generateBundle = loadModule => () => (
+    /* eslint-disable */
+    <Bundle load={loadModule}>
+      {Mod => Mod ? <Mod /> : <div style={{ textAlign: 'center' }}>Loading</div>}
+    </Bundle>
+    /* eslint-enable */
+    );
+
 
   state = {
     // short for "module" but that's a keyword in js, so "mod"
-    mod: null
+    mod: null,
   };
 
   componentWillMount() {
@@ -26,14 +32,14 @@ class Bundle extends Component {
 
   load(props) {
     this.setState({
-      mod: null
+      mod: null,
     });
     props.load((mod) => {
       this.setState({
         // handle both es imports and cjs
-        mod: mod.default ? mod.default : mod
-      })
-    })
+        mod: mod.default ? mod.default : mod,
+      });
+    });
   }
 
   render() {
@@ -41,4 +47,4 @@ class Bundle extends Component {
   }
 }
 
-export default Bundle
+export default Bundle;
