@@ -25,7 +25,7 @@ export const analytics = {
 
 export const auth = {
 
-  jwt: { secret: process.env.JWT_SECRET || 'React Starter Kit' },
+  jwt: { secret: process.env.JWT_SECRET || 'React Dashboard' },
 
   // https://developers.facebook.com/
   facebook: {
@@ -45,4 +45,9 @@ export const auth = {
     secret: process.env.TWITTER_CONSUMER_SECRET || 'KTZ6cxoKnEakQCeSpZlaUCJWGAlTEBJj0y2EMkUBujA7zWSvaQ',
   },
 
+};
+
+export const defaultMeta = {
+  title: 'React Dashboard',
+  description: 'React Dashboard Starter project based on react-router 4, redux, graphql, bootstrap',
 };

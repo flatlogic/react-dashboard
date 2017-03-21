@@ -10,6 +10,7 @@
 import React from 'react';
 import withStyles from 'isomorphic-style-loader/lib/withStyles';
 import s from './Contact.scss';
+import withMeta from '../../core/withMeta';
 
 const Contact = () => (
   <div className={s.root}>
@@ -20,4 +21,4 @@ const Contact = () => (
   </div>
 );
 
-export default withStyles(s)(Contact);
+export default withStyles(s)(withMeta(Contact));

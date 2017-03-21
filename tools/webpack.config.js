@@ -96,12 +96,6 @@ const config = {
               discardComments: { removeAll: true },
             },
           },
-          {
-            loader: 'postcss-loader',
-            options: {
-              config: './tools/postcss.config.js',
-            },
-          },
         ],
       },
       {

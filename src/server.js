@@ -20,7 +20,6 @@ import ReactDOM from 'react-dom/server';
 import PrettyError from 'pretty-error';
 import App from './components/App';
 import Html from './components/Html';
-import Layout from './components/Layout';
 import { ErrorPageWithoutStyle } from './routes/error/ErrorPage';
 import errorPageStyle from './routes/error/ErrorPage.scss';
 import passport from './core/passport';
@@ -132,9 +131,6 @@ app.get('*', async (req, res, next) => {
     ];
 
     data.state = context.store.getState();
-    // if (assets[route.chunk]) {
-    //   data.scripts.push(assets[route.chunk].js);
-    // }
 
     const html = ReactDOM.renderToString(
       <StaticRouter

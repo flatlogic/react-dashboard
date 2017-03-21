@@ -7,17 +7,23 @@
  * LICENSE.txt file in the root directory of this source tree.
  */
 
-import React, { Children, PropTypes } from 'react';
-import { Switch, Route, Redirect, BrowserRouter as Router, withRouter } from 'react-router';
+import React, { PropTypes } from 'react';
+import { Switch, Route, Redirect, withRouter } from 'react-router';
 
 import Bundle from '../core/Bundle';
-import Layout from './../components/Layout';
 
 /* eslint-disable */
 import loadLayout from 'bundle-loader?lazy!../components/Layout/Layout';
+import loadLogin from 'bundle-loader?lazy!../routes/login/Login';
+import loadRegister from 'bundle-loader?lazy!../routes/register/Register';
+import loadNotFound from 'bundle-loader?lazy!../routes/notFound/NotFound';
 /* eslint-enable */
 
 const LayoutBundle = Bundle.generateBundle(loadLayout);
+const LoginBundle = Bundle.generateBundle(loadLogin);
+const RegisterBundle = Bundle.generateBundle(loadRegister);
+const NotFoundBundle = Bundle.generateBundle(loadNotFound);
+
 
 const ContextType = {
   // Enables critical path CSS rendering
@@ -81,6 +87,9 @@ class App extends React.PureComponent {
       <Switch>
         <Route path="/" exact render={() => <Redirect to="/layout" />} />
         <Route path="/layout" component={LayoutBundle} />
+        <Route path="/login" exact component={LoginBundle} />
+        <Route path="/register" exact component={RegisterBundle} />
+        <Route component={NotFoundBundle} />
       </Switch>
     );
   }

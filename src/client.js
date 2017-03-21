@@ -15,9 +15,7 @@ import { createPath } from 'history/PathUtils';
 import history from './core/history';
 import App from './components/App';
 import configureStore from './store/configureStore';
-import { updateMeta } from './core/DOMUtils';
 import { ErrorReporter, deepForceUpdate } from './core/devUtils';
-import Layout from './components/Layout';
 import theme from './styles/theme.scss';
 
 // eslint-disable-next-line no-underscore-dangle
@@ -49,19 +47,9 @@ let onRenderComplete = function initialRenderComplete() {
   const elem = document.getElementById('css');
   if (elem) elem.parentNode.removeChild(elem);
 
-  // philip: this method updates scroll position, page description and handles google analytics.
+  // philip: this method updates scroll position and handles google analytics.
   // not related to actual rendering
-  onRenderComplete = function renderComplete(route, location) {
-    document.title = route.title;
-
-    updateMeta('description', route.description);
-    // Update necessary tags in <head> at runtime here, ie:
-    // updateMeta('keywords', route.keywords);
-    // updateCustomMeta('og:url', route.canonicalUrl);
-    // updateCustomMeta('og:image', route.imageUrl);
-    // updateLink('canonical', route.canonicalUrl);
-    // etc.
-
+  onRenderComplete = function renderComplete(location) {
     let scrollX = 0;
     let scrollY = 0;
     const pos = scrollPositionsHistory[location.key];
@@ -112,24 +100,10 @@ async function onLocationChange(location, action) {
   currentLocation = location;
 
   try {
-    // Traverses the list of routes in the order they are defined until
-    // it finds the first route that matches provided URL path string
-    // and whose action method returns anything other than `undefined`.
-    // const route = await UniversalRouter.resolve(routes, {
-    //  ...context,
-    //  path: location.pathname,
-    //  query: queryString.parse(location.search),
-    // });
-
     // Prevent multiple page renders during the routing process
     if (currentLocation.key !== location.key) {
       return;
     }
-
-    // if (route.redirect) {
-    //  history.replace(route.redirect);
-    //  return;
-    // }
 
     appInstance = ReactDOM.render(
       <Router
@@ -138,7 +112,7 @@ async function onLocationChange(location, action) {
         <App context={context} />
       </Router>,
       container,
-      () => onRenderComplete({ title: 'blah', description: 'description' }, location),
+      () => onRenderComplete(location),
     );
   } catch (error) {
     // Display the error in full-screen for development mode
@@ -176,8 +150,6 @@ if (__DEV__) {
  // Enable Hot Module Replacement (HMR)
 if (module.hot) {
   module.hot.accept('./components/Layout', () => {
-    // routes = require('./routes').default; // eslint-disable-line global-require
-
     if (appInstance) {
       try {
         // Force-update the whole tree, including components that refuse to update

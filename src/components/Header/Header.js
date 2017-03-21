@@ -10,18 +10,13 @@
 import { connect } from 'react-redux';
 import React from 'react';
 import withStyles from 'isomorphic-style-loader/lib/withStyles';
+import { Link } from 'react-router-dom';
 import s from './Header.scss';
-import Link from '../Link';
 import Navigation from '../Navigation';
 import logoUrl from './logo-small.png';
 import logoUrl2x from './logo-small@2x.png';
 
 class Header extends React.Component {
-  constructor(props) {
-    super(props);
-    console.log(props);
-  }
-
   render() {
     return (
       <div className={s.root}>

@@ -9,8 +9,14 @@
 
 import React from 'react';
 import Page from '../../components/Page';
+import withMeta from '../../core/withMeta';
 
 class About extends React.Component {
+  static meta = {
+    title: 'About page!!1',
+    description: 'About description',
+  };
+
   state = {};
 
   componentDidMount() {
@@ -29,4 +35,4 @@ class About extends React.Component {
   }
 }
 
-export default About;
+export default withMeta(About);
