@@ -12,6 +12,10 @@
     position: relative;
     padding-left: 15px;
     line-height: 44px;
+
+    > i {
+      margin-right: 7px;
+    }
   }
 }
 
@@ -29,16 +33,19 @@
   border: none;
   box-shadow: none;
   margin: 0;
+  border-radius: 0;
+  background: rgba(#000, 0.1);
 
   div {
     padding: 0;
   }
 
   ul {
-    padding-left: 0;
+    padding-left: 16px;
+    font-size: $font-size-small;
 
     li {
-      padding: 5px 20px;
+      padding: 7px 20px;
       list-style: none;
     }
   }

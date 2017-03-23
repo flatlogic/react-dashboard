@@ -28,7 +28,7 @@ class LinksGroup extends Component {
       return (
         <li className={s.headerLink}>
           <NavLink to={this.props.headerLink} activeClassName={s.headerLinkActive}>
-            <i className={`glyphicon ${this.props.iconName} mr-xs`} />
+            <i className={`glyphicon ${this.props.iconName}`} />
             {this.props.header}
           </NavLink>
         </li>
@@ -39,7 +39,7 @@ class LinksGroup extends Component {
       <li className={s.headerLink}>
         {/* eslint-disable */}
         <a onClick={() => { this.setState({ isOpened: !this.state.isOpened }); }}>
-          <i className={`glyphicon ${this.props.iconName} mr-xs`} />
+          <i className={`glyphicon ${this.props.iconName}`} />
 
           {this.props.header}
 
