@@ -53,7 +53,7 @@ class Html extends React.Component {
         </head>
         <body>
           <div
-            id="app"
+            id="app" className="app"
             // eslint-disable-next-line react/no-danger
             dangerouslySetInnerHTML={{ __html: children }}
           />

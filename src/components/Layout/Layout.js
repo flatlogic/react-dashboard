@@ -11,9 +11,9 @@ import React from 'react';
 import withStyles from 'isomorphic-style-loader/lib/withStyles';
 import { Switch, Route, withRouter } from 'react-router';
 
+// an example of react-router code-splitting
 /* eslint-disable */
 import loadContact from 'bundle-loader?lazy!../../pages/contact/Contact';
-import loadHome from 'bundle-loader?lazy!../../pages/home/Home';
 import loadAbout from 'bundle-loader?lazy!../../pages/about/About';
 import loadPrivacy from 'bundle-loader?lazy!../../pages/privacy/Privacy';
 import loadAdmin from 'bundle-loader?lazy!../../pages/admin/Admin';
@@ -25,8 +25,10 @@ import Footer from '../Footer';
 import Bundle from '../../core/Bundle';
 import Sidebar from '../Sidebar';
 
+// Dashboard component is loaded directly as an example of server side rendering
+import Dashboard from '../../pages/dashboard/Dashboard';
+
 const ContactBundle = Bundle.generateBundle(loadContact);
-const HomeBundle = Bundle.generateBundle(loadHome);
 const AboutBundle = Bundle.generateBundle(loadAbout);
 const PrivacyBundle = Bundle.generateBundle(loadPrivacy);
 const AdminBundle = Bundle.generateBundle(loadAdmin);
@@ -34,17 +36,19 @@ const AdminBundle = Bundle.generateBundle(loadAdmin);
 class Layout extends React.Component {
   render() {
     return (
-      <div>
+      <div className={s.root}>
         <Sidebar />
-        <div className={s['app-body']}>
+        <div className={s.wrap}>
           <Header />
-          <Switch>
-            <Route path="/layout" exact component={HomeBundle} />
-            <Route path="/layout/contact" exact component={ContactBundle} />
-            <Route path="/layout/about" exact component={AboutBundle} />
-            <Route path="/layout/privacy" exact component={PrivacyBundle} />
-            <Route path="/layout/admin" exact component={AdminBundle} />
-          </Switch>
+          <main className={s.content}>
+            <Switch>
+              <Route path="/app" exact component={Dashboard} />
+              <Route path="/app/contact" exact component={ContactBundle} />
+              <Route path="/app/about" exact component={AboutBundle} />
+              <Route path="/app/privacy" exact component={PrivacyBundle} />
+              <Route path="/app/admin" exact component={AdminBundle} />
+            </Switch>
+          </main>
           <Footer />
         </div>
       </div>

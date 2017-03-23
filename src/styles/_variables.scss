@@ -34,12 +34,19 @@ $screen-lg-min: 1200px; /* Large screen / wide desktop */
 
 //== Components
 //
+
+$content-padding-horizontal: 30px;
+$content-padding-vertical: 40px;
+
+$navbar-height:      50px;
 $sidebar-width-open: 200px;
 $sidebar-width-closed: 50px;
 $sidebar-transition-time: 0.3s !default;
 
 $sidebar-bg-color: #fff;
 $sidebar-color: #7f7f7f;
+
+$navbar-margin-bottom: -$navbar-height;
 
 // ===== Colors =====
 

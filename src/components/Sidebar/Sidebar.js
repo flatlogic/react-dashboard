@@ -14,13 +14,13 @@ class Sidebar extends Component {
         </header>
 
         <ul className={s.nav}>
-          <LinksGroup header="Dashboard" headerLink="/layout" iconName="glyphicon-tree-conifer" />
+          <LinksGroup header="Dashboard" headerLink="/app" iconName="glyphicon-tree-conifer" />
           <LinksGroup
             header="Posts"
-            childrenLinks={[{ name: 'Show all', link: '/layout/posts' }, { name: 'Create new', link: '/layout/posts/new' }]}
+            childrenLinks={[{ name: 'Show all', link: '/app/posts' }, { name: 'Create new', link: '/app/posts/new' }]}
             iconName="glyphicon-list-alt"
           />
-          <LinksGroup header="Profile" headerLink="/layout/profile" iconName="glyphicon-user" />
+          <LinksGroup header="Profile" headerLink="/app/profile" iconName="glyphicon-user" />
         </ul>
       </nav>
     );

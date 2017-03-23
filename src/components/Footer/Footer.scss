@@ -10,15 +10,18 @@
 @import '../../styles/app';
 
 .root {
-  background: #333;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: $primary-gray;
   color: #fff;
+  font-size: $font-size-small - 1;
 }
 
 .container {
   margin: 0 auto;
-  padding: 20px 15px;
-  max-width: $max-content-width;
-  text-align: center;
+  padding: 7px $content-padding-horizontal;
 }
 
 .text {

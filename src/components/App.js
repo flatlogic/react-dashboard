@@ -86,8 +86,8 @@ class App extends React.PureComponent {
   render() {
     return (
       <Switch>
-        <Route path="/" exact render={() => <Redirect to="/layout" />} />
-        <Route path="/layout" component={LayoutComponent} />
+        <Route path="/" exact render={() => <Redirect to="/app" />} />
+        <Route path="/app" component={LayoutComponent} />
         <Route path="/login" exact component={LoginBundle} />
         <Route path="/register" exact component={RegisterBundle} />
         <Route component={NotFoundBundle} />
