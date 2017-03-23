@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import withStyles from 'isomorphic-style-loader/lib/withStyles';
+import { ProgressBar } from 'react-bootstrap';
 
 import s from './Sidebar.scss';
 import LinksGroup from './LinksGroup/LinksGroup';
@@ -20,6 +21,10 @@ const Sidebar = () => (
       />
       <LinksGroup header="Profile" headerLink="/app/profile" iconName="glyphicon-user" />
     </ul>
+    <footer className={s.footer}>
+      <p className="text-gray-lighter opacity-60 ml-xs mr-xs mb-xs">58% ready</p>
+      <ProgressBar now={58} bsStyle="warning" className="progress-xs mb-sm" />
+    </footer>
   </nav>
 );
 

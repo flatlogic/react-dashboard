@@ -13,6 +13,12 @@
 $font-size-base: 16px;
 $font-family-base: 'Nunito', 'HelveticaNeue-Light', sans-serif;
 
+$brand-primary:         #3754a5 !default; // #337ab7
+$brand-success:         #05c1a1 !default;
+$brand-info:            #5d80f9 !default;
+$brand-warning:         #f7be1e !default;
+$brand-danger:          #f45c43 !default;
+
 //== Iconography
 //
 $icon-font-path: '../../node_modules/bootstrap-sass/assets/fonts/bootstrap/'; // overriding bootstrap variable

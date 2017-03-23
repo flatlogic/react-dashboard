@@ -7,7 +7,7 @@ import s from './Dashboard.scss';
 const Dashboard = () => (
   <div className={s.root}>
     <h1>Dashboard</h1>
-    <p><Button bsStyle="info">Default</Button></p>
+    <p><Button bsStyle="danger">Default</Button></p>
     <div>
       <ButtonGroup>
         <Button>1</Button>

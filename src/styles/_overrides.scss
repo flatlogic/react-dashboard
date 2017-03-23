@@ -6,3 +6,17 @@
 .navbar {
   border: none;
 }
+
+.progress-bar {
+  @include box-shadow(none);
+}
+
+.progress-sm {
+  height: 10px;
+  margin-bottom: $line-height-computed/2;
+}
+
+.progress-xs {
+  height: 5px;
+  margin-bottom: $line-height-computed/2;
+}
