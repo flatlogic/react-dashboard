@@ -19,7 +19,8 @@ import loadRegister from 'bundle-loader?lazy!../routes/register/Register';
 import loadNotFound from 'bundle-loader?lazy!../routes/notFound/NotFound';
 /* eslint-enable */
 
-const LayoutBundle = Bundle.generateBundle(loadLayout);
+import LayoutComponent from '../components/Layout/Layout';
+
 const LoginBundle = Bundle.generateBundle(loadLogin);
 const RegisterBundle = Bundle.generateBundle(loadRegister);
 const NotFoundBundle = Bundle.generateBundle(loadNotFound);
@@ -86,7 +87,7 @@ class App extends React.PureComponent {
     return (
       <Switch>
         <Route path="/" exact render={() => <Redirect to="/layout" />} />
-        <Route path="/layout" component={LayoutBundle} />
+        <Route path="/layout" component={LayoutComponent} />
         <Route path="/login" exact component={LoginBundle} />
         <Route path="/register" exact component={RegisterBundle} />
         <Route component={NotFoundBundle} />

@@ -1,0 +1,45 @@
+@import '../../../styles/app';
+
+.headerLink {
+  a {
+    display: block;
+    color: $sidebar-color;
+    text-decoration: none;
+    cursor: pointer;
+  }
+
+  > a {
+    position: relative;
+    padding-left: 15px;
+    line-height: 44px;
+  }
+}
+
+.caret {
+  float: right;
+  margin-top: 20px;
+  margin-right: 15px;
+}
+
+.headerLinkActive {
+  font-weight: bold;
+}
+
+.panel {
+  border: none;
+  box-shadow: none;
+  margin: 0;
+
+  div {
+    padding: 0;
+  }
+
+  ul {
+    padding-left: 0;
+
+    li {
+      padding: 5px 20px;
+      list-style: none;
+    }
+  }
+}

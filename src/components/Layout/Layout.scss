@@ -176,3 +176,8 @@ textarea {
     page-break-after: avoid;
   }
 }
+
+.app-body {
+  position: relative;
+  margin-left: $sidebar-width-open;
+}

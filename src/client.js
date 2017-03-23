@@ -149,7 +149,7 @@ if (__DEV__) {
 
  // Enable Hot Module Replacement (HMR)
 if (module.hot) {
-  module.hot.accept('./components/Layout', () => {
+  module.hot.accept('./components/App', () => {
     if (appInstance) {
       try {
         // Force-update the whole tree, including components that refuse to update

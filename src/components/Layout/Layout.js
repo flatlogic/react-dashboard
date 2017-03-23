@@ -23,6 +23,7 @@ import s from './Layout.scss';
 import Header from '../Header';
 import Footer from '../Footer';
 import Bundle from '../../core/Bundle';
+import Sidebar from '../Sidebar';
 
 const ContactBundle = Bundle.generateBundle(loadContact);
 const HomeBundle = Bundle.generateBundle(loadHome);
@@ -30,17 +31,25 @@ const AboutBundle = Bundle.generateBundle(loadAbout);
 const PrivacyBundle = Bundle.generateBundle(loadPrivacy);
 const AdminBundle = Bundle.generateBundle(loadAdmin);
 
-const Layout = () => (
-  <div>
-    <Header />
-    <Switch>
-      <Route path="/layout" exact component={HomeBundle} />
-      <Route path="/layout/contact" exact component={ContactBundle} />
-      <Route path="/layout/about" exact component={AboutBundle} />
-      <Route path="/layout/privacy" exact component={PrivacyBundle} />
-      <Route path="/layout/admin" exact component={AdminBundle} />
-    </Switch>
-    <Footer />
-  </div>
-);
+class Layout extends React.Component {
+  render() {
+    return (
+      <div>
+        <Sidebar />
+        <div className={s['app-body']}>
+          <Header />
+          <Switch>
+            <Route path="/layout" exact component={HomeBundle} />
+            <Route path="/layout/contact" exact component={ContactBundle} />
+            <Route path="/layout/about" exact component={AboutBundle} />
+            <Route path="/layout/privacy" exact component={PrivacyBundle} />
+            <Route path="/layout/admin" exact component={AdminBundle} />
+          </Switch>
+          <Footer />
+        </div>
+      </div>
+    );
+  }
+}
+
 export default withRouter(withStyles(s)(Layout));

@@ -11,7 +11,7 @@
  * Typography
  * ======================================================================== */
 $font-size-base: 16px;
-$font-family-base: 'Segoe UI', 'HelveticaNeue-Light', sans-serif;
+$font-family-base: 'Nunito', 'HelveticaNeue-Light', sans-serif;
 
 //== Iconography
 //
@@ -31,3 +31,16 @@ $screen-xs-min: 480px;  /* Extra small screen / phone */
 $screen-sm-min: 768px;  /* Small screen / tablet */
 $screen-md-min: 992px;  /* Medium screen / desktop */
 $screen-lg-min: 1200px; /* Large screen / wide desktop */
+
+//== Components
+//
+$sidebar-width-open: 200px;
+$sidebar-width-closed: 50px;
+$sidebar-transition-time: 0.3s !default;
+
+$sidebar-bg-color: #fff;
+$sidebar-color: #7f7f7f;
+
+// ===== Colors =====
+
+$primary-gray: gray;

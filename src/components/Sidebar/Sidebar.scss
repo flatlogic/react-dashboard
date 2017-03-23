@@ -1,0 +1,32 @@
+@import '../../styles/app';
+
+.root {
+  width: $sidebar-width-open;
+  position: fixed;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  background-color: $sidebar-bg-color;
+  color: $sidebar-color;
+}
+
+.logo {
+  margin: 0 0 17px;
+  height: $navbar-height;
+  width: 100%;
+  background-color: $primary-gray;
+  align-items: center;
+  justify-content: center;
+  display: flex;
+
+  a {
+    text-decoration: none;
+    color: #fff;
+  }
+}
+
+.nav {
+  padding: 10px 0;
+  font-size: 14px;
+  overflow-y: auto;
+}
