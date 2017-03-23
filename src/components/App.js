@@ -14,9 +14,9 @@ import Bundle from '../core/Bundle';
 
 /* eslint-disable */
 import loadLayout from 'bundle-loader?lazy!../components/Layout/Layout';
-import loadLogin from 'bundle-loader?lazy!../routes/login/Login';
-import loadRegister from 'bundle-loader?lazy!../routes/register/Register';
-import loadNotFound from 'bundle-loader?lazy!../routes/notFound/NotFound';
+import loadLogin from 'bundle-loader?lazy!../pages/login/Login';
+import loadRegister from 'bundle-loader?lazy!../pages/register/Register';
+import loadNotFound from 'bundle-loader?lazy!../pages/notFound/NotFound';
 /* eslint-enable */
 
 import LayoutComponent from '../components/Layout/Layout';

@@ -12,11 +12,11 @@ import withStyles from 'isomorphic-style-loader/lib/withStyles';
 import { Switch, Route, withRouter } from 'react-router';
 
 /* eslint-disable */
-import loadContact from 'bundle-loader?lazy!../../routes/contact/Contact';
-import loadHome from 'bundle-loader?lazy!../../routes/home/Home';
-import loadAbout from 'bundle-loader?lazy!../../routes/about/About';
-import loadPrivacy from 'bundle-loader?lazy!../../routes/privacy/Privacy';
-import loadAdmin from 'bundle-loader?lazy!../../routes/admin/Admin';
+import loadContact from 'bundle-loader?lazy!../../pages/contact/Contact';
+import loadHome from 'bundle-loader?lazy!../../pages/home/Home';
+import loadAbout from 'bundle-loader?lazy!../../pages/about/About';
+import loadPrivacy from 'bundle-loader?lazy!../../pages/privacy/Privacy';
+import loadAdmin from 'bundle-loader?lazy!../../pages/admin/Admin';
 /* eslint-enable */
 
 import s from './Layout.scss';
