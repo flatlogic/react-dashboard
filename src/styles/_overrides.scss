@@ -20,3 +20,16 @@
   height: 5px;
   margin-bottom: $line-height-computed/2;
 }
+
+.breadcrumb {
+  margin-top: -15px;
+  font-size: $font-size-small;
+
+  > .active {
+    font-weight: 600;
+  }
+
+  > li + li::before {
+    color: $gray-light;
+  }
+}

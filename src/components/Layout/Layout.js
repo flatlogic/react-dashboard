@@ -13,10 +13,8 @@ import { Switch, Route, withRouter } from 'react-router';
 
 // an example of react-router code-splitting
 /* eslint-disable */
-import loadContact from 'bundle-loader?lazy!../../pages/contact/Contact';
-import loadAbout from 'bundle-loader?lazy!../../pages/about/About';
+import loadPosts from 'bundle-loader?lazy!../../pages/posts/Posts';
 import loadPrivacy from 'bundle-loader?lazy!../../pages/privacy/Privacy';
-import loadAdmin from 'bundle-loader?lazy!../../pages/admin/Admin';
 /* eslint-enable */
 
 import s from './Layout.scss';
@@ -28,32 +26,24 @@ import Sidebar from '../Sidebar';
 // Dashboard component is loaded directly as an example of server side rendering
 import Dashboard from '../../pages/dashboard/Dashboard';
 
-const ContactBundle = Bundle.generateBundle(loadContact);
-const AboutBundle = Bundle.generateBundle(loadAbout);
+const PostsBundle = Bundle.generateBundle(loadPosts);
 const PrivacyBundle = Bundle.generateBundle(loadPrivacy);
-const AdminBundle = Bundle.generateBundle(loadAdmin);
 
-class Layout extends React.Component {
-  render() {
-    return (
-      <div className={s.root}>
-        <Sidebar />
-        <div className={s.wrap}>
-          <Header />
-          <main className={s.content}>
-            <Switch>
-              <Route path="/app" exact component={Dashboard} />
-              <Route path="/app/contact" exact component={ContactBundle} />
-              <Route path="/app/about" exact component={AboutBundle} />
-              <Route path="/app/privacy" exact component={PrivacyBundle} />
-              <Route path="/app/admin" exact component={AdminBundle} />
-            </Switch>
-          </main>
-          <Footer />
-        </div>
-      </div>
-    );
-  }
-}
+const Layout = () => (
+  <div className={s.root}>
+    <Sidebar />
+    <div className={s.wrap}>
+      <Header />
+      <main className={s.content}>
+        <Switch>
+          <Route path="/app" exact component={Dashboard} />
+          <Route path="/app/posts" exact component={PostsBundle} />
+          <Route path="/app/privacy" exact component={PrivacyBundle} />
+        </Switch>
+      </main>
+      <Footer />
+    </div>
+  </div>
+);
 
 export default withRouter(withStyles(s)(Layout));

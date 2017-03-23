@@ -6,6 +6,10 @@ import s from './Dashboard.scss';
 
 const Dashboard = () => (
   <div className={s.root}>
+    <ol className="breadcrumb">
+      <li><span className="text-muted">YOU ARE HERE</span></li>
+      <li className="active">Dashboard</li>
+    </ol>
     <h1>Dashboard</h1>
     <p><Button bsStyle="danger">Default</Button></p>
     <div>

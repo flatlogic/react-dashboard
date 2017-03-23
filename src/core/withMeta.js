@@ -9,7 +9,7 @@ function withMeta(ComposedComponent) {
       if (ComposedComponent.meta) {
         Object.keys(ComposedComponent.meta).forEach((metaKey) => {
           if (metaKey === 'title') {
-            document.title = ComposedComponent.meta[metaKey];
+            document.title = `${ComposedComponent.meta[metaKey]} - ${defaultMeta[metaKey]}`;
             return;
           }
           updateMeta(metaKey, ComposedComponent.meta[metaKey]);
