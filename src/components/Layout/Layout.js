@@ -31,22 +31,35 @@ const PostsBundle = Bundle.generateBundle(loadPosts);
 const PrivacyBundle = Bundle.generateBundle(loadPrivacy);
 const ProfileBundle = Bundle.generateBundle(loadProfile);
 
-const Layout = () => (
-  <div className={s.root}>
-    <Sidebar />
-    <div className={s.wrap}>
-      <Header />
-      <main className={s.content}>
-        <Switch>
-          <Route path="/app" exact component={Dashboard} />
-          <Route path="/app/posts" exact component={PostsBundle} />
-          <Route path="/app/profile" exact component={ProfileBundle} />
-          <Route path="/app/privacy" exact component={PrivacyBundle} />
-        </Switch>
-      </main>
-      <Footer />
-    </div>
-  </div>
-);
+class Layout extends React.Component {
+
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      sidebarOpen: false,
+    };
+  }
+
+  render() {
+    return (
+      <div className={s.root}>
+        <Sidebar />
+        <div className={[s.wrap, this.state.sidebarOpen ? s.sidebarOpen : ''].join(' ')}>
+          <Header sidebarToggle={() => this.setState({ sidebarOpen: !this.state.sidebarOpen })} />
+          <main className={s.content}>
+            <Switch>
+              <Route path="/app" exact component={Dashboard} />
+              <Route path="/app/posts" exact component={PostsBundle} />
+              <Route path="/app/profile" exact component={ProfileBundle} />
+              <Route path="/app/privacy" exact component={PrivacyBundle} />
+            </Switch>
+          </main>
+          <Footer />
+        </div>
+      </div>
+    );
+  }
+}
 
 export default withRouter(withStyles(s)(Layout));

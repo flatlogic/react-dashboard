@@ -6,8 +6,22 @@
 }
 
 .wrap {
-  position: relative;
-  margin-left: $sidebar-width-open;
+  position: absolute;
+  left: 0;
+  right: 0;
+  transition: left 0.3s ease-in-out, right 0.3s ease-in-out;
+
+  @media (min-width: $screen-sm-min) {
+    left: $sidebar-width-open;
+    right: 0;
+  }
+}
+
+.sidebarOpen {
+  @media (max-width: $screen-xs-max) {
+    left: $sidebar-width-open;
+    right: -$sidebar-width-open;
+  }
 }
 
 .content {

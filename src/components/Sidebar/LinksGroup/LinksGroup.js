@@ -53,7 +53,7 @@ class LinksGroup extends Component {
 
                 <b className={['caret', s.caret].join(' ')} />
               </a>
-              /* eslint-enable */
+              {/* eslint-enable */}
               <Panel className={s.panel} collapsible expanded={expanded}>
                 <ul>
                   {this.props.childrenLinks && this.props.childrenLinks.map(child => (

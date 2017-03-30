@@ -29,6 +29,8 @@ $icon-font-path: '../../node_modules/bootstrap-sass/assets/fonts/bootstrap/'; //
 
 $max-content-width: 1000px;
 
+$grid-float-breakpoint: 0;
+
 /*
  * Media queries breakpoints
  * ======================================================================== */
@@ -45,6 +47,7 @@ $content-padding-horizontal: 30px;
 $content-padding-vertical: 40px;
 
 $navbar-height:      50px;
+$navbar-border-radius: 0;
 $sidebar-width-open: 200px;
 $sidebar-width-closed: 50px;
 $sidebar-transition-time: 0.3s !default;

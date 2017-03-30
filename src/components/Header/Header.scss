@@ -8,3 +8,8 @@
  */
 
 @import '../../styles/app';
+
+.menuButton {
+  font-size: $font-size-large;
+  margin-left: -$navbar-padding-horizontal + 5;
+}
