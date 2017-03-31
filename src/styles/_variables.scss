@@ -43,6 +43,8 @@ $max-content-width: 1000px;
 
 $grid-float-breakpoint: 0;
 
+$body-bg: #e5e9ec;
+
 /*
  * Media queries breakpoints
  * ======================================================================== */
@@ -66,7 +68,6 @@ $sidebar-transition-time: 0.3s !default;
 
 $sidebar-bg-color: #50585a;
 $sidebar-color: #fff;
-$content-bg: #e5e9ec;
 
 $navbar-margin-bottom: -$navbar-height;
 $breadcrumb-separator: '>';
