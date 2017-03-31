@@ -6,6 +6,12 @@
     color: $sidebar-color;
     text-decoration: none;
     cursor: pointer;
+
+    &:hover,
+    &:active,
+    &:focus {
+      background-color: rgba(#fff, 0.1);
+    }
   }
 
   > a {
@@ -41,12 +47,16 @@
   }
 
   ul {
-    padding-left: 16px;
+    padding-left: 0;
     font-size: $font-size-small;
 
     li {
-      padding: 7px 20px;
+      padding: 3px 0;
       list-style: none;
+    }
+
+    a {
+      padding: 4px 20px 4px 36px;
     }
   }
 }

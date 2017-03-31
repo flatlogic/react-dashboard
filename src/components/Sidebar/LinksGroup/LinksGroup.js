@@ -7,14 +7,19 @@ import { Route } from 'react-router';
 import s from './LinksGroup.scss';
 
 class LinksGroup extends Component {
-  /* eslint-disable */
   static propTypes = {
-    header: PropTypes.string.isRequired,
+    header: PropTypes.node.isRequired,
     headerLink: PropTypes.string,
     childrenLinks: PropTypes.array,
     iconName: PropTypes.string.isRequired,
+    className: PropTypes.string
   };
-  /* eslint-enable */
+
+  static defaultProps = {
+    headerLink: null,
+    childrenLinks: null,
+    className: ''
+  };
 
   constructor(props) {
     super(props);
@@ -27,7 +32,7 @@ class LinksGroup extends Component {
   render() {
     if (!this.props.childrenLinks) {
       return (
-        <li className={s.headerLink}>
+        <li className={[s.headerLink, this.props.className].join(' ')}>
           <NavLink to={this.props.headerLink} activeClassName={s.headerLinkActive} exact>
             <i className={`glyphicon ${this.props.iconName}`} />
             {this.props.header}
@@ -42,7 +47,7 @@ class LinksGroup extends Component {
         children={({ match }) => {
           const expanded = !!match || this.state.isOpen;
           return (
-            <li className={s.headerLink}>
+            <li className={[s.headerLink, this.props.className].join(' ')}>
               <a
                 className={match ? s.headerLinkActive : ''}
                 onClick={() => this.setState({ isOpen: !this.state.isOpen })}

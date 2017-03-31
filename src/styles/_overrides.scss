@@ -1,57 +1,43 @@
-/**
- * React Starter Kit (https://www.reactstarterkit.com/)
- *
- * Copyright © 2014-present Kriasoft, LLC. All rights reserved.
- *
- * This source code is licensed under the MIT license found in the
- * LICENSE.txt file in the root directory of this source tree.
- */
+.container-fluid {
+  padding-left: 30px;
+  padding-right: 30px;
+}
 
-/*
- * Typography
- * ======================================================================== */
-$font-size-base: 16px;
-$font-family-base: 'Nunito', 'HelveticaNeue-Light', sans-serif;
-$brand-primary: #3754a5 !default; // #337ab7
-$brand-success: #05c1a1 !default;
-$brand-info: #5d80f9 !default;
-$brand-warning: #f7be1e !default;
-$brand-danger: #f45c43 !default;
+.navbar {
+  border: none;
+}
 
-//== Iconography
-//
-$icon-font-path: '../../node_modules/bootstrap-sass/assets/fonts/bootstrap/'; // overriding bootstrap variable
+.progress-bar {
+  @include box-shadow(none);
+}
 
-/*
- * Layout
- * ======================================================================== */
-$max-content-width: 1000px;
-$grid-float-breakpoint: 0;
+.progress-sm {
+  height: 10px;
+  margin-bottom: $line-height-computed/2;
+}
 
-/*
- * Media queries breakpoints
- * ======================================================================== */
-$screen-xs-min: 480px;  /* Extra small screen / phone */
-$screen-sm-min: 768px;  /* Small screen / tablet */
-$screen-md-min: 992px;  /* Medium screen / desktop */
-$screen-lg-min: 1200px; /* Large screen / wide desktop */
+.progress-xs {
+  height: 5px;
+  margin-bottom: $line-height-computed/2;
+}
 
-//== Components
-//
-$content-padding-horizontal: 30px;
-$content-padding-vertical: 40px;
-$navbar-height: 50px;
-$navbar-border-radius: 0;
-$sidebar-width-open: 200px;
-$sidebar-width-closed: 50px;
-$sidebar-transition-time: 0.3s !default;
-$sidebar-bg-color: #50585a;
-$sidebar-color: #fff;
-$content-bg: #e5e9ec;
-$navbar-margin-bottom: -$navbar-height;
-$breadcrumb-separator: '>';
-$breadcrumb-padding-horizontal: 0;
-$breadcrumb-bg: transparent;
+.breadcrumb {
+  margin-top: -15px;
+  font-size: $font-size-small;
 
-// ===== Colors =====
-$primary-gray: gray;
+  > .active {
+    font-weight: 600;
+  }
+
+  > li + li::before {
+    color: $gray-light;
+  }
+}
+
+@media (min-width: $grid-float-breakpoint) {
+  .navbar-right {
+    .dropdown-menu {
+      left: 0;
+    }
+  }
+}

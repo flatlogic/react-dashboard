@@ -9,3 +9,32 @@ $margin-horizontal-variants: (lg: 20px, md: 15px, sm: 10px, xs: 5px, 0: 0);
 $opacity-variants: (10: 0.1, 20: 0.2, 30: 0.3, 40: 0.4, 50: 0.5, 60: 0.6, 70: 0.7, 80: 0.8, 90: 0.9);
 
 @include property-variants('.opacity', 'opacity', $opacity-variants);
+
+.fw-semi-bold {
+  font-weight: 600;
+}
+
+.text-default {
+  color: $text-color;
+}
+
+// Add colors for badges
+.badge-primary {
+  @include label-variant($label-primary-bg);
+}
+
+.badge-success {
+  @include label-variant($label-success-bg);
+}
+
+.badge-info {
+  @include label-variant($label-info-bg);
+}
+
+.badge-warning {
+  @include label-variant($label-warning-bg);
+}
+
+.badge-danger {
+  @include label-variant($label-danger-bg);
+}

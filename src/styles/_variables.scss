@@ -19,6 +19,18 @@ $brand-info:            #5d80f9 !default;
 $brand-warning:         #f7be1e !default;
 $brand-danger:          #f45c43 !default;
 
+$state-success-text:             $brand-success !default;
+$state-success-bg:               lighten($brand-success, 70%) !default;
+
+$state-info-text:                $brand-info !default;
+$state-info-bg:                  lighten($brand-info, 70%) !default;
+
+$state-warning-text:             $brand-warning !default;
+$state-warning-bg:               lighten($brand-warning, 70%) !default;
+
+$state-danger-text:              $brand-danger !default;
+$state-danger-bg:                lighten($brand-danger, 70%) !default;
+
 //== Iconography
 //
 $icon-font-path: '../../node_modules/bootstrap-sass/assets/fonts/bootstrap/'; // overriding bootstrap variable
@@ -60,6 +72,8 @@ $navbar-margin-bottom: -$navbar-height;
 $breadcrumb-separator: '>';
 $breadcrumb-padding-horizontal: 0;
 $breadcrumb-bg: transparent;
+
+$badge-font-weight: 600;
 
 // ===== Colors =====
 

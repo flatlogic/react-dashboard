@@ -13,7 +13,6 @@ import { Switch, Route, Redirect, withRouter } from 'react-router';
 import Bundle from '../core/Bundle';
 
 /* eslint-disable */
-import loadLayout from 'bundle-loader?lazy!../components/Layout/Layout';
 import loadLogin from 'bundle-loader?lazy!../pages/login/Login';
 import loadRegister from 'bundle-loader?lazy!../pages/register/Register';
 import loadNotFound from 'bundle-loader?lazy!../pages/notFound/NotFound';

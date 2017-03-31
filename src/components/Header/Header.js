@@ -10,7 +10,7 @@
 import { connect } from 'react-redux';
 import React from 'react';
 import withStyles from 'isomorphic-style-loader/lib/withStyles';
-import { Navbar, MenuItem, Nav, NavDropdown, NavItem, Glyphicon } from 'react-bootstrap';
+import { Navbar, MenuItem, Nav, NavDropdown, NavItem, Glyphicon, Badge } from 'react-bootstrap';
 
 import s from './Header.scss';
 
@@ -32,15 +32,20 @@ class Header extends React.Component {
           </NavItem>
         </Nav>
         <Nav pullRight>
-          <NavItem eventKey={1} href="#">Link</NavItem>
-          <NavItem eventKey={2} href="#">Link</NavItem>
-          <NavDropdown eventKey={3} title="Dropdown" id="basic-nav-dropdown">
-            <MenuItem eventKey={3.1}>Action</MenuItem>
-            <MenuItem eventKey={3.2}>Another action</MenuItem>
+          <NavDropdown eventKey={1} title={
+          <span>
+            <Glyphicon glyph="user" className="mr-sm" />
+            John <span className="fw-semi-bold">Willington</span>
+            <Badge className="ml-sm badge-warning">4</Badge>
+          </span>
+          } noCaret id="basic-nav-dropdown">
+            <MenuItem eventKey={3.1}>Notifications</MenuItem>
+            <MenuItem eventKey={3.2}>Action</MenuItem>
             <MenuItem eventKey={3.3}>Something else here</MenuItem>
             <MenuItem divider />
             <MenuItem eventKey={3.4}>Separated link</MenuItem>
           </NavDropdown>
+          <NavItem eventKey={2} href="/login">Logout</NavItem>
         </Nav>
       </Navbar>
     );

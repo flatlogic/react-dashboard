@@ -16,6 +16,7 @@ import { Switch, Route, withRouter } from 'react-router';
 import loadPosts from 'bundle-loader?lazy!../../pages/posts/Posts';
 import loadPrivacy from 'bundle-loader?lazy!../../pages/privacy/Privacy';
 import loadProfile from 'bundle-loader?lazy!../../pages/profile/Profile';
+import loadNotFound from 'bundle-loader?lazy!../../pages/notFound/NotFound';
 /* eslint-enable */
 
 import s from './Layout.scss';
@@ -30,6 +31,7 @@ import Dashboard from '../../pages/dashboard/Dashboard';
 const PostsBundle = Bundle.generateBundle(loadPosts);
 const PrivacyBundle = Bundle.generateBundle(loadPrivacy);
 const ProfileBundle = Bundle.generateBundle(loadProfile);
+const NotFoundBundle = Bundle.generateBundle(loadNotFound);
 
 class Layout extends React.Component {
 
@@ -37,7 +39,7 @@ class Layout extends React.Component {
     super(props);
 
     this.state = {
-      sidebarOpen: false,
+      sidebarOpen: false
     };
   }
 
@@ -53,6 +55,7 @@ class Layout extends React.Component {
               <Route path="/app/posts" exact component={PostsBundle} />
               <Route path="/app/profile" exact component={ProfileBundle} />
               <Route path="/app/privacy" exact component={PrivacyBundle} />
+              <Route component={NotFoundBundle} />
             </Switch>
           </main>
           <Footer />

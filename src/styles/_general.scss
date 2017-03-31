@@ -11,3 +11,7 @@ body,
 .app {
   height: 100%;
 }
+
+a {
+  transition: color 0.1s ease-in-out, background-color 0.1s ease-in-out;
+}
