@@ -32,13 +32,15 @@ class Header extends React.Component {
           </NavItem>
         </Nav>
         <Nav pullRight>
-          <NavDropdown eventKey={1} title={
-          <span>
-            <Glyphicon glyph="user" className="mr-sm" />
+          <NavDropdown
+            eventKey={1} title={
+              <span>
+                <Glyphicon glyph="user" className="mr-sm" />
             John <span className="fw-semi-bold">Willington</span>
-            <Badge className="ml-sm badge-warning">4</Badge>
-          </span>
-          } noCaret id="basic-nav-dropdown">
+                <Badge className="ml-sm badge-warning">4</Badge>
+              </span>
+          } noCaret id="basic-nav-dropdown"
+          >
             <MenuItem eventKey={3.1}>Notifications</MenuItem>
             <MenuItem eventKey={3.2}>Action</MenuItem>
             <MenuItem eventKey={3.3}>Something else here</MenuItem>

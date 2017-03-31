@@ -39,7 +39,7 @@ class Layout extends React.Component {
     super(props);
 
     this.state = {
-      sidebarOpen: false
+      sidebarOpen: false,
     };
   }
 

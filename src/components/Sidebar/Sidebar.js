@@ -21,12 +21,14 @@ const Sidebar = () => (
         childrenLinks={[{ name: 'Show all', link: '/app/posts' }, { name: 'Create new', link: '/app/posts/new' }]}
         iconName="glyphicon-list-alt"
       />
-      <LinksGroup header={
-      <span>
+      <LinksGroup
+        header={
+          <span>
         Profile
         <sup className="text-warning fw-semi-bold">&nbsp;new</sup>
-      </span>
-      } headerLink="/app/profile" iconName="glyphicon-user" />
+          </span>
+      } headerLink="/app/profile" iconName="glyphicon-user"
+      />
       <LinksGroup className="visible-xs" header="Logout" headerLink="/login" iconName="glyphicon-off" />
     </ul>
     <footer className={s.footer}>

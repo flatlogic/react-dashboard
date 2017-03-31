@@ -7,18 +7,20 @@ import { Route } from 'react-router';
 import s from './LinksGroup.scss';
 
 class LinksGroup extends Component {
+  /* eslint-disable */
   static propTypes = {
     header: PropTypes.node.isRequired,
     headerLink: PropTypes.string,
     childrenLinks: PropTypes.array,
     iconName: PropTypes.string.isRequired,
-    className: PropTypes.string
+    className: PropTypes.string,
   };
+  /* eslint-enable */
 
   static defaultProps = {
     headerLink: null,
     childrenLinks: null,
-    className: ''
+    className: '',
   };
 
   constructor(props) {
