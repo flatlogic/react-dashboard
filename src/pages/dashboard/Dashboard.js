@@ -11,7 +11,7 @@ const Dashboard = () => (
       <li className="active">Dashboard</li>
     </ol>
     <h1>Dashboard</h1>
-    <p><Button bsStyle="danger">Default</Button></p>
+    <p><Button bsStyle="success">Default</Button></p>
     <div>
       <ButtonGroup>
         <Button>1</Button>

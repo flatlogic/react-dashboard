@@ -12,8 +12,8 @@ import withStyles from 'isomorphic-style-loader/lib/withStyles';
 import { Link } from 'react-router-dom';
 import s from './Footer.scss';
 
-const Footer = () => (
-  <footer className={s.root}>
+const Footer = (props) => (
+  <footer className={[s.root, props.className].join(' ')}>
     <div className={s.container}>
       <span>© 2017 &nbsp; Your Company </span>
       <span className={s.spacer}>·</span>

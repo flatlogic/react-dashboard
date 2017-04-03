@@ -41,3 +41,27 @@
     }
   }
 }
+
+.form-control {
+  font-size: $font-size-base - 1;
+
+  @include box-shadow(none);
+  @include transition(border-color ease-in-out .15s, background-color ease-in-out .15s);
+
+  &:focus {
+    @include box-shadow(none);
+  }
+
+  &.no-border {
+    border: none;
+    background-color: darken($input-bg, 5%);
+
+    &:focus {
+      background-color: darken($input-bg, 7%);
+    }
+  }
+}
+
+.btn-inverse {
+  @include button-variant($btn-inverse-color, $btn-inverse-bg, $btn-inverse-border);
+}

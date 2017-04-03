@@ -31,6 +31,10 @@ $state-warning-bg:               lighten($brand-warning, 70%) !default;
 $state-danger-text:              $brand-danger !default;
 $state-danger-bg:                lighten($brand-danger, 70%) !default;
 
+
+$text-color:                     #555;
+$link-color:                     #337ab7;
+
 //== Iconography
 //
 $icon-font-path: '../../node_modules/bootstrap-sass/assets/fonts/bootstrap/'; // overriding bootstrap variable
@@ -78,6 +82,10 @@ $badge-font-weight: 600;
 
 $widget-bg: #fff;
 $widget-title-color: #444;
+
+$btn-inverse-color: #fff;
+$btn-inverse-bg: #50585A;
+$btn-inverse-border: #414749;
 
 // ===== Colors =====
 

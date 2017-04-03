@@ -13,13 +13,22 @@ import s from './Widget.scss';
 
 class Widget extends React.Component {
   static propTypes = {
-    title: React.PropTypes.node.isRequired,
+    title: React.PropTypes.node,
+    className: React.PropTypes.string
+  };
+
+  static defaultProps = {
+    title: null,
+    className: '',
   };
 
   render() {
     return (
-      <section className={s.widget}>
-        <h5 className={s.title}>{this.props.title}</h5>
+      <section className={[s.widget, this.props.className].join(' ')}>
+        {
+          this.props.title &&
+          <h5 className={s.title}>{this.props.title}</h5>
+        }
         <div>
           {this.props.children}
         </div>
