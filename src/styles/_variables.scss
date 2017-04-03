@@ -13,6 +13,9 @@
 $font-size-base: 16px;
 $font-family-base: 'Nunito', 'HelveticaNeue-Light', sans-serif;
 
+$text-color:                     #555;
+$link-color:                     #337ab7;
+
 $brand-primary:         #3754a5 !default; // #337ab7
 $brand-success:         #05c1a1 !default;
 $brand-info:            #5d80f9 !default;
@@ -31,9 +34,21 @@ $state-warning-bg:               lighten($brand-warning, 70%) !default;
 $state-danger-text:              $brand-danger !default;
 $state-danger-bg:                lighten($brand-danger, 70%) !default;
 
+$alert-success-bg:            #e6fff2 !default;
+$alert-success-text:          $state-success-text !default;
+$alert-success-border:        rgba($alert-success-text, 0.15) !default;
 
-$text-color:                     #555;
-$link-color:                     #337ab7;
+$alert-info-bg:               #d2f1fb !default;
+$alert-info-text:             $link-color !default;
+$alert-info-border:           rgba($alert-info-text, 0.09) !default;
+
+$alert-warning-bg:            #fff8e6 !default;
+$alert-warning-text:          darken($state-warning-text, 5%) !default;
+$alert-warning-border:        rgba($state-warning-text, 0.2) !default;
+
+$alert-danger-bg:             #fbdcd7 !default;
+$alert-danger-text:           $state-danger-text !default;
+$alert-danger-border:         rgba($alert-danger-text, 0.09) !default;
 
 //== Iconography
 //

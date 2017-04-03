@@ -65,3 +65,21 @@
 .btn-inverse {
   @include button-variant($btn-inverse-color, $btn-inverse-bg, $btn-inverse-border);
 }
+
+.alert {
+  font-size: $font-size-small;
+
+  .close {
+    color: rgba(#000, .4)
+  }
+}
+
+.alert-sm {
+  padding: 10px 15px;
+
+  .close {
+    font-size: 20px;
+    top: 0;
+    right: -8px;
+  }
+}

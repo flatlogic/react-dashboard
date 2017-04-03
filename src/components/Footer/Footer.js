@@ -15,11 +15,11 @@ import s from './Footer.scss';
 const Footer = (props) => (
   <footer className={[s.root, props.className].join(' ')}>
     <div className={s.container}>
-      <span>© 2017 &nbsp; Your Company </span>
+      <span>© 2017 &nbsp;Flatlogic LLC </span>
       <span className={s.spacer}>·</span>
-      <Link to="/admin">Terms of Service</Link>
+      <Link to="/app/tos">Terms of Service</Link>
       <span className={s.spacer}>·</span>
-      <Link to="/privacy">Privacy Policy</Link>
+      <Link to="/app/privacy">Privacy Policy</Link>
       <span className={s.spacer}>·</span>
       <Link to="/not-found">Support</Link>
     </div>

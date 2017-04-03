@@ -47,7 +47,7 @@ class Header extends React.Component {
             <MenuItem divider />
             <MenuItem eventKey={3.4}>Separated link</MenuItem>
           </NavDropdown>
-          <NavItem eventKey={2} href="/login">Logout</NavItem>
+          <NavItem className="hidden-xs" eventKey={2} href="/login">Logout</NavItem>
         </Nav>
       </Navbar>
     );

@@ -27,4 +27,5 @@
 .content {
   min-height: 100%;
   padding: #{$navbar-height + $content-padding-vertical} $content-padding-horizontal $content-padding-vertical;
+  background-color: $body-bg;
 }
