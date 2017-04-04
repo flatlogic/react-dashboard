@@ -12,18 +12,30 @@ import withStyles from 'isomorphic-style-loader/lib/withStyles';
 import { Link } from 'react-router-dom';
 import s from './Footer.scss';
 
-const Footer = (props) => (
-  <footer className={[s.root, props.className].join(' ')}>
-    <div className={s.container}>
-      <span>© 2017 &nbsp;Flatlogic LLC </span>
-      <span className={s.spacer}>·</span>
-      <Link to="/app/tos">Terms of Service</Link>
-      <span className={s.spacer}>·</span>
-      <Link to="/app/privacy">Privacy Policy</Link>
-      <span className={s.spacer}>·</span>
-      <Link to="/not-found">Support</Link>
-    </div>
-  </footer>
-);
+class Footer extends React.Component {
+  static propTypes = {
+    className: React.PropTypes.string,
+  };
+
+  static defaultProps = {
+    className: '',
+  };
+
+  render() {
+    return (
+      <footer className={[s.root, this.props.className].join(' ')}>
+        <div className={s.container}>
+          <span>© 2017 &nbsp;Flatlogic LLC </span>
+          <span className={s.spacer}>·</span>
+          <Link to="/app/tos">Terms of Service</Link>
+          <span className={s.spacer}>·</span>
+          <Link to="/app/privacy">Privacy Policy</Link>
+          <span className={s.spacer}>·</span>
+          <Link to="/not-found">Support</Link>
+        </div>
+      </footer>
+    );
+  }
+}
 
 export default withStyles(s)(Footer);

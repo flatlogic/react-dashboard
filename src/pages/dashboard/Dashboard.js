@@ -13,7 +13,7 @@ class Dashboard extends React.Component {
       alert2Visible: true,
       alert3Visible: true,
       alert4Visible: true,
-    }
+    };
   }
 
   render() {
@@ -40,22 +40,22 @@ class Dashboard extends React.Component {
           </Col>
           <Col sm={6}>
             { this.state.alert1Visible &&
-              <Alert className="alert-sm" bsStyle="warning" onDismiss={() => this.setState({alert1Visible: false})}>
-                <span className="fw-semi-bold">Warning:</span> Best check yo self, you're not looking too good.
+              <Alert className="alert-sm" bsStyle="warning" onDismiss={() => this.setState({ alert1Visible: false })}>
+                <span className="fw-semi-bold">Warning:</span> Best check yo self, you&#39;re not looking too good.
               </Alert>
             }
             { this.state.alert2Visible &&
-            <Alert className="alert-sm" bsStyle="success" onDismiss={() => this.setState({alert2Visible: false})}>
+            <Alert className="alert-sm" bsStyle="success" onDismiss={() => this.setState({ alert2Visible: false })}>
               <span className="fw-semi-bold">Success:</span> You successfully read this important alert message.
             </Alert>
             }
             { this.state.alert3Visible &&
-            <Alert className="alert-sm" bsStyle="info" onDismiss={() => this.setState({alert3Visible: false})}>
-              <span className="fw-semi-bold">Info:</span> This alert needs your attention, but it's not super important.
+            <Alert className="alert-sm" bsStyle="info" onDismiss={() => this.setState({ alert3Visible: false })}>
+              <span className="fw-semi-bold">Info:</span> This alert needs your attention, but it&#39;s not super important.
             </Alert>
             }
             { this.state.alert4Visible &&
-            <Alert className="alert-sm" bsStyle="danger" onDismiss={() => this.setState({alert4Visible: false})}>
+            <Alert className="alert-sm" bsStyle="danger" onDismiss={() => this.setState({ alert4Visible: false })}>
               <span className="fw-semi-bold">Danger:</span> Change this and that and try again.
               <span className="pull-right">
                 <Button bsStyle="danger" bsSize="xsmall">Take this action</Button>

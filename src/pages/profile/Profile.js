@@ -15,11 +15,13 @@ const Profile = () => (
     <h1>Profile</h1>
     <Row>
       <Col sm={6}>
-        <Widget title={
-        <span>
+        <Widget
+          title={
+            <span>
           Edit Profile <span className="fw-semi-bold">Form</span>
-        </span>
-        }>
+            </span>
+        }
+        >
           Some fields to edit profile
         </Widget>
       </Col>

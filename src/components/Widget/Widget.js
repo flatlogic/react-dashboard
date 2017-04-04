@@ -14,7 +14,8 @@ import s from './Widget.scss';
 class Widget extends React.Component {
   static propTypes = {
     title: React.PropTypes.node,
-    className: React.PropTypes.string
+    className: React.PropTypes.string,
+    children: React.PropTypes.element.isRequired,
   };
 
   static defaultProps = {

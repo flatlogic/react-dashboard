@@ -1,85 +1,85 @@
-.container-fluid {
-  padding-left: 30px;
-  padding-right: 30px;
-}
+/**
+ * React Starter Kit (https://www.reactstarterkit.com/)
+ *
+ * Copyright © 2014-present Kriasoft, LLC. All rights reserved.
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE.txt file in the root directory of this source tree.
+ */
 
-.navbar {
-  border: none;
-}
+/*
+ * Typography
+ * ======================================================================== */
+$font-size-base: 16px;
+$font-family-base: 'Nunito', 'HelveticaNeue-Light', sans-serif;
+$text-color: #555;
+$link-color: #337ab7;
+$brand-primary: #3754a5 !default; // #337ab7
+$brand-success: #05c1a1 !default;
+$brand-info: #5d80f9 !default;
+$brand-warning: #f7be1e !default;
+$brand-danger: #f45c43 !default;
+$state-success-text: $brand-success !default;
+$state-success-bg: lighten($brand-success, 70%) !default;
+$state-info-text: $brand-info !default;
+$state-info-bg: lighten($brand-info, 70%) !default;
+$state-warning-text: $brand-warning !default;
+$state-warning-bg: lighten($brand-warning, 70%) !default;
+$state-danger-text: $brand-danger !default;
+$state-danger-bg: lighten($brand-danger, 70%) !default;
+$alert-success-bg: #e6fff2 !default;
+$alert-success-text: $state-success-text !default;
+$alert-success-border: rgba($alert-success-text, 0.15) !default;
+$alert-info-bg: #d2f1fb !default;
+$alert-info-text: $link-color !default;
+$alert-info-border: rgba($alert-info-text, 0.09) !default;
+$alert-warning-bg: #fff8e6 !default;
+$alert-warning-text: darken($state-warning-text, 5%) !default;
+$alert-warning-border: rgba($state-warning-text, 0.2) !default;
+$alert-danger-bg: #fbdcd7 !default;
+$alert-danger-text: $state-danger-text !default;
+$alert-danger-border: rgba($alert-danger-text, 0.09) !default;
 
-.progress-bar {
-  @include box-shadow(none);
-}
+//== Iconography
+//
+$icon-font-path: '../../node_modules/bootstrap-sass/assets/fonts/bootstrap/'; // overriding bootstrap variable
 
-.progress-sm {
-  height: 10px;
-  margin-bottom: $line-height-computed/2;
-}
+/*
+ * Layout
+ * ======================================================================== */
+$max-content-width: 1000px;
+$grid-float-breakpoint: 0;
+$body-bg: #e5e9ec;
 
-.progress-xs {
-  height: 5px;
-  margin-bottom: $line-height-computed/2;
-}
+/*
+ * Media queries breakpoints
+ * ======================================================================== */
+$screen-xs-min: 480px;  /* Extra small screen / phone */
+$screen-sm-min: 768px;  /* Small screen / tablet */
+$screen-md-min: 992px;  /* Medium screen / desktop */
+$screen-lg-min: 1200px; /* Large screen / wide desktop */
 
-.breadcrumb {
-  margin-top: -15px;
-  font-size: $font-size-small;
+//== Components
+//
+$content-padding-horizontal: 30px;
+$content-padding-vertical: 40px;
+$navbar-height: 50px;
+$navbar-border-radius: 0;
+$sidebar-width-open: 200px;
+$sidebar-width-closed: 50px;
+$sidebar-transition-time: 0.3s !default;
+$sidebar-bg-color: #50585a;
+$sidebar-color: #fff;
+$navbar-margin-bottom: -$navbar-height;
+$breadcrumb-separator: '>';
+$breadcrumb-padding-horizontal: 0;
+$breadcrumb-bg: transparent;
+$badge-font-weight: 600;
+$widget-bg: #fff;
+$widget-title-color: #444;
+$btn-inverse-color: #fff;
+$btn-inverse-bg: $sidebar-bg-color;
+$btn-inverse-border: #414749;
 
-  > .active {
-    font-weight: 600;
-  }
-
-  > li + li::before {
-    color: $gray-light;
-  }
-}
-
-@media (min-width: $grid-float-breakpoint) {
-  .navbar-right {
-    .dropdown-menu {
-      left: 0;
-    }
-  }
-}
-
-.form-control {
-  font-size: $font-size-base - 1;
-
-  @include box-shadow(none);
-  @include transition(border-color ease-in-out .15s, background-color ease-in-out .15s);
-
-  &:focus {
-    @include box-shadow(none);
-  }
-
-  &.no-border {
-    border: none;
-    background-color: darken($input-bg, 5%);
-
-    &:focus {
-      background-color: darken($input-bg, 7%);
-    }
-  }
-}
-
-.btn-inverse {
-  @include button-variant($btn-inverse-color, $btn-inverse-bg, $btn-inverse-border);
-}
-
-.alert {
-  font-size: $font-size-small;
-
-  .close {
-    color: rgba(#000, .4)
-  }
-}
-
-.alert-sm {
-  padding: 10px 15px;
-
-  .close {
-    font-size: 20px;
-    top: 0;
-    right: -8px;
-  }
-}
+// ===== Colors =====
+$primary-gray: gray;
