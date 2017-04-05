@@ -1,6 +1,6 @@
 import React from 'react';
 import withStyles from 'isomorphic-style-loader/lib/withStyles';
-import { Button, ButtonGroup, DropdownButton, MenuItem, Alert, Row, Col } from 'react-bootstrap';
+import { Button, ButtonGroup, DropdownButton, MenuItem, Alert, Row, Col, ListGroup, Badge } from 'react-bootstrap';
 
 import s from './Dashboard.scss';
 
@@ -64,6 +64,18 @@ class Dashboard extends React.Component {
               </span>
             </Alert>
             }
+          </Col>
+        </Row>
+        <Row>
+          <Col sm={6} />
+          <Col sm={6}>
+            <ListGroup>
+              <a href="/app" className="list-group-item"><i className="glyphicon glyphicon-phone mr-xs opacity-70" /> Incoming calls <Badge bsStyle="danger">3</Badge></a>
+              <a href="/app" className="list-group-item"><i className="glyphicon glyphicon-bell mr-xs opacity-70" /> Notifications <Badge bsStyle="warning">6</Badge></a>
+              <a href="/app" className="list-group-item"><i className="glyphicon glyphicon-comment mr-xs opacity-70" /> Messages <Badge bsStyle="success">18</Badge></a>
+              <a href="/app" className="list-group-item"><i className="glyphicon glyphicon-eye-open mr-xs opacity-70" /> Visits total</a>
+              <a href="/app" className="list-group-item"><i className="glyphicon glyphicon-cloud mr-xs opacity-70" /> Inbox</a>
+            </ListGroup>
           </Col>
         </Row>
       </div>
