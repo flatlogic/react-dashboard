@@ -83,3 +83,11 @@
     right: -8px;
   }
 }
+
+.badge {
+  font-size: 12px;
+
+  .list-group-item > & {
+    margin-top: 2px;
+  }
+}
