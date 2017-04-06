@@ -42,3 +42,9 @@ $opacity-variants: (10: 0.1, 20: 0.2, 30: 0.3, 40: 0.4, 50: 0.5, 60: 0.6, 70: 0.
 .badge-danger {
   @include label-variant($label-danger-bg);
 }
+
+@include bg-variant('.bg-dark', $text-color);
+
+.td-underline {
+  text-decoration: underline;
+}

@@ -12,8 +12,8 @@
 }
 
 .progress-sm {
-  height: 10px;
-  margin-bottom: $line-height-computed/2;
+  height: $line-height-computed/1.5;
+  margin-bottom: $line-height-computed/1.5;
 }
 
 .progress-xs {
@@ -60,6 +60,10 @@
       background-color: darken($input-bg, 7%);
     }
   }
+}
+
+.input-sm {
+  font-size: 13px;
 }
 
 .btn-inverse {

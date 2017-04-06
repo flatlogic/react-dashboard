@@ -27,8 +27,11 @@ class Widget extends React.Component {
     return (
       <section className={[s.widget, this.props.className].join(' ')}>
         {
-          this.props.title &&
-          <h5 className={s.title}>{this.props.title}</h5>
+          this.props.title && (
+            typeof this.props.title == 'string'
+            ? <h5 className={s.title}>{this.props.title}</h5>
+            : <header className={s.title}>{this.props.title}</header>
+          )
         }
         <div>
           {this.props.children}
