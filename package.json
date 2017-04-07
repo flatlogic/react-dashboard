@@ -37,6 +37,7 @@
     "query-string": "^4.3.2",
     "react": "^15.5.3",
     "react-bootstrap": "^0.30.8",
+    "react-cookie": "^1.0.5",
     "react-dom": "^15.5.3",
     "react-redux": "^5.0.4",
     "react-router": "^4.0.0",
@@ -190,6 +191,7 @@
       ]
     }
   },
+  "pre-commit": "lint:staged",
   "lint-staged": {
     "*.{cmd,html,json,md,sh,txt,xml,yml}": [
       "editorconfig-tools fix",
