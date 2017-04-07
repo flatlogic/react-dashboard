@@ -29,7 +29,7 @@ class Login extends React.Component {
                   User your username and password to sign in<br />
                   Don&#39;t have an account? Sign up now!
                 </p>
-                <form className="mt" action="/app">
+                <form className="mt" method="post">
                   <div className="form-group">
                     <input className="form-control no-border" type="text" required="" name="username" placeholder="Username" />
                   </div>

@@ -9,6 +9,7 @@
 
 import React, { PropTypes } from 'react';
 import { Switch, Route, Redirect, withRouter } from 'react-router';
+import { connect } from 'react-redux';
 
 import Bundle from '../core/Bundle';
 
@@ -19,6 +20,9 @@ import loadNotFound from 'bundle-loader?lazy!../pages/notFound/NotFound';
 /* eslint-enable */
 
 import LayoutComponent from '../components/Layout/Layout';
+
+
+// import { auth } from '../config';
 
 const LoginBundle = Bundle.generateBundle(loadLogin);
 const RegisterBundle = Bundle.generateBundle(loadRegister);
@@ -60,6 +64,33 @@ const ContextType = {
  *     container,
  *   );
  */
+
+// let isAuthenticated = function() {
+//   let t = jwt.verify(cookie.load('id_token'), auth.jwt.secret);
+//
+//   console.log(t);
+//
+//   return true;
+// };
+
+
+const PrivateRoute = ({ component, isAuthenticated, ...rest }) => (
+  <Route
+    {...rest} render={props => (
+    isAuthenticated ? (
+      React.createElement(component, props)
+    ) : (
+      <Redirect
+        to={{
+          pathname: '/login',
+          state: { from: props.location },
+        }}
+      />
+    )
+  )}
+  />
+);
+
 class App extends React.PureComponent {
 
   static propTypes = {
@@ -73,6 +104,7 @@ class App extends React.PureComponent {
 
   static contextTypes = {
     router: PropTypes.any,
+    store: PropTypes.any,
   };
 
   static childContextTypes = ContextType;
@@ -83,17 +115,19 @@ class App extends React.PureComponent {
   }
 
   render() {
+    const context = this.props.context;
+    console.log(context);
     return (
       <Switch>
         <Route path="/" exact render={() => <Redirect to="/app" />} />
-        <Route path="/app" component={LayoutComponent} />
+        <PrivateRoute isAuthenticated={this.props.isAuthenticated} path="/app" component={LayoutComponent} />
         <Route path="/login" exact component={LoginBundle} />
         <Route path="/register" exact component={RegisterBundle} />
         <Route component={NotFoundBundle} />
       </Switch>
     );
   }
-
 }
+
 
 export default withRouter(App);

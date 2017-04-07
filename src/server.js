@@ -30,6 +30,7 @@ import { setRuntimeVariable } from './actions/runtime';
 import { port, auth } from './config';
 import assets from './assets.json'; // eslint-disable-line import/no-unresolved
 import theme from './styles/theme.scss';
+import cookie from 'react-cookie';
 
 const app = express();
 
@@ -57,23 +58,26 @@ app.use(expressJwt({
   credentialsRequired: false,
   getToken: req => req.cookies.id_token,
 }));
-app.use(passport.initialize());
 
 if (__DEV__) {
   app.enable('trust proxy');
 }
-app.get('/login/facebook',
-  passport.authenticate('facebook', { scope: ['email', 'user_location'], session: false }),
-);
-app.get('/login/facebook/return',
-  passport.authenticate('facebook', { failureRedirect: '/login', session: false }),
-  (req, res) => {
+app.post('/login', (req, res) => {
+  // console.log(req.body);
+
+  // var user = graphql.find(req.username, req.userpassword);
+
+  const user = { username: 'D', userpassword: '123' };
+
+  if (user) {
     const expiresIn = 60 * 60 * 24 * 180; // 180 days
-    const token = jwt.sign(req.user, auth.jwt.secret, { expiresIn });
+    const token = jwt.sign(user, auth.jwt.secret, { expiresIn });
     res.cookie('id_token', token, { maxAge: 1000 * expiresIn, httpOnly: true });
-    res.redirect('/');
-  },
-);
+    res.redirect('/app');
+  } else {
+    res.redirect('/404'); // user not found
+  }
+});
 
 //
 // Register API middleware
@@ -88,75 +92,81 @@ app.use('/graphql', expressGraphQL(req => ({
 //
 // Register server-side rendering middleware
 // -----------------------------------------------------------------------------
-app.get('*', async (req, res, next) => {
-  try {
-    const store = configureStore({
-      user: req.user || null,
-    }, {
-      cookie: req.headers.cookie,
-    });
+app.get('*',
+  // expressJwt({secret: auth.jwt.secret}),
+   async (req, res, next) => {
+     // let t = jwt.verify(, auth.jwt.secret);
 
-    store.dispatch(setRuntimeVariable({
-      name: 'initialNow',
-      value: Date.now(),
-    }));
+     console.log(cookie.load('id_token'));
 
-    const css = new Set();
+     try {
+       const store = configureStore({
+         user: req.user || null,
+       }, {
+         cookie: req.headers.cookie,
+       });
 
-    const data = {
-      title: 'React Dashboard',
-      description: 'React Dashboard Starter project based on react-router 4, redux, graphql, bootstrap',
-    };
+       store.dispatch(setRuntimeVariable({
+         name: 'initialNow',
+         value: Date.now(),
+       }));
 
-    // Global (context) variables that can be easily accessed from any React component
-    // https://facebook.github.io/react/docs/context.html
-    const context = {
-      // Enables critical path CSS rendering
-      // https://github.com/kriasoft/isomorphic-style-loader
-      insertCss: (...styles) => {
-        // eslint-disable-next-line no-underscore-dangle
-        styles.forEach(style => css.add(style._getCss()));
-      },
-      // Initialize a new Redux store
-      // http://redux.js.org/docs/basics/UsageWithReact.html
-      store,
-    };
+       const css = new Set();
 
-    // eslint-disable-next-line no-underscore-dangle
-    css.add(theme._getCss());
+       const data = {
+         title: 'React Dashboard',
+         description: 'React Dashboard Starter project based on react-router 4, redux, graphql, bootstrap',
+       };
 
-    data.scripts = [
-      assets.vendor.js,
-      assets.client.js,
-    ];
+      // Global (context) variables that can be easily accessed from any React component
+      // https://facebook.github.io/react/docs/context.html
+       const context = {
+        // Enables critical path CSS rendering
+        // https://github.com/kriasoft/isomorphic-style-loader
+         insertCss: (...styles) => {
+          // eslint-disable-next-line no-underscore-dangle
+           styles.forEach(style => css.add(style._getCss()));
+         },
+        // Initialize a new Redux store
+        // http://redux.js.org/docs/basics/UsageWithReact.html
+         store,
+       };
 
-    data.state = context.store.getState();
+      // eslint-disable-next-line no-underscore-dangle
+       css.add(theme._getCss());
 
-    const html = ReactDOM.renderToString(
-      <StaticRouter
-        location={req.url}
-        context={context}
-      >
-        <App />
-      </StaticRouter>,
-    );
+       data.scripts = [
+         assets.vendor.js,
+         assets.client.js,
+       ];
 
-    data.styles = [
-      { id: 'css', cssText: [...css].join('') },
-    ];
+       data.state = context.store.getState();
 
-    data.children = html;
+       const html = ReactDOM.renderToString(
+         <StaticRouter
+           location={req.url}
+           context={context}
+         >
+           <App />
+         </StaticRouter>,
+      );
 
-    const markup = ReactDOM.renderToString(
-      <Html {...data} />,
-    );
+       data.styles = [
+        { id: 'css', cssText: [...css].join('') },
+       ];
 
-    res.status(200);
-    res.send(`<!doctype html>${markup}`);
-  } catch (err) {
-    next(err);
-  }
-});
+       data.children = html;
+
+       const markup = ReactDOM.renderToString(
+         <Html {...data} />,
+      );
+
+       res.status(200);
+       res.send(`<!doctype html>${markup}`);
+     } catch (err) {
+       next(err);
+     }
+   });
 
 //
 // Error handling
