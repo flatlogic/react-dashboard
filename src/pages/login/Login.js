@@ -10,12 +10,35 @@
 import React from 'react';
 import withStyles from 'isomorphic-style-loader/lib/withStyles';
 import { Row, Col, Grid } from 'react-bootstrap';
+import { connect } from 'react-redux';
 
 import Widget from '../../components/Widget';
 import Footer from '../../components/Footer';
 import s from './Login.scss'; // eslint-disable-line
+import { loginUser } from '../../actions/user';
 
 class Login extends React.Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      login: '',
+      password: '',
+    };
+  }
+
+  changeLogin(event) {
+    this.setState({ login: event.target.value });
+  }
+
+  changePassword(event) {
+    this.setState({ password: event.target.value });
+  }
+
+  doLogin() {
+    this.props.dispatch(loginUser({ login: this.state.login, password: this.state.password }));
+  }
+
   render() {
     return (
       <div className={s.root}>
@@ -29,17 +52,17 @@ class Login extends React.Component {
                   User your username and password to sign in<br />
                   Don&#39;t have an account? Sign up now!
                 </p>
-                <form className="mt" method="post">
+                <form className="mt" onSubmit={() => this.doLogin()}>
                   <div className="form-group">
-                    <input className="form-control no-border" type="text" required="" name="username" placeholder="Username" />
+                    <input className="form-control no-border" value={this.state.login} onChange={this.changeLogin.bind(this)} type="text" required="" name="username" placeholder="Username" />
                   </div>
                   <div className="form-group">
-                    <input className="form-control no-border" type="text" required="" name="password" placeholder="Password" />
+                    <input className="form-control no-border" value={this.state.password} onChange={this.changePassword.bind(this)} type="text" required="" name="password" placeholder="Password" />
                   </div>
                   <div className="clearfix">
                     <div className="btn-toolbar pull-right">
                       <button type="reset" className="btn btn-default btn-sm">Create an account</button>
-                      <button type="submit" className="btn btn-success btn-sm">Login</button>
+                      <button type="submit" className="btn btn-success btn-sm">{this.props.isFetching ? 'Loading' : 'Login'}</button>
                     </div>
                     <a className="mt-sm pull-right fs-sm">Trouble with account?</a>
                   </div>
@@ -54,4 +77,10 @@ class Login extends React.Component {
   }
 }
 
-export default withStyles(s)(Login);
+function mapStateToProps(state) {
+  return {
+    isFetching: state.user.isFetching,
+  };
+}
+
+export default connect(mapStateToProps)(withStyles(s)(Login));

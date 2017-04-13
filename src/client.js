@@ -109,7 +109,7 @@ async function onLocationChange(location, action) {
       <Router
         history={history}
       >
-        <App context={context} />
+        <App store={context.store} context={context} />
       </Router>,
       container,
       () => onRenderComplete(location),

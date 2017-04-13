@@ -6,7 +6,7 @@ import {
 // The auth reducer. The starting state sets authentication
 // based on a token being in local storage. In a real app,
 // we would also want a util to check if the token is expired.
-function auth(state = {
+export default function auth(state = {
   isFetching: false,
   isAuthenticated: false,
 }, action) {
@@ -38,21 +38,3 @@ function auth(state = {
       return state;
   }
 }
-
-// The quotes reducer
-function quotes(state = {}, action) {
-  switch (action.type) {
-
-    default:
-      return state;
-  }
-}
-
-// We combine the reducers here so that they
-// can be left split apart above
-const quotesApp = combineReducers({
-  auth,
-  quotes,
-});
-
-export default quotesApp;

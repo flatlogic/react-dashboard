@@ -31,6 +31,7 @@ import { port, auth } from './config';
 import assets from './assets.json'; // eslint-disable-line import/no-unresolved
 import theme from './styles/theme.scss';
 import cookie from 'react-cookie';
+import { Provider } from 'react-redux';
 
 const app = express();
 
@@ -141,13 +142,16 @@ app.get('*',
        ];
 
        data.state = context.store.getState();
+       console.log('store', store);
 
        const html = ReactDOM.renderToString(
          <StaticRouter
            location={req.url}
            context={context}
          >
-           <App />
+           <Provider store={store}>
+             <App store={store} />
+           </Provider>
          </StaticRouter>,
       );
 
