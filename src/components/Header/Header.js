@@ -11,6 +11,7 @@ import { connect } from 'react-redux';
 import React from 'react';
 import withStyles from 'isomorphic-style-loader/lib/withStyles';
 import { Navbar, MenuItem, Nav, NavDropdown, NavItem, Glyphicon, Badge } from 'react-bootstrap';
+import { logoutUser } from '../../actions/user';
 
 import s from './Header.scss';
 
@@ -22,6 +23,11 @@ class Header extends React.Component {
   static defaultProps = {
     sidebarToggle: () => {},
   };
+
+  doLogout() {
+    this.props
+      .dispatch(logoutUser());
+  }
 
   render() {
     return (
@@ -47,7 +53,7 @@ class Header extends React.Component {
             <MenuItem divider />
             <MenuItem eventKey={3.4}>Separated link</MenuItem>
           </NavDropdown>
-          <NavItem className="hidden-xs" eventKey={2} href="/login">Logout</NavItem>
+          <NavItem className="hidden-xs" eventKey={2} onClick={this.doLogout.bind(this)}>Logout</NavItem>
         </Nav>
       </Navbar>
     );

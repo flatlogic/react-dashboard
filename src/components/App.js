@@ -42,29 +42,6 @@ const ContextType = {
   }).isRequired,
 };
 
-/**
- * The top-level React component setting context (global) variables
- * that can be accessed from all the child components.
- *
- * https://facebook.github.io/react/docs/context.html
- *
- * Usage example:
- *
- *   const context = {
- *     history: createBrowserHistory(),
- *     store: createStore(),
- *   };
- *
- *   ReactDOM.render(
- *     <App context={context}>
- *       <Layout>
- *         <LandingPage />
- *       </Layout>
- *     </App>,
- *     container,
- *   );
- */
-
 // let isAuthenticated = function() {
 //   let t = jwt.verify(cookie.load('id_token'), auth.jwt.secret);
 //
@@ -130,7 +107,7 @@ class App extends React.PureComponent {
 
 function mapStateToProps(store) {
   return {
-    isAuthenticated: store.user.isAuthenticated,
+    isAuthenticated: store.auth.isAuthenticated,
   };
 }
 

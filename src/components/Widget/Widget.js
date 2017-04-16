@@ -15,7 +15,10 @@ class Widget extends React.Component {
   static propTypes = {
     title: React.PropTypes.node,
     className: React.PropTypes.string,
-    children: React.PropTypes.element.isRequired,
+    children: React.PropTypes.oneOfType([
+      React.PropTypes.arrayOf(React.PropTypes.node),
+      React.PropTypes.node
+    ]),
   };
 
   static defaultProps = {

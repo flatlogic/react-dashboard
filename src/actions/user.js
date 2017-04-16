@@ -15,7 +15,7 @@ function requestLogin(creds) {
   };
 }
 
-function receiveLogin(user) {
+export function receiveLogin(user) {
   return {
     type: LOGIN_SUCCESS,
     isFetching: false,
@@ -54,6 +54,7 @@ export function logoutUser() {
   return (dispatch) => {
     dispatch(requestLogout());
     localStorage.removeItem('id_token');
+    document.cookie = 'id_token=;expires=Thu, 01 Jan 1970 00:00:01 GMT;';
     dispatch(receiveLogout());
   };
 }
@@ -62,6 +63,7 @@ export function loginUser(creds) {
   const config = {
     method: 'POST',
     headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+    credentials: 'include',
     body: `username=${creds.username}&password=${creds.password}`,
   };
 
@@ -69,7 +71,7 @@ export function loginUser(creds) {
     // We dispatch requestLogin to kickoff the call to the API
     dispatch(requestLogin(creds));
 
-    return fetch('http://localhost:3001/login', config)
+    return fetch('/login', config)
       .then(response =>
         response.json().then(user => ({ user, response })),
       ).then(({ user, response }) => {

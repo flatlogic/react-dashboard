@@ -27,6 +27,7 @@ import models from './data/models';
 import schema from './data/schema';
 import configureStore from './store/configureStore';
 import { setRuntimeVariable } from './actions/runtime';
+import { receiveLogin } from './actions/user';
 import { port, auth } from './config';
 import assets from './assets.json'; // eslint-disable-line import/no-unresolved
 import theme from './styles/theme.scss';
@@ -64,16 +65,14 @@ if (__DEV__) {
   app.enable('trust proxy');
 }
 app.post('/login', (req, res) => {
-  // console.log(req.body);
-
-  // var user = graphql.find(req.username, req.userpassword);
+  // const user = graphql.find(req.username, req.userpassword);
 
   const user = { username: 'D', userpassword: '123' };
 
   if (user) {
     const expiresIn = 60 * 60 * 24 * 180; // 180 days
     const token = jwt.sign(user, auth.jwt.secret, { expiresIn });
-    res.cookie('id_token', token, { maxAge: 1000 * expiresIn, httpOnly: true });
+    res.cookie('id_token', token, { maxAge: 1000 * expiresIn, httpOnly: false });
     res.json({ id_token: token });
   } else {
     res.redirect('/404'); // user not found
@@ -98,16 +97,24 @@ app.get('*',
    async (req, res, next) => {
      // let t = jwt.verify(, auth.jwt.secret);
 
-     console.log(cookie.load('id_token'));
+     console.log('token', cookie.load('id_token'));
+     console.log('req.headers.cookie', req.headers.cookie);
+     console.log('req.user', req.user);
 
      try {
-       const store = configureStore({}, {
+       const store = configureStore({
+         user: req.user || null,
+       }, {
          cookie: req.headers.cookie,
        });
 
        store.dispatch(setRuntimeVariable({
          name: 'initialNow',
          value: Date.now(),
+       }));
+
+       req.user && req.user.username && store.dispatch(receiveLogin({
+         id_token: req.cookies.id_token
        }));
 
        const css = new Set();
