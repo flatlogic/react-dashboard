@@ -116,8 +116,6 @@ class App extends React.PureComponent {
   }
 
   render() {
-    const context = this.props.context || this.context.router.staticContext;
-    console.log('isAuthenticated', this.props.isAuthenticated);
     return (
       <Switch>
         <Route path="/" exact render={() => <Redirect to="/app" />} />

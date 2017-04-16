@@ -74,7 +74,7 @@ app.post('/login', (req, res) => {
     const expiresIn = 60 * 60 * 24 * 180; // 180 days
     const token = jwt.sign(user, auth.jwt.secret, { expiresIn });
     res.cookie('id_token', token, { maxAge: 1000 * expiresIn, httpOnly: true });
-    res.redirect('/app');
+    res.json({ id_token: token });
   } else {
     res.redirect('/404'); // user not found
   }
@@ -101,9 +101,7 @@ app.get('*',
      console.log(cookie.load('id_token'));
 
      try {
-       const store = configureStore({
-         user: req.user || null,
-       }, {
+       const store = configureStore({}, {
          cookie: req.headers.cookie,
        });
 
@@ -142,7 +140,6 @@ app.get('*',
        ];
 
        data.state = context.store.getState();
-       console.log('store', store);
 
        const html = ReactDOM.renderToString(
          <StaticRouter

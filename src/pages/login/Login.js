@@ -1,16 +1,8 @@
-/**
- * React Starter Kit (https://www.reactstarterkit.com/)
- *
- * Copyright © 2014-present Kriasoft, LLC. All rights reserved.
- *
- * This source code is licensed under the MIT license found in the
- * LICENSE.txt file in the root directory of this source tree.
- */
-
 import React from 'react';
 import withStyles from 'isomorphic-style-loader/lib/withStyles';
 import { Row, Col, Grid } from 'react-bootstrap';
 import { connect } from 'react-redux';
+import { withRouter, Redirect } from 'react-router';
 
 import Widget from '../../components/Widget';
 import Footer from '../../components/Footer';
@@ -24,6 +16,7 @@ class Login extends React.Component {
     this.state = {
       login: '',
       password: '',
+      redirectToReferrer: false,
     };
   }
 
@@ -35,11 +28,25 @@ class Login extends React.Component {
     this.setState({ password: event.target.value });
   }
 
-  doLogin() {
-    this.props.dispatch(loginUser({ login: this.state.login, password: this.state.password }));
+  doLogin(e) {
+    this.props
+      .dispatch(loginUser({ login: this.state.login, password: this.state.password }))
+      .then(() => {
+        this.setState({ redirectToReferrer: true });
+      });
+    e.preventDefault();
   }
 
   render() {
+    const { from } = this.props.location.state || { from: { pathname: '/app' } };
+    const { redirectToReferrer } = this.state;
+
+    if (redirectToReferrer) {
+      return (
+        <Redirect to={from} />
+      );
+    }
+
     return (
       <div className={s.root}>
         <Grid>
@@ -52,7 +59,7 @@ class Login extends React.Component {
                   User your username and password to sign in<br />
                   Don&#39;t have an account? Sign up now!
                 </p>
-                <form className="mt" onSubmit={() => this.doLogin()}>
+                <form className="mt" onSubmit={this.doLogin.bind(this)}>
                   <div className="form-group">
                     <input className="form-control no-border" value={this.state.login} onChange={this.changeLogin.bind(this)} type="text" required="" name="username" placeholder="Username" />
                   </div>
@@ -83,4 +90,4 @@ function mapStateToProps(state) {
   };
 }
 
-export default connect(mapStateToProps)(withStyles(s)(Login));
+export default withRouter(connect(mapStateToProps)(withStyles(s)(Login)));
