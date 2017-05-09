@@ -93,7 +93,7 @@ class Dashboard extends React.Component {
             </Alert>
             }
             { this.state.alert4Visible &&
-            <Alert className="alert-sm" bsStyle="danger" onDismiss={() => this.setState({ alert4Visible: false })}>
+            <Alert className="alert-sm clearfix" bsStyle="danger" onDismiss={() => this.setState({ alert4Visible: false })}>
               <span className="fw-semi-bold">Danger:</span> Change this and that and try again.
               <span className="pull-right">
                 <Button bsStyle="danger" bsSize="xsmall">Take this action</Button>

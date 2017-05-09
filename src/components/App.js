@@ -14,17 +14,16 @@ import { connect } from 'react-redux';
 import Bundle from '../core/Bundle';
 
 /* eslint-disable */
-import loadLogin from 'bundle-loader?lazy!../pages/login/Login';
 import loadRegister from 'bundle-loader?lazy!../pages/register/Register';
 import loadNotFound from 'bundle-loader?lazy!../pages/notFound/NotFound';
 /* eslint-enable */
 
 import LayoutComponent from '../components/Layout/Layout';
+import LoginComponent from '../pages/login/Login';
 
 
 // import { auth } from '../config';
 
-const LoginBundle = Bundle.generateBundle(loadLogin);
 const RegisterBundle = Bundle.generateBundle(loadRegister);
 const NotFoundBundle = Bundle.generateBundle(loadNotFound);
 
@@ -97,7 +96,7 @@ class App extends React.PureComponent {
       <Switch>
         <Route path="/" exact render={() => <Redirect to="/app" />} />
         <PrivateRoute isAuthenticated={this.props.isAuthenticated} path="/app" component={LayoutComponent} />
-        <Route path="/login" exact component={LoginBundle} />
+        <Route path="/login" exact component={LoginComponent} />
         <Route path="/register" exact component={RegisterBundle} />
         <Route component={NotFoundBundle} />
       </Switch>

@@ -41,7 +41,7 @@ function requestLogout() {
   };
 }
 
-function receiveLogout() {
+export function receiveLogout() {
   return {
     type: LOGOUT_SUCCESS,
     isFetching: false,
@@ -64,7 +64,7 @@ export function loginUser(creds) {
     method: 'POST',
     headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
     credentials: 'include',
-    body: `username=${creds.username}&password=${creds.password}`,
+    body: `login=${creds.login}&password=${creds.password}`,
   };
 
   return (dispatch) => {
@@ -81,7 +81,8 @@ export function loginUser(creds) {
           dispatch(loginError(user.message));
           return Promise.reject(user);
         }
-          // If login was successful, set the token in local storage
+        // in posts create new action and check http status, if malign logout
+        // If login was successful, set the token in local storage
         localStorage.setItem('id_token', user.id_token);
           // Dispatch the success action
         dispatch(receiveLogin(user));

@@ -42,7 +42,7 @@ class Header extends React.Component {
             eventKey={1} title={
               <span>
                 <Glyphicon glyph="user" className="mr-sm" />
-            John <span className="fw-semi-bold">Willington {this.props.init}</span>
+            John <span className="fw-semi-bold">Willington</span>
                 <Badge className="ml-sm badge-warning">4</Badge>
               </span>
           } noCaret id="basic-nav-dropdown"

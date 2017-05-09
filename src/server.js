@@ -27,7 +27,7 @@ import models from './data/models';
 import schema from './data/schema';
 import configureStore from './store/configureStore';
 import { setRuntimeVariable } from './actions/runtime';
-import { receiveLogin } from './actions/user';
+import { receiveLogin, receiveLogout } from './actions/user';
 import { port, auth } from './config';
 import assets from './assets.json'; // eslint-disable-line import/no-unresolved
 import theme from './styles/theme.scss';
@@ -65,9 +65,14 @@ if (__DEV__) {
   app.enable('trust proxy');
 }
 app.post('/login', (req, res) => {
+  // replace with real database check in production
   // const user = graphql.find(req.username, req.userpassword);
-
-  const user = { username: 'D', userpassword: '123' };
+  let user = false;
+  const login = req.body.login,
+    password = req.body.password;
+  if (login == 'user' && password == 'password') {
+    user = { user, login }
+  }
 
   if (user) {
     const expiresIn = 60 * 60 * 24 * 180; // 180 days
@@ -75,14 +80,18 @@ app.post('/login', (req, res) => {
     res.cookie('id_token', token, { maxAge: 1000 * expiresIn, httpOnly: false });
     res.json({ id_token: token });
   } else {
-    res.redirect('/404'); // user not found
+    res.status(401).json({message: 'Wrong username or password. Use: user/password'});
   }
 });
 
 //
 // Register API middleware
 // -----------------------------------------------------------------------------
-app.use('/graphql', expressGraphQL(req => ({
+// require jwt authentication
+app.use('/graphql', expressJwt({
+  secret: auth.jwt.secret,
+  getToken: req => req.cookies.id_token,
+}), expressGraphQL(req => ({
   schema,
   graphiql: __DEV__,
   rootValue: { request: req },
@@ -92,15 +101,7 @@ app.use('/graphql', expressGraphQL(req => ({
 //
 // Register server-side rendering middleware
 // -----------------------------------------------------------------------------
-app.get('*',
-  // expressJwt({secret: auth.jwt.secret}),
-   async (req, res, next) => {
-     // let t = jwt.verify(, auth.jwt.secret);
-
-     console.log('token', cookie.load('id_token'));
-     console.log('req.headers.cookie', req.headers.cookie);
-     console.log('req.user', req.user);
-
+app.get('*', async (req, res, next) => {
      try {
        const store = configureStore({
          user: req.user || null,
@@ -113,9 +114,13 @@ app.get('*',
          value: Date.now(),
        }));
 
-       req.user && req.user.username && store.dispatch(receiveLogin({
-         id_token: req.cookies.id_token
-       }));
+       if (req.user && req.user.username) {
+         store.dispatch(receiveLogin({
+           id_token: req.cookies.id_token
+         }));
+       } else {
+         store.dispatch(receiveLogout());
+       }
 
        const css = new Set();
 
