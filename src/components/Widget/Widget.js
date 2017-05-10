@@ -8,16 +8,17 @@
  */
 
 import React from 'react';
+import PropTypes from 'prop-types';
 import withStyles from 'isomorphic-style-loader/lib/withStyles';
 import s from './Widget.scss';
 
 class Widget extends React.Component {
   static propTypes = {
-    title: React.PropTypes.node,
-    className: React.PropTypes.string,
-    children: React.PropTypes.oneOfType([
-      React.PropTypes.arrayOf(React.PropTypes.node),
-      React.PropTypes.node
+    title: PropTypes.node,
+    className: PropTypes.string,
+    children: PropTypes.oneOfType([
+      PropTypes.arrayOf(PropTypes.node),
+      PropTypes.node
     ]),
   };
 

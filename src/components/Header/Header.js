@@ -9,6 +9,7 @@
 
 import { connect } from 'react-redux';
 import React from 'react';
+import PropTypes from 'prop-types';
 import withStyles from 'isomorphic-style-loader/lib/withStyles';
 import { Navbar, MenuItem, Nav, NavDropdown, NavItem, Glyphicon, Badge } from 'react-bootstrap';
 import { logoutUser } from '../../actions/user';
@@ -17,7 +18,7 @@ import s from './Header.scss';
 
 class Header extends React.Component {
   static propTypes = {
-    sidebarToggle: React.PropTypes.func,
+    sidebarToggle: PropTypes.func,
   };
 
   static defaultProps = {
