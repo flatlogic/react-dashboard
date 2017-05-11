@@ -78,7 +78,7 @@ if (__DEV__) {
 }
 app.post('/login', (req, res) => {
   // replace with real database check in production
-  // const user = graphql.find(req.username, req.userpassword);
+  // const user = graphql.find(req.login, req.password);
   let user = false;
   const login = req.body.login,
     password = req.body.password;
@@ -126,7 +126,7 @@ app.get('*', async (req, res, next) => {
          value: Date.now(),
        }));
 
-       if (req.user && req.user.username) {
+       if (req.user && req.user.login) {
          store.dispatch(receiveLogin({
            id_token: req.cookies.id_token
          }));
