@@ -26,6 +26,8 @@
     "express-jwt": "^5.3.0",
     "fastclick": "^1.0.6",
     "graphql": "^0.9.3",
+    "graphql-relay": "^0.5.1",
+    "graphql-sequelize": "^5.3.2",
     "history": "^4.6.1",
     "isomorphic-style-loader": "^2.0.0",
     "jsonwebtoken": "^7.3.0",
