@@ -52,7 +52,7 @@ class Layout extends React.Component {
           <main className={s.content}>
             <Switch>
               <Route path="/app" exact component={Dashboard} />
-              <Route path="/app/posts" exact component={PostsBundle} />
+              <Route path="/app/posts" component={PostsBundle} />
               <Route path="/app/profile" exact component={ProfileBundle} />
               <Route path="/app/privacy" exact component={PrivacyBundle} />
               <Route component={NotFoundBundle} />

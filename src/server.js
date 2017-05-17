@@ -92,7 +92,7 @@ app.post('/login', (req, res) => {
     res.cookie('id_token', token, { maxAge: 1000 * expiresIn, httpOnly: false });
     res.json({ id_token: token });
   } else {
-    res.status(401).json({message: 'Wrong username or password. Use: user/password'});
+    res.status(401).json({message: 'To login use user/password'});
   }
 });
 

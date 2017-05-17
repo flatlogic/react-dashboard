@@ -13,11 +13,13 @@ const Post = Model.define('Post', {
   title: {
     type: DataType.STRING(255),
     defaultValue: false,
+    validate: { notEmpty: true },
   },
 
   content: {
     type: DataType.TEXT,
     defaultValue: false,
+    validate: { notEmpty: true },
   },
 
 }, {

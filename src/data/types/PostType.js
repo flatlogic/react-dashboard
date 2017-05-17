@@ -7,8 +7,8 @@ import {
 } from 'graphql';
 
 let PostType = new ObjectType({
-  name: 'Task',
-  description: 'A task',
+  name: 'Post',
+  description: 'A post',
   fields: {
     id: {
       type: new NonNull(ID),
@@ -21,6 +21,10 @@ let PostType = new ObjectType({
     content: {
       type: StringType,
       description: 'The content of the post.',
+    },
+    updatedAt: {
+      type: StringType,
+      description: 'The date post was updated',
     }
   }
 });

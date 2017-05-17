@@ -88,7 +88,7 @@ class App extends React.PureComponent {
   static childContextTypes = ContextType;
 
   getChildContext() {
-    // fixme. Temporary solution until redux is integrated
+    // fixme. find better solution?
     return this.props.context || this.context.router.staticContext;
   }
 
