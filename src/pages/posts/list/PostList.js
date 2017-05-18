@@ -14,13 +14,6 @@ class PostList extends React.Component {
     description: 'About description',
   };
 
-  constructor(props) {
-    super(props);
-    this.state = {
-      posts: []
-    }
-  }
-
   componentWillMount() {
     this.props.dispatch(fetchPosts());
   }
@@ -64,7 +57,7 @@ class PostList extends React.Component {
             }
             {this.props.isFetching &&
               <tr>
-                <td colSpan="100">Loading</td>
+                <td colSpan="100">Loading...</td>
               </tr>
             }
             </tbody>

@@ -3,8 +3,10 @@ import withStyles from 'isomorphic-style-loader/lib/withStyles';
 import { Button, ButtonGroup, ButtonToolbar, DropdownButton, MenuItem, ProgressBar,
   Alert, Row, Col, ListGroup, Badge, Glyphicon } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
+import { connect } from 'react-redux';
 
 import Widget from '../../components/Widget';
+import { fetchPosts } from '../../actions/posts';
 
 import s from './Dashboard.scss';
 
@@ -18,6 +20,10 @@ class Dashboard extends React.Component {
       alert3Visible: true,
       alert4Visible: true,
     };
+  }
+
+  componentWillMount() {
+    this.props.dispatch(fetchPosts());
   }
 
   render() {
@@ -115,7 +121,26 @@ class Dashboard extends React.Component {
                 <p className="fs-sm mb-0 text-muted">posts, that have been published recently</p>
               </div>
             }>
-              Posts list
+              <table className="table table-sm table-no-border mb-0">
+                <tbody>
+                {this.props.posts && this.props.posts.map((post, index) => (
+                  <tr key={post.id}>
+                    <td>{new Date(post.updatedAt).toLocaleString() }</td>
+                    <td><Link to="/app/posts">{post.title}</Link></td>
+                  </tr>
+                ))}
+                {this.props.posts && !this.props.posts.length &&
+                <tr>
+                  <td colSpan="100">No posts yet</td>
+                </tr>
+                }
+                {this.props.isFetching &&
+                <tr>
+                  <td colSpan="100">Loading...</td>
+                </tr>
+                }
+                </tbody>
+              </table>
             </Widget>
           </Col>
           <Col sm={6}>
@@ -161,4 +186,11 @@ class Dashboard extends React.Component {
   }
 }
 
-export default withStyles(s)(Dashboard);
+function mapStateToProps(state) {
+  return {
+    isFetching: state.posts.isFetching,
+    posts: state.posts.posts
+  };
+}
+
+export default connect(mapStateToProps)(withStyles(s)(Dashboard));
