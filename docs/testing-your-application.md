@@ -2,7 +2,7 @@
 
 ### Used libraries
 
-RSK comes with the following libraries for testing purposes:
+React Dashboard comes with the following libraries for testing purposes:
 
 - [Mocha](https://mochajs.org/) - Node.js and browser test runner
 - [Chai](http://chaijs.com/) - Assertion library
@@ -15,9 +15,7 @@ You may also want to take a look at the following related packages:
 
 ### Running tests
 
-To test your application simply run the
-[`yarn test`](https://github.com/kriasoft/react-starter-kit/blob/b22b1810461cec9c53eedffe632a3ce70a6b29a3/package.json#L154)
-command which will:
+To test your application simply run the `yarn test` command which will:
 - recursively find all files ending with `.test.js` in your `src/` directory
 - mocha execute found files
 
@@ -33,8 +31,8 @@ yarn test
 
 ### Basic example
 
-To help you on your way RSK comes with the following
-[basic test case](https://github.com/kriasoft/react-starter-kit/blob/master/src/components/Layout/Layout.test.js)
+To help you on your way React Dashboard comes with the following
+[basic test case](https://github.com/flatlogic/react-dashboard/blob/master/src/components/Layout/Layout.test.js)
 you can use as a starting point:
 
 ```js
@@ -65,7 +63,7 @@ describe('Layout', () => {
 
 React-intl users MUST render/wrap components inside an IntlProvider like the example below:
 
-The example below example is a drop-in test for the RSK `Header` component:
+The example below example is a drop-in test for the React Dashboard `Header` component:
 
 ```js
 import React from 'react';

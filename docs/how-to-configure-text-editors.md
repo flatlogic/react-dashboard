@@ -5,7 +5,7 @@
 
 ### WebStorm
 
-Create a new project based on **React Starter Kit template**
+Create a new project based on **React Dashboard template**
 
 ![react-project-template-in-webstorm](https://dl.dropboxusercontent.com/u/16006521/react-starter-kit/webstorm-new-project.png)
 

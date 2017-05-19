@@ -42,27 +42,18 @@ Before you start, take a moment to see how the project structure looks like:
 └── yarn.lock                   # Fixed versions of all the dependencies
 ```
 
-**Note**: The current version of RSK does not contain a Flux implementation.
-It can be easily integrated with any Flux library of your choice. The most
-commonly used Flux libraries are [Flux](http://facebook.github.io/flux/),
-[Redux](http://redux.js.org/) and [Relay](http://facebook.github.io/relay/).
-
 ### Quick Start
 
 #### 1. Get the latest version
 
-You can start by cloning the latest version of React Starter Kit (RSK) on your
+You can start by cloning the latest version of React Dashboard on your
 local machine by running:
 
 ```shell
-$ git clone -o react-starter-kit -b master --single-branch \
-      https://github.com/kriasoft/react-starter-kit.git MyApp
+$ git clone -o react-dashboard -b master --single-branch \
+      https://github.com/flatlogic/react-dashboard.git MyApp
 $ cd MyApp
 ```
-
-Alternatively, you can start a new project based on RSK right from
-[WebStorm IDE](https://www.jetbrains.com/webstorm/help/create-new-project-react-starter-kit.html),
-or by using [Yeoman generator](https://www.npmjs.com/package/generator-react-fullstack).
 
 #### 2. Run `yarn install`
 
@@ -85,8 +76,6 @@ Now you can open your web app in a browser, on mobile devices and start
 hacking. Whenever you modify any of the source files inside the `/src` folder,
 the module bundler ([Webpack](http://webpack.github.io/)) will recompile the
 app on the fly and refresh all the connected browsers.
-
-![browsersync](https://dl.dropboxusercontent.com/u/16006521/react-starter-kit/brwosersync.jpg)
 
 Note that the `yarn start` command launches the app in `development` mode,
 the compiled output files are not optimized and minimized in this case.
@@ -157,13 +146,13 @@ of the `/build` folder to a remote server.
 
 ### How to Update
 
-If you need to keep your project up to date with the recent changes made to RSK,
-you can always fetch and merge them from [this repo](https://github.com/kriasoft/react-starter-kit)
+If you need to keep your project up to date with the recent changes made to React Dashboard,
+you can always fetch and merge them from [this repo](https://github.com/flatlogic/react-dashboard)
 back into your own project by running:
 
 ```shell
 $ git checkout master
-$ git fetch react-starter-kit
-$ git merge react-starter-kit/master
+$ git fetch react-dashboard
+$ git merge react-dashboard/master
 $ yarn install
 ```
