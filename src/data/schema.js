@@ -8,7 +8,7 @@ import news from './queries/news';
 import posts from './queries/posts';
 import addPost from './mutations/posts';
 
-const schema = new Schema({
+const schemaConfig = {
   query: new ObjectType({
     name: 'Query',
     fields: {
@@ -16,13 +16,18 @@ const schema = new Schema({
       news,
       posts,
     },
-  }),
-  mutation: new ObjectType({
+  })
+};
+
+if(!__DEV__) {
+  schemaConfig['mutation'] = new ObjectType({
     name: 'Mutation',
     fields: {
       addPost
     }
-  }),
-});
+  });
+}
+
+const schema = new Schema(schemaConfig);
 
 export default schema;

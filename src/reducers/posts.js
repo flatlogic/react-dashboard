@@ -24,7 +24,7 @@ export default function posts(state = {
     case CREATE_POST_FAILURE:
       return Object.assign({}, state, {
         isFetching: false,
-        message: 'Something wrong happened. Please come back later',
+        message: 'Due to security reasons posts creation is closed in demo version. Please set up locally to test',
       });
     case FETCH_POSTS_REQUEST:
       return Object.assign({}, state, {
