@@ -22,13 +22,14 @@ import App from './components/App';
 import Html from './components/Html';
 import { ErrorPageWithoutStyle } from './pages/error/ErrorPage';
 import errorPageStyle from './pages/error/ErrorPage.scss';
+import createFetch from './createFetch';
 import passport from './core/passport';
 import models from './data/models';
 import schema from './data/schema';
 import configureStore from './store/configureStore';
 import { setRuntimeVariable } from './actions/runtime';
 import { receiveLogin, receiveLogout } from './actions/user';
-import { port, auth } from './config';
+import config from './config';
 import assets from './assets.json'; // eslint-disable-line import/no-unresolved
 import theme from './styles/theme.scss';
 import cookie from 'react-cookie';
@@ -56,7 +57,7 @@ app.use(bodyParser.json());
 // Authentication
 // -----------------------------------------------------------------------------
 app.use(expressJwt({
-  secret: auth.jwt.secret,
+  secret: config.auth.jwt.secret,
   credentialsRequired: false,
   getToken: req => req.cookies.id_token,
 }));
@@ -88,7 +89,7 @@ app.post('/login', (req, res) => {
 
   if (user) {
     const expiresIn = 60 * 60 * 24 * 180; // 180 days
-    const token = jwt.sign(user, auth.jwt.secret, { expiresIn });
+    const token = jwt.sign(user, config.auth.jwt.secret, { expiresIn });
     res.cookie('id_token', token, { maxAge: 1000 * expiresIn, httpOnly: false });
     res.json({ id_token: token });
   } else {
@@ -114,56 +115,69 @@ app.use('/graphql', expressJwt({
 // Register server-side rendering middleware
 // -----------------------------------------------------------------------------
 app.get('*', async (req, res, next) => {
-     try {
-       const store = configureStore({
-         user: req.user || null,
-       }, {
-         cookie: req.headers.cookie,
-       });
+  try {
+    const css = new Set();
 
-       store.dispatch(setRuntimeVariable({
-         name: 'initialNow',
-         value: Date.now(),
-       }));
+    const fetch = createFetch({
+      baseUrl: config.api.serverUrl,
+      cookie: req.headers.cookie,
+    });
 
-       if (req.user && req.user.login) {
-         store.dispatch(receiveLogin({
-           id_token: req.cookies.id_token
-         }));
-       } else {
-         store.dispatch(receiveLogout());
-       }
+    const initialState = {
+      user: req.user || null,
+    };
 
-       const css = new Set();
+    const store = configureStore(initialState, {
+      fetch,
+      // I should not use `history` on server.. but how I do redirection? follow universal-router
+    });
 
-       const data = {
-         title: 'React Dashboard',
-         description: 'React Dashboard Starter project based on react-router 4, redux, graphql, bootstrap',
-       };
+    if (req.user && req.user.login) {
+      store.dispatch(receiveLogin({
+        id_token: req.cookies.id_token
+      }));
+    } else {
+      store.dispatch(receiveLogout());
+    }
 
-      // Global (context) variables that can be easily accessed from any React component
-      // https://facebook.github.io/react/docs/context.html
-       const context = {
-        // Enables critical path CSS rendering
-        // https://github.com/kriasoft/isomorphic-style-loader
-         insertCss: (...styles) => {
-          // eslint-disable-next-line no-underscore-dangle
-           styles.forEach(style => css.add(style._getCss()));
-         },
-        // Initialize a new Redux store
-        // http://redux.js.org/docs/basics/UsageWithReact.html
-         store,
-       };
+    store.dispatch(setRuntimeVariable({
+      name: 'initialNow',
+      value: Date.now(),
+    }));
+
+    // Global (context) variables that can be easily accessed from any React component
+    // https://facebook.github.io/react/docs/context.html
+    const context = {
+      // Enables critical path CSS rendering
+      // https://github.com/kriasoft/isomorphic-style-loader
+      insertCss: (...styles) => {
+        // eslint-disable-next-line no-underscore-dangle
+        styles.forEach(style => css.add(style._getCss()));
+      },
+      fetch,
+      // You can access redux through react-redux connect
+      store,
+      storeSubscription: null,
+    };
 
       // eslint-disable-next-line no-underscore-dangle
        css.add(theme._getCss());
 
-       data.scripts = [
-         assets.vendor.js,
-         assets.client.js,
-       ];
-
-       data.state = context.store.getState();
+    const data = {
+      title: 'React Dashboard',
+      description: 'React Dashboard Starter project based on react-router 4, redux, graphql, bootstrap',
+    };
+    data.styles = [
+      { id: 'css', cssText: [...css].join('') },
+    ];
+    data.scripts = [
+      assets.vendor.js,
+      assets.client.js,
+    ];
+    data.app = {
+      apiUrl: config.api.clientUrl,
+      state: context.store.getState(),
+    };
 
        const html = ReactDOM.renderToString(
          <StaticRouter
@@ -219,7 +233,7 @@ app.use((err, req, res, next) => { // eslint-disable-line no-unused-vars
 // Launch the server
 // -----------------------------------------------------------------------------
 models.sync().catch(err => console.error(err.stack)).then(() => {
-  app.listen(port, () => {
-    console.info(`The server is running at http://localhost:${port}/`);
+  app.listen(config.port, () => {
+    console.info(`The server is running at http://localhost:${config.port}/`);
   });
 });

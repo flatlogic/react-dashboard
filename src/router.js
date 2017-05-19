@@ -7,9 +7,7 @@
  * LICENSE.txt file in the root directory of this source tree.
  */
 
-import 'whatwg-fetch';
+import Router from 'universal-router';
+import routes from './routes';
 
-export default self.fetch.bind(self);
-export const Headers = self.Headers;
-export const Request = self.Request;
-export const Response = self.Response;
+export default new Router(routes);

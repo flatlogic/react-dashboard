@@ -14,6 +14,7 @@ import FastClick from 'fastclick';
 import { createPath } from 'history/PathUtils';
 import history from './core/history';
 import App from './components/App';
+import createFetch from './createFetch';
 import configureStore from './store/configureStore';
 import { ErrorReporter, deepForceUpdate } from './core/devUtils';
 import theme from './styles/theme.scss';
@@ -31,9 +32,14 @@ const context = {
     const removeCss = styles.map(x => x._insertCss());
     return () => { removeCss.forEach(f => f()); };
   },
+  // Universal HTTP client
+  fetch: createFetch({
+    baseUrl: window.App.apiUrl,
+  }),
   // Initialize a new Redux store
   // http://redux.js.org/docs/basics/UsageWithReact.html
-  store: configureStore(window.APP_STATE, { history }),
+  store: configureStore(window.App.state, { history }),
+  storeSubscription: null,
 };
 
 // Switch off the native scroll restoration behavior and handle it manually
