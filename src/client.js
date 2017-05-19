@@ -12,11 +12,11 @@ import ReactDOM from 'react-dom';
 import { Router } from 'react-router';
 import FastClick from 'fastclick';
 import { createPath } from 'history/PathUtils';
-import history from './core/history';
+import history from './history';
 import App from './components/App';
 import createFetch from './createFetch';
 import configureStore from './store/configureStore';
-import { ErrorReporter, deepForceUpdate } from './core/devUtils';
+import { ErrorReporter, deepForceUpdate } from './devUtils';
 import theme from './styles/theme.scss';
 
 // eslint-disable-next-line no-underscore-dangle

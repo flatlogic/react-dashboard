@@ -23,7 +23,7 @@ import Html from './components/Html';
 import { ErrorPageWithoutStyle } from './pages/error/ErrorPage';
 import errorPageStyle from './pages/error/ErrorPage.scss';
 import createFetch from './createFetch';
-import passport from './core/passport';
+import passport from './passport';
 import models from './data/models';
 import schema from './data/schema';
 import configureStore from './store/configureStore';
@@ -102,7 +102,7 @@ app.post('/login', (req, res) => {
 // -----------------------------------------------------------------------------
 // require jwt authentication
 app.use('/graphql', expressJwt({
-  secret: auth.jwt.secret,
+  secret: config.auth.jwt.secret,
   getToken: req => req.cookies.id_token,
 }), expressGraphQL(req => ({
   schema,

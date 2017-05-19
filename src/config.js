@@ -9,10 +9,6 @@
 
 /* eslint-disable max-len */
 
-if (process.env.BROWSER) {
-  throw new Error('Do not import `config.js` from inside the client-side code.');
-}
-
 module.exports = {
   // Node.js app
   port: process.env.PORT || 3000,
@@ -37,7 +33,7 @@ module.exports = {
   defaultMeta: {
     title: 'React Dashboard',
     description: 'React Dashboard Starter project based on react-router 4, redux, graphql, bootstrap',
-  }
+  },
 
   // Authentication
   auth: {

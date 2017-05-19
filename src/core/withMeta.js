@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import hoistStatics from 'hoist-non-react-statics';
-import { updateMeta } from './DOMUtils';
+import { updateMeta } from '../DOMUtils';
 import { defaultMeta } from '../config';
 
 function withMeta(ComposedComponent) {
