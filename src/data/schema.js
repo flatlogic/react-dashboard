@@ -19,7 +19,8 @@ const schemaConfig = {
   })
 };
 
-if(!__DEV__) {
+// for demo purposes forbid mutations in production environment
+if(__DEV__) {
   schemaConfig['mutation'] = new ObjectType({
     name: 'Mutation',
     fields: {
