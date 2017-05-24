@@ -5,6 +5,8 @@ built with [React](https://facebook.github.io/react/), [Bootstrap](http://getboo
 
 [Demo](https://flatlogic-react-dashboard.herokuapp.com/). Use following credentials: user/password.
 
+![react-dashboard](https://flatlogic.com/uploads/react-dashboard.png)
+
 This seed project is a sort of a free version of a template that may be found on
 [Themeforest](https://themeforest.net/category/site-templates/admin-templates)
 or [Wrapbootstrap](https://wrapbootstrap.com/themes/admin?ref=by) (affiliate link) with working backend integration.
