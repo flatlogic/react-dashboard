@@ -13,6 +13,7 @@ You may use it to bootstrap the development of your next web app.
 
 ## Features
 * React
+* Mobile friendly layout (responsive)
 * React Router
 * Bootstrap3
 * GraphQL
