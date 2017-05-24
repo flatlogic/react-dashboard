@@ -1,9 +1,9 @@
 ## React Dashboard — "[isomorphic](http://nerds.airbnb.com/isomorphic-javascript-future-web-apps/)" dashboard template
-built with [React](https://facebook.github.io/react/), [React Router](https://reacttraining.com/react-router/),
+built with [React](https://facebook.github.io/react/), [Bootstrap](http://getbootstrap.com/), [React Router](https://reacttraining.com/react-router/),
 [Redux](http://redux.js.org/) and [GraphQL](http://graphql.org/) based on
 [React Starter Kit](https://www.reactstarterkit.com) and latest industry best practices.
 
-[Demo]() Use following credentials: user/password.
+[Demo](https://flatlogic-react-dashboard.herokuapp.com/). Use following credentials: user/password.
 
 This seed project is a sort of a free version of a template that may be found on
 [Themeforest](https://themeforest.net/category/site-templates/admin-templates)
@@ -70,6 +70,9 @@ For any additional information please refer to [Flatlogic homepage](https://flat
 - Follow [@flatlogic on Twitter](https://twitter.com/flatlogic).
 - Subscribe to Flatlogic newsletter at [flatlogic.com](https://flatlogic.com/)
 - Let's discuss: [![Join the chat at https://gitter.im/flatlogic/react-dashboard](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/flatlogic/react-dashboard)
+
+## Premium themes
+Looking for premium themes and templates? Check out our products at [flatlogic.com](https://flatlogic.com/products).
 
 ## License
 
