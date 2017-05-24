@@ -62,6 +62,10 @@ app on the fly and refresh all the connected browsers.
 
 For more info please refer to [getting started](./docs/getting-started.md) guide to download and run the project (Node.js >= 6.5)
 
+## Credits
+This project is heavily based on (is a fork of) [React Starter Kit](https://github.com/kriasoft/react-starter-kit)
+by Konstantin Tarkus ([@koistya](https://github.com/koistya)). The difference is Bootstrap & React Router integration.
+
 ## Support
 For any additional information please refer to [Flatlogic homepage](https://flatlogic.com).
 
@@ -76,4 +80,4 @@ Looking for premium themes and templates? Check out our products at [flatlogic.c
 
 ## License
 
-[MIT](https://github.com/flatlogic/react-dashboard/blob/master/LICENSE), hell yeah.
+[MIT](https://github.com/flatlogic/react-dashboard/blob/master/LICENSE.txt) and another [MIT](https://github.com/flatlogic/react-dashboard/blob/master/LICENSE-react-starter-kit.txt) from RSK.
