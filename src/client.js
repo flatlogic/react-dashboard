@@ -10,6 +10,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Router } from 'react-router';
+import ErrorReporter from 'redbox-react';
+import deepForceUpdate from 'react-deep-force-update';
 import FastClick from 'fastclick';
 import { createPath } from 'history/PathUtils';
 import history from './history';
