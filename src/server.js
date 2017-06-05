@@ -32,7 +32,6 @@ import { receiveLogin, receiveLogout } from './actions/user';
 import config from './config';
 import assets from './assets.json'; // eslint-disable-line import/no-unresolved
 import theme from './styles/theme.scss';
-import cookie from 'react-cookie';
 import { Provider } from 'react-redux';
 
 const app = express();
