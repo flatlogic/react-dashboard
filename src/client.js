@@ -12,7 +12,7 @@ import ReactDOM from 'react-dom';
 import { Router } from 'react-router';
 import ErrorReporter from 'redbox-react';
 import deepForceUpdate from 'react-deep-force-update';
-import FastClick from 'fastclick';
+import queryString from 'query-string';
 import { createPath } from 'history/PathUtils';
 import history from './history';
 import App from './components/App';
@@ -85,9 +85,6 @@ let onRenderComplete = function initialRenderComplete() {
     }
   };
 };
-
-// Make taps on links and buttons work fast on mobiles
-FastClick.attach(document.body);
 
 const container = document.getElementById('app');
 let appInstance;
