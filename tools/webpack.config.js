@@ -18,6 +18,9 @@ const isDebug = !process.argv.includes('--release');
 const isVerbose = process.argv.includes('--verbose');
 const isAnalyze = process.argv.includes('--analyze') || process.argv.includes('--analyse');
 
+const stylesRegExp = /\.(css|less|scss|sss)$/;
+const staticAssetName = isDebug ? '[path][name].[ext]?[hash:8]' : '[hash:8].[ext]';
+
 //
 // Common configuration chunk to be used for both
 // client-side (client.js) and server-side (server.js) bundles
@@ -42,6 +45,9 @@ const config = {
   },
 
   module: {
+    // Make missing exports an error instead of warning
+    strictExportPresence: true,
+
     rules: [
       {
         test: /\.jsx?$/,
@@ -49,7 +55,7 @@ const config = {
         include: [
           path.resolve(__dirname, '../src'),
         ],
-        query: {
+        options: {
           // https://github.com/babel/babel-loader#options
           cacheDirectory: isDebug,
 
@@ -87,8 +93,14 @@ const config = {
           ],
         },
       },
+
+      // Handle internal/project styles (from src folder)
       {
-        test: /\.css/,
+        // Internal Styles
+        test: stylesRegExp,
+        include: [
+          path.resolve(__dirname, '../src'),
+        ],
         use: [
           {
             loader: 'isomorphic-style-loader',
@@ -109,6 +121,8 @@ const config = {
           },
         ],
       },
+
+      // Handle external/third-party styles (from node_modules)
       {
         test: /theme.scss$/,
         loaders: [
@@ -118,7 +132,7 @@ const config = {
         ],
       },
       {
-        test: /\.scss$/,
+        test: stylesRegExp,
         exclude: [/theme.scss$/],
         use: [
           'isomorphic-style-loader',
@@ -128,26 +142,62 @@ const config = {
         ],
       },
       {
-        test: /\.md$/,
-        loader: path.resolve(__dirname, './lib/markdown-loader.js'),
+        test: /\.(bmp|gif|jpe?g|png)$/,
+        issuer: stylesRegExp,
+        loader: 'url-loader',
+        options: {
+          name: staticAssetName,
+          limit: 4096, // 4kb
+        },
       },
+
+      // Inline small SVGs into CSS as UTF-8 encoded DataUrl string
+      {
+        test: /\.svg$/,
+        issuer: stylesRegExp,
+        loader: 'svg-url-loader',
+        options: {
+          name: staticAssetName,
+          limit: 4096, // 4kb
+        },
+      },
+
+      // Return public URL to large images otherwise
+      {
+        test: /\.(bmp|gif|jpe?g|png|svg)$/,
+        issuer: { not: [stylesRegExp] },
+        loader: 'file-loader',
+        options: {
+          name: staticAssetName,
+        },
+      },
+
+      // Convert plain text into module
       {
         test: /\.txt$/,
         loader: 'raw-loader',
       },
+
+      // Convert markdown into html
       {
-        test: /\.(ico|jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2)(\?.*)?$/,
-        loader: 'file-loader',
-        query: {
-          name: isDebug ? '[path][name].[ext]?[hash:8]' : '[hash:8].[ext]',
-        },
+        test: /\.md$/,
+        loader: path.resolve(__dirname, './lib/markdown-loader.js'),
       },
+
+      // Return public URL for all assets unless explicitly excluded
+      // DO NOT FORGET to update `exclude` list when you adding a new loader
       {
-        test: /\.(mp4|webm|wav|mp3|m4a|aac|oga)(\?.*)?$/,
-        loader: 'url-loader',
-        query: {
-          name: isDebug ? '[path][name].[ext]?[hash:8]' : '[hash:8].[ext]',
-          limit: 10000,
+        exclude: [
+          /\.jsx?$/,
+          /\.json$/,
+          stylesRegExp,
+          /\.(bmp|gif|jpe?g|png|svg)$/,
+          /\.txt$/,
+          /\.md$/,
+        ],
+        loader: 'file-loader',
+        options: {
+          name: staticAssetName,
         },
       },
 
@@ -166,16 +216,19 @@ const config = {
 
   cache: isDebug,
 
+  // Specify what bundle information gets displayed
+  // https://webpack.js.org/configuration/stats/
   stats: {
-    colors: true,
-    reasons: isDebug,
-    hash: isVerbose,
-    version: isVerbose,
-    timings: true,
-    chunks: isVerbose,
-    chunkModules: isVerbose,
     cached: isVerbose,
     cachedAssets: isVerbose,
+    chunks: isVerbose,
+    chunkModules: isVerbose,
+    colors: true,
+    hash: isVerbose,
+    modules: isVerbose,
+    reasons: isDebug,
+    timings: true,
+    version: isVerbose,
   },
 
   // Choose a developer tool to enhance debugging
@@ -222,6 +275,10 @@ const clientConfig = {
     }),
 
     ...isDebug ? [] : [
+      // Decrease script evaluation time
+      // https://github.com/webpack/webpack/blob/master/examples/scope-hoisting/README.md
+      new webpack.optimize.ModuleConcatenationPlugin(),
+
       // Minimize all JavaScript output of chunks
       // https://github.com/mishoo/UglifyJS2#compressor-options
       new webpack.optimize.UglifyJsPlugin({
@@ -280,6 +337,12 @@ const serverConfig = {
     libraryTarget: 'commonjs2',
   },
 
+  // Webpack mutates resolve object, so clone it to avoid issues
+  // https://github.com/webpack/webpack/issues/4817
+  resolve: {
+    ...config.resolve,
+  },
+
   module: {
     ...config.module,
 
@@ -288,9 +351,9 @@ const serverConfig = {
       if (rule.loader === 'babel-loader') {
         return {
           ...rule,
-          query: {
-            ...rule.query,
-            presets: rule.query.presets.map(preset => (preset[0] !== 'env' ? preset : ['env', {
+          options: {
+            ...rule.options,
+            presets: rule.options.presets.map(preset => (preset[0] !== 'env' ? preset : ['env', {
               targets: {
                 node: pkg.engines.node.match(/(\d+\.?)+/)[0],
               },
@@ -302,12 +365,12 @@ const serverConfig = {
         };
       }
 
-      if (rule.loader === 'file-loader' || rule.loader === 'url-loader') {
+      if (rule.loader === 'file-loader' || rule.loader === 'url-loader' || rule.loader === 'svg-url-loader') {
         return {
           ...rule,
-          query: {
-            ...rule.query,
-            name: `public/assets/${rule.query.name}`,
+          options: {
+            ...rule.options,
+            name: `public/assets/${rule.options.name}`,
             publicPath: url => url.replace(/^public/, ''),
           },
         };
@@ -321,7 +384,7 @@ const serverConfig = {
     './assets.json',
     nodeExternals({
       whitelist: [
-        /\.(css|less|scss|sss)$/i,
+        stylesRegExp,
       ],
     }),
   ],
