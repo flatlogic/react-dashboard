@@ -30,7 +30,7 @@
     "history": "^4.6.3",
     "isomorphic-style-loader": "^2.0.0",
     "jsonwebtoken": "^7.4.1",
-    "node-fetch": "^1.6.3",
+    "node-fetch": "^1.7.1",
     "normalize.css": "^7.0.0",
     "passport": "^0.3.2",
     "passport-facebook": "^2.1.1",
