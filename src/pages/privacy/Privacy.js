@@ -18,14 +18,23 @@ class Privacy extends React.Component {
   }
 
   async loadData() {
-    const data = await require.ensure([], require => require('./privacy.md'), 'about');
+    const data = await require.ensure(
+      [],
+      require => require('./privacy.md'),
+      'about',
+    );
     this.setState({
       data,
     });
   }
 
   render() {
-    return <Page title={this.state.data ? this.state.data.title : ''} html={this.state.data ? this.state.data.html : ''} />;
+    return (
+      <Page
+        title={this.state.data ? this.state.data.title : ''}
+        html={this.state.data ? this.state.data.html : ''}
+      />
+    );
   }
 }
 

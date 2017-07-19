@@ -12,7 +12,6 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { Router } from 'react-router';
 import deepForceUpdate from 'react-deep-force-update';
-import queryString from 'query-string';
 import { createPath } from 'history/PathUtils';
 import history from './history';
 import App from './components/App';
@@ -31,7 +30,9 @@ const context = {
   insertCss: (...styles) => {
     // eslint-disable-next-line no-underscore-dangle
     const removeCss = styles.map(x => x._insertCss());
-    return () => { removeCss.forEach(f => f()); };
+    return () => {
+      removeCss.forEach(f => f());
+    };
   },
   // Universal HTTP client
   fetch: createFetch(self.fetch, {
@@ -110,9 +111,7 @@ async function onLocationChange(location, action) {
     }
 
     appInstance = ReactDOM.render(
-      <Router
-        history={history}
-      >
+      <Router history={history}>
         <App store={context.store} context={context} />
       </Router>,
       container,

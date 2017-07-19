@@ -34,7 +34,6 @@ const ProfileBundle = Bundle.generateBundle(loadProfile);
 const NotFoundBundle = Bundle.generateBundle(loadNotFound);
 
 class Layout extends React.Component {
-
   constructor(props) {
     super(props);
 
@@ -47,8 +46,15 @@ class Layout extends React.Component {
     return (
       <div className={s.root}>
         <Sidebar />
-        <div className={[s.wrap, this.state.sidebarOpen ? s.sidebarOpen : ''].join(' ')}>
-          <Header sidebarToggle={() => this.setState({ sidebarOpen: !this.state.sidebarOpen })} />
+        <div
+          className={[s.wrap, this.state.sidebarOpen ? s.sidebarOpen : ''].join(
+            ' ',
+          )}
+        >
+          <Header
+            sidebarToggle={() =>
+              this.setState({ sidebarOpen: !this.state.sidebarOpen })}
+          />
           <main className={s.content}>
             <Switch>
               <Route path="/app" exact component={Dashboard} />

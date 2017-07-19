@@ -26,9 +26,15 @@ class ErrorPage extends React.Component {
       const { error } = this.props;
       return (
         <div>
-          <h1>{error.name}</h1>
-          <p>{error.message}</p>
-          <pre>{error.stack}</pre>
+          <h1>
+            {error.name}
+          </h1>
+          <p>
+            {error.message}
+          </p>
+          <pre>
+            {error.stack}
+          </pre>
         </div>
       );
     }

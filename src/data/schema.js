@@ -16,16 +16,16 @@ const schemaConfig = {
       news,
       posts,
     },
-  })
+  }),
 };
 
 // for demo purposes forbid mutations in production environment
-if(__DEV__) {
-  schemaConfig['mutation'] = new ObjectType({
+if (__DEV__) {
+  schemaConfig.mutation = new ObjectType({
     name: 'Mutation',
     fields: {
-      addPost
-    }
+      addPost,
+    },
   });
 }
 

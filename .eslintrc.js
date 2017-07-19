@@ -65,6 +65,9 @@ module.exports = {
     // https://github.com/kriasoft/react-starter-kit/pull/961
     'react/prefer-stateless-function': 'off',
 
+    'react/jsx-no-bind': 'off',
+    'react/forbid-prop-types': 'off',
+
     // ESLint plugin for prettier formatting
     // https://github.com/prettier/eslint-plugin-prettier
     'prettier/prettier': [

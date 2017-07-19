@@ -5,7 +5,6 @@ import PostList from './list/PostList';
 import PostNew from './new/PostNew';
 
 class Posts extends React.Component {
-
   render() {
     return (
       <Switch>

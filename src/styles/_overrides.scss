@@ -46,7 +46,7 @@
   font-size: $font-size-base - 1;
 
   @include box-shadow(none);
-  @include transition(border-color ease-in-out .15s, background-color ease-in-out .15s);
+  @include transition(border-color ease-in-out 0.15s, background-color ease-in-out 0.15s);
 
   &:focus {
     @include box-shadow(none);
@@ -74,7 +74,7 @@
   font-size: $font-size-small;
 
   .close {
-    color: rgba(#000, .4)
+    color: rgba(#000, 0.4);
   }
 }
 
@@ -112,6 +112,7 @@
 
 .table-sm {
   font-size: $font-size-small;
+
   > thead > tr > th,
   > thead > tr > td,
   > tbody > tr > th,

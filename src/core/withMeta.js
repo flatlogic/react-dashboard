@@ -7,9 +7,11 @@ function withMeta(ComposedComponent) {
   class WithMeta extends Component {
     componentWillMount() {
       if (ComposedComponent.meta) {
-        Object.keys(ComposedComponent.meta).forEach((metaKey) => {
+        Object.keys(ComposedComponent.meta).forEach(metaKey => {
           if (metaKey === 'title') {
-            document.title = `${ComposedComponent.meta[metaKey]} - ${defaultMeta[metaKey]}`;
+            document.title = `${ComposedComponent.meta[
+              metaKey
+            ]} - ${defaultMeta[metaKey]}`;
             return;
           }
           updateMeta(metaKey, ComposedComponent.meta[metaKey]);
@@ -18,7 +20,7 @@ function withMeta(ComposedComponent) {
     }
 
     componentWillUnmount() {
-      Object.keys(defaultMeta).forEach((metaKey) => {
+      Object.keys(defaultMeta).forEach(metaKey => {
         if (metaKey === 'title') {
           document.title = defaultMeta[metaKey];
           return;

@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import withStyles from 'isomorphic-style-loader/lib/withStyles';
 import { Row, Col, Grid, Alert } from 'react-bootstrap';
 import { connect } from 'react-redux';
@@ -10,6 +11,21 @@ import s from './Login.scss'; // eslint-disable-line
 import { loginUser } from '../../actions/user';
 
 class Login extends React.Component {
+  static propTypes = {
+    dispatch: PropTypes.func.isRequired,
+    isAuthenticated: PropTypes.bool,
+    isFetching: PropTypes.bool,
+    location: PropTypes.any,
+    errorMessage: PropTypes.string,
+  };
+
+  static defaultProps = {
+    isAuthenticated: false,
+    isFetching: false,
+    location: {},
+    errorMessage: null,
+  };
+
   constructor(props) {
     super(props);
 
@@ -28,18 +44,20 @@ class Login extends React.Component {
   }
 
   doLogin(e) {
-    this.props
-      .dispatch(loginUser({ login: this.state.login, password: this.state.password }));
+    this.props.dispatch(
+      loginUser({ login: this.state.login, password: this.state.password }),
+    );
     e.preventDefault();
   }
 
   render() {
-    const { from } = this.props.location.state || { from: { pathname: '/app' } };
+    const { from } = this.props.location.state || {
+      from: { pathname: '/app' },
+    };
 
-    if (this.props.isAuthenticated) { // cant access login page while logged in
-      return (
-        <Redirect to={from}/>
-      );
+    if (this.props.isAuthenticated) {
+      // cant access login page while logged in
+      return <Redirect to={from} />;
     }
 
     return (
@@ -55,25 +73,44 @@ class Login extends React.Component {
                   Don&#39;t have an account? Sign up now!
                 </p>
                 <form className="mt" onSubmit={this.doLogin.bind(this)}>
-                  {
-                    this.props.errorMessage && (
-                      <Alert className="alert-sm" bsStyle="danger">
-                        {this.props.errorMessage}
-                      </Alert>
-                    )
-                  }
+                  {this.props.errorMessage &&
+                    <Alert className="alert-sm" bsStyle="danger">
+                      {this.props.errorMessage}
+                    </Alert>}
                   <div className="form-group">
-                    <input className="form-control no-border" value={this.state.login} onChange={this.changeLogin.bind(this)} type="text" required name="username" placeholder="Username" />
+                    <input
+                      className="form-control no-border"
+                      value={this.state.login}
+                      onChange={this.changeLogin.bind(this)}
+                      type="text"
+                      required
+                      name="username"
+                      placeholder="Username"
+                    />
                   </div>
                   <div className="form-group">
-                    <input className="form-control no-border" value={this.state.password} onChange={this.changePassword.bind(this)} type="password" required name="password" placeholder="Password" />
+                    <input
+                      className="form-control no-border"
+                      value={this.state.password}
+                      onChange={this.changePassword.bind(this)}
+                      type="password"
+                      required
+                      name="password"
+                      placeholder="Password"
+                    />
                   </div>
                   <div className="clearfix">
                     <div className="btn-toolbar pull-right">
-                      <button type="reset" className="btn btn-default btn-sm">Create an account</button>
-                      <button type="submit" className="btn btn-success btn-sm">{this.props.isFetching ? 'Loading...' : 'Login'}</button>
+                      <button type="reset" className="btn btn-default btn-sm">
+                        Create an account
+                      </button>
+                      <button type="submit" className="btn btn-success btn-sm">
+                        {this.props.isFetching ? 'Loading...' : 'Login'}
+                      </button>
                     </div>
-                    <a className="mt-sm pull-right fs-sm">Trouble with account?</a>
+                    <a className="mt-sm pull-right fs-sm">
+                      Trouble with account?
+                    </a>
                   </div>
                 </form>
               </Widget>
@@ -90,7 +127,7 @@ function mapStateToProps(state) {
   return {
     isFetching: state.auth.isFetching,
     isAuthenticated: state.auth.isAuthenticated,
-    errorMessage: state.auth.errorMessage
+    errorMessage: state.auth.errorMessage,
   };
 }
 

@@ -11,7 +11,15 @@ import { connect } from 'react-redux';
 import React from 'react';
 import PropTypes from 'prop-types';
 import withStyles from 'isomorphic-style-loader/lib/withStyles';
-import { Navbar, MenuItem, Nav, NavDropdown, NavItem, Glyphicon, Badge } from 'react-bootstrap';
+import {
+  Navbar,
+  MenuItem,
+  Nav,
+  NavDropdown,
+  NavItem,
+  Glyphicon,
+  Badge,
+} from 'react-bootstrap';
 import { logoutUser } from '../../actions/user';
 
 import s from './Header.scss';
@@ -19,6 +27,7 @@ import s from './Header.scss';
 class Header extends React.Component {
   static propTypes = {
     sidebarToggle: PropTypes.func,
+    dispatch: PropTypes.func.isRequired,
   };
 
   static defaultProps = {
@@ -26,27 +35,34 @@ class Header extends React.Component {
   };
 
   doLogout() {
-    this.props
-      .dispatch(logoutUser());
+    this.props.dispatch(logoutUser());
   }
 
   render() {
     return (
       <Navbar fluid>
         <Nav pullLeft>
-          <NavItem className={['visible-xs', s.menuButton].join(' ')} eventKey={1} href="#" onClick={this.props.sidebarToggle}>
+          <NavItem
+            className={['visible-xs', s.menuButton].join(' ')}
+            eventKey={1}
+            href="#"
+            onClick={this.props.sidebarToggle}
+          >
             <Glyphicon glyph="menu-hamburger" />
           </NavItem>
         </Nav>
         <Nav pullRight>
           <NavDropdown
-            eventKey={1} title={
+            eventKey={1}
+            title={
               <span>
                 <Glyphicon glyph="user" className="mr-sm" />
-            John <span className="fw-semi-bold">Willington</span>
+                John <span className="fw-semi-bold">Willington</span>
                 <Badge className="ml-sm badge-warning">4</Badge>
               </span>
-          } noCaret id="basic-nav-dropdown"
+            }
+            noCaret
+            id="basic-nav-dropdown"
           >
             <MenuItem eventKey={3.1}>Notifications</MenuItem>
             <MenuItem eventKey={3.2}>Action</MenuItem>
@@ -54,7 +70,13 @@ class Header extends React.Component {
             <MenuItem divider />
             <MenuItem eventKey={3.4}>Separated link</MenuItem>
           </NavDropdown>
-          <NavItem className="hidden-xs" eventKey={2} onClick={this.doLogout.bind(this)}>Logout</NavItem>
+          <NavItem
+            className="hidden-xs"
+            eventKey={2}
+            onClick={this.doLogout.bind(this)}
+          >
+            Logout
+          </NavItem>
         </Nav>
       </Navbar>
     );

@@ -6,7 +6,6 @@ export const FETCH_POSTS_REQUEST = 'FETCH_POSTS_REQUEST';
 export const FETCH_POSTS_SUCCESS = 'FETCH_POSTS_SUCCESS';
 export const FETCH_POSTS_FAILURE = 'FETCH_POSTS_FAILURE';
 
-
 function createPostInitial() {
   return {
     type: CREATE_POST_INITIAL,
@@ -41,7 +40,7 @@ function createPostError(message) {
 function requestFetchPosts() {
   return {
     type: FETCH_POSTS_REQUEST,
-    isFetching: true
+    isFetching: true,
   };
 }
 
@@ -61,7 +60,7 @@ function fetchPostsError(message) {
   };
 }
 
-export function createPost(post) {
+export function createPost(postData) {
   const config = {
     method: 'post',
     headers: {
@@ -70,7 +69,7 @@ export function createPost(post) {
     },
     body: JSON.stringify({
       query: `mutation {
-                addPost(title: "${post.title}", content: "${post.content}"){
+                addPost(title: "${postData.title}", content: "${postData.content}"){
                   id,
                   title,
                   content
@@ -80,26 +79,27 @@ export function createPost(post) {
     credentials: 'include',
   };
 
-  return (dispatch) => {
+  return dispatch => {
     // We dispatch requestCreatePost to kickoff the call to the API
-    dispatch(requestCreatePost(post));
+    dispatch(requestCreatePost(postData));
 
     return fetch('/graphql', config)
-      .then(response =>
-        response.json().then(post => ({ post, response })),
-      ).then(({ post, response }) => {
+      .then(response => response.json().then(post => ({ post, response })))
+      .then(({ post, response }) => {
         if (!response.ok) {
           // If there was a problem, we want to
           // dispatch the error condition
           dispatch(createPostError(post.message));
           return Promise.reject(post);
         }
-          // Dispatch the success action
+        // Dispatch the success action
         dispatch(createPostSuccess(post));
         setTimeout(() => {
           dispatch(createPostInitial());
         }, 5000);
-      }).catch(err => console.log('Error: ', err));
+        return Promise.resolve(post);
+      })
+      .catch(err => console.error('Error: ', err));
   };
 }
 
@@ -116,14 +116,18 @@ export function fetchPosts() {
     credentials: 'include',
   };
 
-  return (dispatch) => {
+  return dispatch => {
     dispatch(requestFetchPosts());
 
     return fetch('/graphql', config)
       .then(response =>
-        response.json().then(response => ({ posts: response.data.posts, response })),
-      ).then(({ posts, response }) => {
-        if (!response.data.posts) {
+        response.json().then(responseJson => ({
+          posts: responseJson.data.posts,
+          responseJson,
+        })),
+      )
+      .then(({ posts, responseJson }) => {
+        if (!responseJson.data.posts) {
           // If there was a problem, we want to
           // dispatch the error condition
           dispatch(fetchPostsError(posts.message));
@@ -131,6 +135,8 @@ export function fetchPosts() {
         }
         // Dispatch the success action
         dispatch(fetchPostsSuccess(posts));
-      }).catch(err => console.log('Error: ', err));
+        return Promise.resolve(posts);
+      })
+      .catch(err => console.error('Error: ', err));
   };
 }

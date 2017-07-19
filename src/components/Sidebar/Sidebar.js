@@ -7,36 +7,51 @@ import { withRouter, Link } from 'react-router-dom';
 import s from './Sidebar.scss';
 import LinksGroup from './LinksGroup/LinksGroup';
 
-const Sidebar = () => (
+const Sidebar = () =>
   <nav className={s.root}>
     <header className={s.logo}>
       <Link to="/app">React Dashboard</Link>
     </header>
 
     <ul className={s.nav}>
-      <LinksGroup header="Dashboard" headerLink="/app" iconName="glyphicon-tree-conifer" />
+      <LinksGroup
+        header="Dashboard"
+        headerLink="/app"
+        iconName="glyphicon-tree-conifer"
+      />
       <LinksGroup
         header="Posts"
         headerLink="/app/posts"
-        childrenLinks={[{ name: 'Show all', link: '/app/posts' }, { name: 'Create new', link: '/app/posts/new' }]}
+        childrenLinks={[
+          { name: 'Show all', link: '/app/posts' },
+          { name: 'Create new', link: '/app/posts/new' },
+        ]}
         iconName="glyphicon-list-alt"
       />
       <LinksGroup
         header={
           <span>
-        Profile
-        <sup className="text-warning fw-semi-bold">&nbsp;new</sup>
+            Profile
+            <sup className="text-warning fw-semi-bold">&nbsp;new</sup>
           </span>
-      } headerLink="/app/profile" iconName="glyphicon-user"
+        }
+        headerLink="/app/profile"
+        iconName="glyphicon-user"
       />
-      <LinksGroup className="visible-xs" header="Logout" headerLink="/login" iconName="glyphicon-off" />
+      <LinksGroup
+        className="visible-xs"
+        header="Logout"
+        headerLink="/login"
+        iconName="glyphicon-off"
+      />
     </ul>
     <footer className={s.footer}>
-      <p className="text-gray-lighter opacity-60 ml-xs mr-xs mb-xs">58% ready</p>
+      <p className="text-gray-lighter opacity-60 ml-xs mr-xs mb-xs">
+        58% ready
+      </p>
       <ProgressBar now={58} bsStyle="success" className="progress-xs mb-sm" />
     </footer>
-  </nav>
-);
+  </nav>;
 
 function mapStateToProps(store) {
   return {

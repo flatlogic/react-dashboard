@@ -1,15 +1,26 @@
 import React from 'react';
 import withStyles from 'isomorphic-style-loader/lib/withStyles';
-import { Row, Col, Form, FormGroup, FormControl, Checkbox, Button, ControlLabel } from 'react-bootstrap';
+import {
+  Row,
+  Col,
+  Form,
+  FormGroup,
+  FormControl,
+  Checkbox,
+  Button,
+  ControlLabel,
+} from 'react-bootstrap';
 
 import Widget from '../../components/Widget';
 
 import s from './Profile.scss';
 
-const Profile = () => (
+const Profile = () =>
   <div className={s.root}>
     <ol className="breadcrumb">
-      <li><span className="text-muted">YOU ARE HERE</span></li>
+      <li>
+        <span className="text-muted">YOU ARE HERE</span>
+      </li>
       <li className="active">Profile</li>
     </ol>
     <h1>Profile</h1>
@@ -18,9 +29,9 @@ const Profile = () => (
         <Widget
           title={
             <span>
-          Edit Profile <span className="fw-semi-bold">Form</span>
+              Edit Profile <span className="fw-semi-bold">Form</span>
             </span>
-        }
+          }
         >
           <Form horizontal>
             <FormGroup controlId="formHorizontalEmail">
@@ -56,12 +67,8 @@ const Profile = () => (
             <FormGroup>
               <Col smOffset={2} sm={10}>
                 <div className="btn-toolbar pull-right">
-                  <Button>
-                    Cancel
-                  </Button>
-                  <Button bsStyle="danger">
-                    Save
-                  </Button>
+                  <Button>Cancel</Button>
+                  <Button bsStyle="danger">Save</Button>
                 </div>
               </Col>
             </FormGroup>
@@ -69,7 +76,6 @@ const Profile = () => (
         </Widget>
       </Col>
     </Row>
-  </div>
-);
+  </div>;
 
 export default withStyles(s)(Profile);

@@ -36,7 +36,11 @@ class LinksGroup extends Component {
     if (!this.props.childrenLinks) {
       return (
         <li className={[s.headerLink, this.props.className].join(' ')}>
-          <NavLink to={this.props.headerLink} activeClassName={s.headerLinkActive} exact>
+          <NavLink
+            to={this.props.headerLink}
+            activeClassName={s.headerLinkActive}
+            exact
+          >
             <i className={`glyphicon ${this.props.iconName}`} />
             {this.props.header}
           </NavLink>
@@ -64,17 +68,19 @@ class LinksGroup extends Component {
               {/* eslint-enable */}
               <Panel className={s.panel} collapsible expanded={expanded}>
                 <ul>
-                  {this.props.childrenLinks && this.props.childrenLinks.map(child => (
-                    <li key={child.name}>
-                      <NavLink
-                        to={child.link} exact
-                        onClick={() => this.setState({ isOpen: false })}
-                        activeClassName={s.headerLinkActive}
-                      >
-                        {child.name}
-                      </NavLink>
-                    </li>
-                      ))}
+                  {this.props.childrenLinks &&
+                    this.props.childrenLinks.map(child =>
+                      <li key={child.name}>
+                        <NavLink
+                          to={child.link}
+                          exact
+                          onClick={() => this.setState({ isOpen: false })}
+                          activeClassName={s.headerLinkActive}
+                        >
+                          {child.name}
+                        </NavLink>
+                      </li>,
+                    )}
                 </ul>
               </Panel>
             </li>
@@ -83,7 +89,6 @@ class LinksGroup extends Component {
       />
     );
   }
-
 }
 
 export default withStyles(s)(LinksGroup);

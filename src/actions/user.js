@@ -5,7 +5,6 @@ export const LOGOUT_REQUEST = 'LOGOUT_REQUEST';
 export const LOGOUT_SUCCESS = 'LOGOUT_SUCCESS';
 export const LOGOUT_FAILURE = 'LOGOUT_FAILURE';
 
-
 function requestLogin(creds) {
   return {
     type: LOGIN_REQUEST,
@@ -51,7 +50,7 @@ export function receiveLogout() {
 
 // Logs the user out
 export function logoutUser() {
-  return (dispatch) => {
+  return dispatch => {
     dispatch(requestLogout());
     localStorage.removeItem('id_token');
     document.cookie = 'id_token=;expires=Thu, 01 Jan 1970 00:00:01 GMT;';
@@ -67,14 +66,13 @@ export function loginUser(creds) {
     body: `login=${creds.login}&password=${creds.password}`,
   };
 
-  return (dispatch) => {
+  return dispatch => {
     // We dispatch requestLogin to kickoff the call to the API
     dispatch(requestLogin(creds));
 
     return fetch('/login', config)
-      .then(response =>
-        response.json().then(user => ({ user, response })),
-      ).then(({ user, response }) => {
+      .then(response => response.json().then(user => ({ user, response })))
+      .then(({ user, response }) => {
         if (!response.ok) {
           // If there was a problem, we want to
           // dispatch the error condition
@@ -84,8 +82,10 @@ export function loginUser(creds) {
         // in posts create new action and check http status, if malign logout
         // If login was successful, set the token in local storage
         localStorage.setItem('id_token', user.id_token);
-          // Dispatch the success action
+        // Dispatch the success action
         dispatch(receiveLogin(user));
-      }).catch(err => console.log('Error: ', err));
+        return Promise.resolve(user);
+      })
+      .catch(err => console.error('Error: ', err));
   };
 }

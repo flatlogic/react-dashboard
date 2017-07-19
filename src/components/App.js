@@ -22,12 +22,10 @@ import loadNotFound from 'bundle-loader?lazy!../pages/notFound/NotFound';
 import LayoutComponent from '../components/Layout/Layout';
 import LoginComponent from '../pages/login/Login';
 
-
 // import { auth } from '../config';
 
 const RegisterBundle = Bundle.generateBundle(loadRegister);
 const NotFoundBundle = Bundle.generateBundle(loadNotFound);
-
 
 const ContextType = {
   // Enables critical path CSS rendering
@@ -40,43 +38,32 @@ const ContextType = {
   ...ReduxProvider.childContextTypes,
 };
 
-// let isAuthenticated = function() {
-//   let t = jwt.verify(cookie.load('id_token'), auth.jwt.secret);
-//
-//   console.log(t);
-//
-//   return true;
-// };
-
-
-const PrivateRoute = ({ component, isAuthenticated, ...rest }) => (
+/* eslint-disable */
+const PrivateRoute = ({ component, isAuthenticated, ...rest }) =>
   <Route
-    {...rest} render={props => (
-    isAuthenticated ? (
-      React.createElement(component, props)
-    ) : (
-      <Redirect
-        to={{
-          pathname: '/login',
-          state: { from: props.location },
-        }}
-      />
-    )
-  )}
-  />
-);
+    {...rest}
+    render={props =>
+      isAuthenticated
+        ? React.createElement(component, props)
+        : <Redirect
+            to={{
+              pathname: '/login',
+              state: { from: props.location },
+            }}
+          />}
+  />;
+/* eslint-enable */
 
 class App extends React.PureComponent {
-
   static propTypes = {
     context: PropTypes.shape(ContextType),
-    store: PropTypes.any,
+    isAuthenticated: PropTypes.bool,
   };
 
   static defaultProps = {
     context: null,
+    isAuthenticated: false,
   };
-
 
   static contextTypes = {
     router: PropTypes.any,
@@ -94,7 +81,11 @@ class App extends React.PureComponent {
     return (
       <Switch>
         <Route path="/" exact render={() => <Redirect to="/app" />} />
-        <PrivateRoute isAuthenticated={this.props.isAuthenticated} path="/app" component={LayoutComponent} />
+        <PrivateRoute
+          isAuthenticated={this.props.isAuthenticated}
+          path="/app"
+          component={LayoutComponent}
+        />
         <Route path="/login" exact component={LoginComponent} />
         <Route path="/register" exact component={RegisterBundle} />
         <Route component={NotFoundBundle} />

@@ -19,6 +19,7 @@ import React from 'react';
 import { StaticRouter } from 'react-router';
 import ReactDOM from 'react-dom/server';
 import PrettyError from 'pretty-error';
+import { Provider } from 'react-redux';
 import App from './components/App';
 import Html from './components/Html';
 import { ErrorPageWithoutStyle } from './pages/error/ErrorPage';
@@ -33,7 +34,6 @@ import { receiveLogin, receiveLogout } from './actions/user';
 import config from './config';
 import assets from './assets.json'; // eslint-disable-line import/no-unresolved
 import theme from './styles/theme.scss';
-import { Provider } from 'react-redux';
 
 const app = express();
 
@@ -56,13 +56,16 @@ app.use(bodyParser.json());
 //
 // Authentication
 // -----------------------------------------------------------------------------
-app.use(expressJwt({
-  secret: config.auth.jwt.secret,
-  credentialsRequired: false,
-  getToken: req => req.cookies.id_token,
-}));
+app.use(
+  expressJwt({
+    secret: config.auth.jwt.secret,
+    credentialsRequired: false,
+    getToken: req => req.cookies.id_token,
+  }),
+);
 // Error handler for express-jwt
-app.use((err, req, res, next) => { // eslint-disable-line no-unused-vars
+app.use((err, req, res, next) => {
+  // eslint-disable-line no-unused-vars
   if (err instanceof Jwt401Error) {
     console.error('[express-jwt-error]', req.cookies.id_token);
     // `clearCookie`, otherwise user can't use web-app until cookie expires
@@ -80,19 +83,22 @@ app.post('/login', (req, res) => {
   // replace with real database check in production
   // const user = graphql.find(req.login, req.password);
   let user = false;
-  const login = req.body.login,
-    password = req.body.password;
-  if (login == 'user' && password == 'password') {
-    user = { user, login }
+  const login = req.body.login;
+  const password = req.body.password;
+  if (login === 'user' && password === 'password') {
+    user = { user, login };
   }
 
   if (user) {
     const expiresIn = 60 * 60 * 24 * 180; // 180 days
     const token = jwt.sign(user, config.auth.jwt.secret, { expiresIn });
-    res.cookie('id_token', token, { maxAge: 1000 * expiresIn, httpOnly: false });
+    res.cookie('id_token', token, {
+      maxAge: 1000 * expiresIn,
+      httpOnly: false,
+    });
     res.json({ id_token: token });
   } else {
-    res.status(401).json({message: 'To login use user/password'});
+    res.status(401).json({ message: 'To login use user/password' });
   }
 });
 
@@ -100,15 +106,19 @@ app.post('/login', (req, res) => {
 // Register API middleware
 // -----------------------------------------------------------------------------
 // require jwt authentication
-app.use('/graphql', expressJwt({
-  secret: config.auth.jwt.secret,
-  getToken: req => req.cookies.id_token,
-}), expressGraphQL(req => ({
-  schema,
-  graphiql: __DEV__,
-  rootValue: { request: req },
-  pretty: __DEV__,
-})));
+app.use(
+  '/graphql',
+  expressJwt({
+    secret: config.auth.jwt.secret,
+    getToken: req => req.cookies.id_token,
+  }),
+  expressGraphQL(req => ({
+    schema,
+    graphiql: __DEV__,
+    rootValue: { request: req },
+    pretty: __DEV__,
+  })),
+);
 
 //
 // Register server-side rendering middleware
@@ -131,17 +141,21 @@ app.get('*', async (req, res, next) => {
     });
 
     if (req.user && req.user.login) {
-      store.dispatch(receiveLogin({
-        id_token: req.cookies.id_token
-      }));
+      store.dispatch(
+        receiveLogin({
+          id_token: req.cookies.id_token,
+        }),
+      );
     } else {
       store.dispatch(receiveLogout());
     }
 
-    store.dispatch(setRuntimeVariable({
-      name: 'initialNow',
-      value: Date.now(),
-    }));
+    store.dispatch(
+      setRuntimeVariable({
+        name: 'initialNow',
+        value: Date.now(),
+      }),
+    );
 
     // Global (context) variables that can be easily accessed from any React component
     // https://facebook.github.io/react/docs/context.html
@@ -158,52 +172,41 @@ app.get('*', async (req, res, next) => {
       storeSubscription: null,
     };
 
-      // eslint-disable-next-line no-underscore-dangle
-       css.add(theme._getCss());
+    // eslint-disable-next-line no-underscore-dangle
+    css.add(theme._getCss());
 
     const data = {
       title: 'React Dashboard',
-      description: 'React Dashboard Starter project based on react-router 4, redux, graphql, bootstrap',
+      description:
+        'React Dashboard Starter project based on react-router 4, redux, graphql, bootstrap',
     };
-    data.styles = [
-      { id: 'css', cssText: [...css].join('') },
-    ];
-    data.scripts = [
-      assets.vendor.js,
-      assets.client.js,
-    ];
+    data.styles = [{ id: 'css', cssText: [...css].join('') }];
+    data.scripts = [assets.vendor.js, assets.client.js];
     data.app = {
       apiUrl: config.api.clientUrl,
       state: context.store.getState(),
     };
 
-       const html = ReactDOM.renderToString(
-         <StaticRouter
-           location={req.url}
-           context={context}
-         >
-           <Provider store={store}>
-             <App store={store} />
-           </Provider>
-         </StaticRouter>,
-      );
+    const html = ReactDOM.renderToString(
+      <StaticRouter location={req.url} context={context}>
+        <Provider store={store}>
+          <App store={store} />
+        </Provider>
+      </StaticRouter>,
+    );
 
-       data.styles = [
-        { id: 'css', cssText: [...css].join('') },
-       ];
+    data.styles = [{ id: 'css', cssText: [...css].join('') }];
 
-       data.children = html;
+    data.children = html;
 
-       const markup = ReactDOM.renderToString(
-         <Html {...data} />,
-      );
+    const markup = ReactDOM.renderToString(<Html {...data} />);
 
-       res.status(200);
-       res.send(`<!doctype html>${markup}`);
-     } catch (err) {
-       next(err);
-     }
-   });
+    res.status(200);
+    res.send(`<!doctype html>${markup}`);
+  } catch (err) {
+    next(err);
+  }
+});
 
 //
 // Error handling
@@ -212,7 +215,8 @@ const pe = new PrettyError();
 pe.skipNodeFiles();
 pe.skipPackage('express');
 
-app.use((err, req, res, next) => { // eslint-disable-line no-unused-vars
+app.use((err, req, res) => {
+  // eslint-disable-line no-unused-vars
   console.error(pe.render(err));
   const html = ReactDOM.renderToStaticMarkup(
     <Html

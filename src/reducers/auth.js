@@ -1,15 +1,20 @@
-import { combineReducers } from 'redux';
 import {
-  LOGIN_REQUEST, LOGIN_SUCCESS, LOGIN_FAILURE, LOGOUT_SUCCESS,
+  LOGIN_REQUEST,
+  LOGIN_SUCCESS,
+  LOGIN_FAILURE,
+  LOGOUT_SUCCESS,
 } from '../actions/user';
 
 // The auth reducer. The starting state sets authentication
 // based on a token being in local storage. In a real app,
 // we would also want a util to check if the token is expired.
-export default function auth(state = {
-  isFetching: false,
-  isAuthenticated: false,
-}, action) {
+export default function auth(
+  state = {
+    isFetching: false,
+    isAuthenticated: false,
+  },
+  action,
+) {
   switch (action.type) {
     case LOGIN_REQUEST:
       return Object.assign({}, state, {
