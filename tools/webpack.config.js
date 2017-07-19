@@ -98,49 +98,6 @@ const config = {
         },
       },
 
-      // Rules for Style Sheets
-      {
-        test: reStyle,
-        rules: [
-          // Convert CSS into JS module
-          {
-            issuer: { not: [reStyle] },
-            use: 'isomorphic-style-loader',
-          },
-
-          // Process external/third-party styles
-          {
-            exclude: path.resolve(__dirname, '../src'),
-            loader: 'css-loader',
-            options: {
-              sourceMap: isDebug,
-              minimize: !isDebug,
-              discardComments: { removeAll: true },
-            },
-          },
-
-          // Process internal/project styles (from src folder)
-          {
-            include: [
-              path.resolve(__dirname, '../src'),
-            ],
-            loader: 'css-loader',
-            options: {
-              // CSS Loader https://github.com/webpack/css-loader
-              importLoaders: 1,
-              sourceMap: isDebug,
-              // CSS Modules https://github.com/css-modules/css-modules
-              modules: true,
-              localIdentName: isDebug ? '[name]-[local]-[hash:base64:5]' : '[hash:base64:5]',
-              // CSS Nano http://cssnano.co/options/
-              minimize: !isDebug,
-              discardComments: { removeAll: true },
-            },
-          },
-        ],
-      },
-
-      // Handle external/third-party styles (from node_modules)
       {
         test: /theme.scss$/,
         loaders: [

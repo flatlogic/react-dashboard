@@ -14,7 +14,7 @@ import bodyParser from 'body-parser';
 import expressJwt, { UnauthorizedError as Jwt401Error } from 'express-jwt';
 import expressGraphQL from 'express-graphql';
 import jwt from 'jsonwebtoken';
-import fetch from 'node-fetch';
+import nodeFetch from 'node-fetch';
 import React from 'react';
 import { StaticRouter } from 'react-router';
 import ReactDOM from 'react-dom/server';
@@ -117,7 +117,7 @@ app.get('*', async (req, res, next) => {
   try {
     const css = new Set();
 
-    const fetch = createFetch(fetch, {
+    const fetch = createFetch(nodeFetch, {
       baseUrl: config.api.serverUrl,
       cookie: req.headers.cookie,
     });
@@ -128,7 +128,6 @@ app.get('*', async (req, res, next) => {
 
     const store = configureStore(initialState, {
       fetch,
-      // I should not use `history` on server.. but how I do redirection? follow universal-router
     });
 
     if (req.user && req.user.login) {
