@@ -1,5 +1,5 @@
 ## React Dashboard — "[isomorphic](http://nerds.airbnb.com/isomorphic-javascript-future-web-apps/)" dashboard template
-built with [React](https://facebook.github.io/react/), [Bootstrap](http://getbootstrap.com/), [React Router](https://reacttraining.com/react-router/),
+built with [React](https://facebook.github.io/react/), [Bootstrap](http://getbootstrap.com/), [React Router](https://reacttraining.com/react-router/) (with **Server Side Rendering**!),
 [Redux](http://redux.js.org/) and [GraphQL](http://graphql.org/) based on
 [React Starter Kit](https://www.reactstarterkit.com) and latest industry best practices.
 
@@ -15,6 +15,7 @@ You may use it to bootstrap the development of your next web app.
 
 ## Features
 * React
+* Server Side Rendering
 * Mobile friendly layout (responsive)
 * React Router
 * Bootstrap3
