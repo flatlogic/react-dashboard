@@ -11,73 +11,128 @@ import s from './Login.scss'; // eslint-disable-line
 import { loginUser } from '../../actions/user';
 
 class Login extends React.Component {
-  static propTypes = {
-    dispatch: PropTypes.func.isRequired,
-    isAuthenticated: PropTypes.bool,
-    isFetching: PropTypes.bool,
-    location: PropTypes.any,
-    errorMessage: PropTypes.string,
-  };
+          static propTypes = {
+                    dispatch: PropTypes.func.isRequired,
+                    isAuthenticated: PropTypes.bool,
+                    isFetching: PropTypes.bool,
+    location: PropTypes.any, // eslint-disable-line
+                    errorMessage: PropTypes.string,
+          };
 
-  static defaultProps = {
-    isAuthenticated: false,
-    isFetching: false,
-    location: {},
-    errorMessage: null,
-  };
+          static defaultProps = {
+                    isAuthenticated: false,
+                    isFetching: false,
+                    location: {},
+                    errorMessage: null,
+          };
 
-  constructor(props) {
-    super(props);
+          constructor(props) {
+                    super(props);
 
-    this.state = {
-      login: '',
-      password: '',
-    };
-  }
+                    this.state = {
+                              login: '',
+                              password: '',
+                    };
+          }
 
-  changeLogin(event) {
-    this.setState({ login: event.target.value });
-  }
+          changeLogin(event) {
+                    this.setState({ login: event.target.value });
+          }
 
-  changePassword(event) {
-    this.setState({ password: event.target.value });
-  }
+          changePassword(event) {
+                    this.setState({ password: event.target.value });
+          }
 
-  doLogin(e) {
-    this.props.dispatch(
-      loginUser({ login: this.state.login, password: this.state.password }),
-    );
-    e.preventDefault();
-  }
+          doLogin(e) {
+                    this.props.dispatch(
+                              loginUser({
+                                        login: this.state.login,
+                                        password: this.state.password,
+                              }),
+                    );
+                    e.preventDefault();
+          }
 
-  render() {
-    const { from } = this.props.location.state || {
-      from: { pathname: '/app' },
-    };
+          render() {
+                    const { from } = this.props.location.state || {
+                              from: { pathname: '/app' },
+                    };
 
-    if (this.props.isAuthenticated) {
-      // cant access login page while logged in
-      return <Redirect to={from} />;
-    }
+                    if (this.props.isAuthenticated) {
+                              // cant access login page while logged in
+                              return <Redirect to={from} />;
+                    }
 
-    return (
-      <div className={s.root}>
-        <Grid>
-          <Row>
-            <Col xs={10} xsOffset={1} sm={6} smOffset={3} lg={4} lgOffset={4}>
-              <p className="text-center">React Dashboard</p>
-              <Widget className={s.widget}>
-                <h4 className="mt-0">Login to your Web App</h4>
-                <p className="fs-sm text-muted">
-                  User your username and password to sign in<br />
-                  Don&#39;t have an account? Sign up now!
-                </p>
+                    return (
+                              <div className={s.root}>
+                                        <Grid>
+                                                  <Row>
+                                                            <Col
+                                                                      xs={10}
+                                                                      xsOffset={
+                                                                                1
+                                                                      }
+                                                                      sm={6}
+                                                                      smOffset={
+                                                                                3
+                                                                      }
+                                                                      lg={4}
+                                                                      lgOffset={
+                                                                                4
+                                                                      }
+                                                            >
+                                                                      <p className="text-center">
+                                                                                React
+                                                                                Dashboard
+                                                                      </p>
+                                                                      <Widget
+                                                                                className={
+                                                                                          s.widget
+                                                                                }
+                                                                      >
+                                                                                <h4 className="mt-0">
+                                                                                          Login
+                                                                                          to
+                                                                                          your
+                                                                                          Web
+                                                                                          App
+                                                                                </h4>
+                                                                                <p className="fs-sm text-muted">
+                                                                                          User
+                                                                                          your
+                                                                                          username
+                                                                                          and
+                                                                                          password
+                                                                                          to
+                                                                                          sign
+                                                                                          in<br />
+                                                                                          Don&#39;t
+                                                                                          have
+                                                                                          an
+                                                                                          account?
+                                                                                          Sign
+                                                                                          up
+                                                                                          now!
+                                                                                </p>
+                                                                                {/* eslint-disable */}
                 <form className="mt" onSubmit={this.doLogin.bind(this)}>
-                  {this.props.errorMessage &&
-                    <Alert className="alert-sm" bsStyle="danger">
-                      {this.props.errorMessage}
-                    </Alert>}
-                  <div className="form-group">
+                  {/* eslint-enable */}
+                                                                                          {this
+                                                                                                    .props
+                                                                                                    .errorMessage && (
+                                                                                                    <Alert
+                                                                                                              className="alert-sm"
+                                                                                                              bsStyle="danger"
+                                                                                                    >
+                                                                                                              {
+                                                                                                                        this
+                                                                                                                                  .props
+                                                                                                                                  .errorMessage
+                                                                                                              }
+                                                                                                    </Alert>
+                                                                                          )}
+                                                                                          <div className="form-group">
+                                                                                                    {/* eslint-disable */}
                     <input
                       className="form-control no-border"
                       value={this.state.login}
@@ -111,24 +166,25 @@ class Login extends React.Component {
                     <a className="mt-sm pull-right fs-sm">
                       Trouble with account?
                     </a>
-                  </div>
-                </form>
-              </Widget>
-            </Col>
-          </Row>
-        </Grid>
-        <Footer className="text-center" />
-      </div>
-    );
-  }
+                    {/* eslint-enable */}
+                                                                                          </div>
+                                                                                </form>
+                                                                      </Widget>
+                                                            </Col>
+                                                  </Row>
+                                        </Grid>
+                                        <Footer className="text-center" />
+                              </div>
+                    );
+          }
 }
 
 function mapStateToProps(state) {
-  return {
-    isFetching: state.auth.isFetching,
-    isAuthenticated: state.auth.isAuthenticated,
-    errorMessage: state.auth.errorMessage,
-  };
+          return {
+                    isFetching: state.auth.isFetching,
+                    isAuthenticated: state.auth.isAuthenticated,
+                    errorMessage: state.auth.errorMessage,
+          };
 }
 
 export default withRouter(connect(mapStateToProps)(withStyles(s)(Login)));

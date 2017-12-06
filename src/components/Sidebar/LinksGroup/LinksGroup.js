@@ -16,37 +16,54 @@ class LinksGroup extends Component {
     iconName: PropTypes.string.isRequired,
     className: PropTypes.string,
   };
-  /* eslint-enable */
+          /* eslint-enable */
 
-  static defaultProps = {
-    headerLink: null,
-    childrenLinks: null,
-    className: '',
-  };
+          static defaultProps = {
+                    headerLink: null,
+                    childrenLinks: null,
+                    className: '',
+          };
 
-  constructor(props) {
-    super(props);
+          constructor(props) {
+                    super(props);
 
-    this.state = {
-      isOpen: false,
-    };
-  }
+                    this.state = {
+                              isOpen: false,
+                    };
+          }
 
-  render() {
-    if (!this.props.childrenLinks) {
-      return (
-        <li className={[s.headerLink, this.props.className].join(' ')}>
-          <NavLink
-            to={this.props.headerLink}
-            activeClassName={s.headerLinkActive}
-            exact
-          >
-            <i className={`glyphicon ${this.props.iconName}`} />
-            {this.props.header}
-          </NavLink>
-        </li>
-      );
-    }
+          render() {
+                    if (!this.props.childrenLinks) {
+                              return (
+                                        <li
+                                                  className={[
+                                                            s.headerLink,
+                                                            this.props
+                                                                      .className,
+                                                  ].join(' ')}
+                                        >
+                                                  <NavLink
+                                                            to={
+                                                                      this.props
+                                                                                .headerLink
+                                                            }
+                                                            activeClassName={
+                                                                      s.headerLinkActive
+                                                            }
+                                                            exact
+                                                  >
+                                                            <i
+                                                                      className={`glyphicon ${
+                                                                                this
+                                                                                          .props
+                                                                                          .iconName
+                                                                      }`}
+                                                            />
+                                                            {this.props.header}
+                                                  </NavLink>
+                                        </li>
+                              );
+                    }
     /* eslint-disable */
     return (
       <Route
@@ -66,29 +83,58 @@ class LinksGroup extends Component {
                 <b className={['caret', s.caret].join(' ')} />
               </a>
               {/* eslint-enable */}
-              <Panel className={s.panel} collapsible expanded={expanded}>
-                <ul>
-                  {this.props.childrenLinks &&
-                    this.props.childrenLinks.map(child =>
-                      <li key={child.name}>
-                        <NavLink
-                          to={child.link}
-                          exact
-                          onClick={() => this.setState({ isOpen: false })}
-                          activeClassName={s.headerLinkActive}
-                        >
-                          {child.name}
-                        </NavLink>
-                      </li>,
-                    )}
-                </ul>
-              </Panel>
-            </li>
-          );
-        }}
-      />
-    );
-  }
+                                                                      <Panel
+                                                                                className={
+                                                                                          s.panel
+                                                                                }
+                                                                                collapsible
+                                                                                expanded={
+                                                                                          expanded
+                                                                                }
+                                                                      >
+                                                                                <ul
+                                                                                >
+                                                                                          {this
+                                                                                                    .props
+                                                                                                    .childrenLinks &&
+                                                                                                    this.props.childrenLinks.map(
+                                                                                                              child => (
+                                                                                                                        <li
+                                                                                                                                  key={
+                                                                                                                                            child.name
+                                                                                                                                  }
+                                                                                                                        >
+                                                                                                                                  <NavLink
+                                                                                                                                            to={
+                                                                                                                                                      child.link
+                                                                                                                                            }
+                                                                                                                                            exact
+                                                                                                                                            onClick={() =>
+                                                                                                                                                      this.setState(
+                                                                                                                                                                {
+                                                                                                                                                                          isOpen: false,
+                                                                                                                                                                },
+                                                                                                                                                      )
+                                                                                                                                            }
+                                                                                                                                            activeClassName={
+                                                                                                                                                      s.headerLinkActive
+                                                                                                                                            }
+                                                                                                                                  >
+                                                                                                                                            {
+                                                                                                                                                      child.name
+                                                                                                                                            }
+                                                                                                                                  </NavLink>
+                                                                                                                        </li>
+                                                                                                              ),
+                                                                                                    )}
+                                                                                </ul>
+                                                                      </Panel>
+                                                            </li>
+                                                  );
+                                        }}
+                              />
+                    );
+          }
 }
 
 export default withStyles(s)(LinksGroup);

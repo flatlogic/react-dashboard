@@ -70,11 +70,13 @@ class Header extends React.Component {
             <MenuItem divider />
             <MenuItem eventKey={3.4}>Separated link</MenuItem>
           </NavDropdown>
+          {/* eslint-disable */}
           <NavItem
             className="hidden-xs"
             eventKey={2}
             onClick={this.doLogout.bind(this)}
           >
+            {/* eslint-enable */}
             Logout
           </NavItem>
         </Nav>

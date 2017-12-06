@@ -83,8 +83,8 @@ app.post('/login', (req, res) => {
   // replace with real database check in production
   // const user = graphql.find(req.login, req.password);
   let user = false;
-  const login = req.body.login;
-  const password = req.body.password;
+  const login = req.body.login; // eslint-disable-line
+  const password = req.body.password; // eslint-disable-line
   if (login === 'user' && password === 'password') {
     user = { user, login };
   }

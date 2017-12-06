@@ -6,13 +6,12 @@ class Bundle extends Component {
     load: PropTypes.func.isRequired,
     children: PropTypes.func.isRequired,
   };
-
+  /* eslint-disable */
   static generateBundle = loadModule => () =>
-    /* eslint-disable */
     <Bundle load={loadModule}>
       {Mod => Mod ? <Mod /> : <div style={{ textAlign: 'center', paddingTop: '35vh' }}>Loading</div>}
     </Bundle>
-    /* eslint-enable */
+  /* eslint-enable */
 
   state = {
     // short for "module" but that's a keyword in js, so "mod"

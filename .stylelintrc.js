@@ -57,5 +57,12 @@ module.exports = {
 
     // https://github.com/hudochenkov/stylelint-order/blob/master/rules/properties-order/README.md
     'order/properties-order': [],
+    /* eslint-disable */
+    'at-rule-no-unknown': [,
+      {
+        ignoreAtRules: ['function', 'if', 'each', 'include', 'mixin'],
+      },
+    ],
+    /* eslint-enable */
   },
 };

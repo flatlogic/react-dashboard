@@ -69,7 +69,9 @@ export function createPost(postData) {
     },
     body: JSON.stringify({
       query: `mutation {
-                addPost(title: "${postData.title}", content: "${postData.content}"){
+                addPost(title: "${postData.title}", content: "${
+        postData.content
+      }"){
                   id,
                   title,
                   content
