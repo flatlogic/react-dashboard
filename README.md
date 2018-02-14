@@ -9,7 +9,7 @@ built with [React](https://facebook.github.io/react/), [Bootstrap](http://getboo
 
 This seed project is a sort of a free version of a template that may be found on
 [Themeforest](https://themeforest.net/category/site-templates/admin-templates)
-or [Wrapbootstrap](https://wrapbootstrap.com/themes/admin?ref=by) (affiliate link) with working backend integration.
+or [Wrapbootstrap](https://wrapbootstrap.com/themes/admin) with working backend integration.
 You may use it to bootstrap the development of your next web app.
 
 
