@@ -9,7 +9,7 @@
 
 import React from 'react';
 import withStyles from 'isomorphic-style-loader/lib/withStyles';
-import { Switch, Route, withRouter } from 'react-router';
+import {Switch, Route, withRouter} from 'react-router';
 
 // an example of react-router code-splitting
 /* eslint-disable */
@@ -34,79 +34,44 @@ const ProfileBundle = Bundle.generateBundle(loadProfile);
 const NotFoundBundle = Bundle.generateBundle(loadNotFound);
 
 class Layout extends React.Component {
-          constructor(props) {
-                    super(props);
+  constructor(props) {
+    super(props);
 
-                    this.state = {
-                              sidebarOpen: false,
-                    };
-          }
+    this.state = {
+      sidebarOpen: false,
+    };
+  }
 
-          render() {
-                    return (
-                              <div className={s.root}>
-                                        <Sidebar />
-                                        <div
-                                                  className={[
-                                                            s.wrap,
-                                                            this.state
-                                                                      .sidebarOpen
-                                                                      ? s.sidebarOpen
-                                                                      : '',
-                                                  ].join(' ')}
-                                        >
-                                                  <Header
-                                                            sidebarToggle={() =>
-                                                                      this.setState(
-                                                                                {
-                                                                                          sidebarOpen: !this
-                                                                                                    .state
-                                                                                                    .sidebarOpen,
-                                                                                },
-                                                                      )
-                                                            }
-                                                  />
-                                                  <main className={s.content}>
-                                                            <Switch>
-                                                                      <Route
-                                                                                path="/app"
-                                                                                exact
-                                                                                component={
-                                                                                          Dashboard
-                                                                                }
-                                                                      />
-                                                                      <Route
-                                                                                path="/app/posts"
-                                                                                component={
-                                                                                          PostsBundle
-                                                                                }
-                                                                      />
-                                                                      <Route
-                                                                                path="/app/profile"
-                                                                                exact
-                                                                                component={
-                                                                                          ProfileBundle
-                                                                                }
-                                                                      />
-                                                                      <Route
-                                                                                path="/app/privacy"
-                                                                                exact
-                                                                                component={
-                                                                                          PrivacyBundle
-                                                                                }
-                                                                      />
-                                                                      <Route
-                                                                                component={
-                                                                                          NotFoundBundle
-                                                                                }
-                                                                      />
-                                                            </Switch>
-                                                  </main>
-                                                  <Footer />
-                                        </div>
-                              </div>
-                    );
-          }
+  render() {
+    return (
+      <div className={s.root}>
+        <Sidebar />
+        <div
+          className={[s.wrap, this.state.sidebarOpen ? s.sidebarOpen : ''].join(
+            ' ',
+          )}
+        >
+          <Header
+            sidebarToggle={() =>
+              this.setState({
+                sidebarOpen: !this.state.sidebarOpen,
+              })
+            }
+          />
+          <main className={s.content}>
+            <Switch>
+              <Route path="/app" exact component={Dashboard} />
+              <Route path="/app/posts" component={PostsBundle} />
+              <Route path="/app/profile" exact component={ProfileBundle} />
+              <Route path="/app/privacy" exact component={PrivacyBundle} />
+              <Route component={NotFoundBundle} />
+            </Switch>
+          </main>
+          <Footer />
+        </div>
+      </div>
+    );
+  }
 }
 
 export default withRouter(withStyles(s)(Layout));
