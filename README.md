@@ -73,11 +73,13 @@ by Konstantin Tarkus ([@koistya](https://github.com/koistya)). The difference is
 ## Support
 For any additional information please refer to [Flatlogic homepage](https://flatlogic.com).
 
-## Community
+## How can I support developers?
+- Star our GitHub repo :star:
 - [Tweet about it](https://twitter.com/intent/tweet?text=Amazing%20dashboard%20built%20with%20NodeJS,%20React%20and%20Bootstrap!&url=https://github.com/flatlogic/react-dashboard&via=flatlogic).
+- Create pull requests, submit bugs, suggest new features or documentation updates :wrench:
 - Follow [@flatlogic on Twitter](https://twitter.com/flatlogic).
 - Subscribe to Flatlogic newsletter at [flatlogic.com](https://flatlogic.com/)
-- Let's discuss: [![Join the chat at https://gitter.im/flatlogic/react-dashboard](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/flatlogic/react-dashboard)
+- Like our page on [Facebook](https://www.facebook.com/flatlogic/) :thumbsup:
 
 ## Premium themes
 Looking for premium themes and templates? Check out our products at [flatlogic.com](https://flatlogic.com/products).
