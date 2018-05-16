@@ -14,12 +14,12 @@ import {
   Breadcrumb,
   BreadcrumbItem,
 } from 'reactstrap';
-import {connect} from 'react-redux';
+import { connect } from 'react-redux';
 
 import withMeta from '../../../core/withMeta';
 import Widget from '../../../components/Widget';
 
-import {createPost} from '../../../actions/posts';
+import { createPost } from '../../../actions/posts';
 import s from './PostNew.scss';
 
 class PostNew extends React.Component {

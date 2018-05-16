@@ -1,7 +1,8 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
+import { connect } from 'react-redux';
 import withStyles from 'isomorphic-style-loader/lib/withStyles';
-
 import {  
   Row,
   Col,
@@ -20,12 +21,10 @@ import {
   Table
 } from 'reactstrap';
 
-import {Link} from 'react-router-dom';
-import {connect} from 'react-redux';
 
 import Widget from '../../components/Widget';
-import {fetchPosts} from '../../actions/posts';
 
+import { fetchPosts } from '../../actions/posts';
 import s from './Dashboard.scss';
 
 class Dashboard extends Component {

@@ -10,13 +10,14 @@ import {
   FormGroup, 
   Input
 } from 'reactstrap';
-import {connect} from 'react-redux';
-import {withRouter, Redirect} from 'react-router';
+import { connect } from 'react-redux';
+import { withRouter, Redirect } from 'react-router';
 
 import Widget from '../../components/Widget';
 import Footer from '../../components/Footer';
+
 import s from './Login.scss'; // eslint-disable-line
-import {loginUser} from '../../actions/user';
+import { loginUser } from '../../actions/user';
 
 class Login extends React.Component {
   static propTypes = {

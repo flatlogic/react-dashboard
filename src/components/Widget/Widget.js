@@ -11,6 +11,7 @@ import React from 'react';
 import cx from 'classnames';
 import PropTypes from 'prop-types';
 import withStyles from 'isomorphic-style-loader/lib/withStyles';
+
 import s from './Widget.scss';
 
 class Widget extends React.Component {

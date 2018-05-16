@@ -9,6 +9,7 @@ import 'imports-loader?$=jquery,this=>window!messenger/build/js/messenger';
 /* eslint-enable */
 
 import Widget from '../../components/Widget';
+
 import s from './Notifications.scss';
 
 // todo @franckeeva what about server side rendering? this will fail unless launched as lazy route

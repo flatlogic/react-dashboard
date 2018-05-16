@@ -1,8 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import withStyles from 'isomorphic-style-loader/lib/withStyles';
-import {Link} from 'react-router-dom';
-import {connect} from 'react-redux';
+import { Link } from 'react-router-dom';
+import { connect } from 'react-redux';
 import {
   Table,
   Breadcrumb,
@@ -12,7 +12,7 @@ import {
 import s from './PostList.scss';
 import withMeta from '../../../core/withMeta';
 import Widget from '../../../components/Widget';
-import {fetchPosts} from '../../../actions/posts';
+import { fetchPosts } from '../../../actions/posts';
 
 class PostList extends React.Component {
   static propTypes = {
