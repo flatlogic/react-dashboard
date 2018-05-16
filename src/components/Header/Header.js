@@ -16,6 +16,7 @@ import {
   Navbar,
   Nav,
   NavItem,
+  Button,
   Dropdown,
   DropdownToggle,
   DropdownMenu,
@@ -95,15 +96,21 @@ class Header extends React.Component {
             </DropdownMenu>
           </Dropdown>
           <NavItem className={cx('', s.headerIcon)}>
-            <Icon glyph="mail"/>
-            <span>8</span>
+            <Button>
+              <Icon glyph="mail"/>
+              <span>8</span>
+            </Button>
           </NavItem>
           <NavItem className={cx('', s.headerIcon)}>
-            <Icon glyph="notification"/>
-            <span>13</span>
+            <Button>
+              <Icon glyph="notification"/>
+              <span>13</span>
+            </Button>
           </NavItem>
           <NavItem className={cx('', s.headerIcon)}>
-            <Icon glyph="settings"/>
+            <Button>
+              <Icon glyph="settings"/>
+            </Button>
           </NavItem>
         </Nav>
       </Navbar>

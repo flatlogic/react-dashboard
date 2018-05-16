@@ -26,7 +26,7 @@
         width: 250px;
 
         @include media-breakpoint-down(md) {
-          width: 125px;
+          width: 100px;
         }
 
         @include media-breakpoint-down(sm) {
@@ -102,8 +102,22 @@
   align-items: center;
   position: relative;
 
+  :global .btn {
+    background: $white;
+    border: none;
+
+    &:hover,
+    &:active,
+    &:focus,
+    &:focus:active {
+      background: $white;
+      box-shadow: none !important;
+      outline: none;
+    }
+  }
+
   &:nth-child(n + 2) {
-    margin-left: 1.25rem;
+    margin-left: 0.5rem;
 
     @include media-breakpoint-down(sm) {
       display: none;
