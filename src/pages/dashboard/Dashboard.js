@@ -1,9 +1,6 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import withStyles from 'isomorphic-style-loader/lib/withStyles';
-import {
-  ButtonToolbar,
-} from 'react-bootstrap';
 
 import {  
   Row,
@@ -247,7 +244,7 @@ class Dashboard extends Component {
         <h3 className="mb">Some standard reactstrap components</h3>
         <Row className="mb">
           <Col sm={6}>
-            <ButtonToolbar className="mb">
+            <div>
               <Button size="sm" color="default" className="mr-sm mb-xs">
                 Default
               </Button>
@@ -263,7 +260,7 @@ class Dashboard extends Component {
               <Button size="sm" color="danger" className="mb-xs">
                 Danger
               </Button>
-            </ButtonToolbar>
+            </div>
             <ButtonGroup className="mb">
               <Button color="default">1</Button>
               <Button color="default">2</Button>
