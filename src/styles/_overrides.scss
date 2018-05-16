@@ -1,25 +1,63 @@
+// Container
+
 .container-fluid {
   padding-left: 30px;
   padding-right: 30px;
 }
 
+// Navbar
+
 .navbar {
   border: none;
+  height: $navbar-height;
+  border-radius: $navbar-border-radius;
+  margin-bottom: $navbar-margin-bottom;
+  padding: 0.5rem 2.25rem;
 }
+
+@media (min-width: $grid-float-breakpoint) {
+  .navbar-right {
+    .dropdown-menu {
+      left: 0;
+    }
+  }
+}
+
+// Nav
+
+.nav {
+  &.nav-tabs {
+    .nav-item {
+      a {
+        color: $text-color;
+
+        &.active {
+          background-color: theme-color('danger');
+          border-color: theme-color('danger');
+          color: white;
+        }
+      }
+    }
+  }
+}
+
+// Progress
 
 .progress-bar {
   @include box-shadow(none);
 }
 
 .progress-sm {
-  height: $line-height-computed/1.5;
-  margin-bottom: $line-height-computed/1.5;
+  height: 1rem;
+  margin-bottom: 1rem;
 }
 
 .progress-xs {
   height: 5px;
-  margin-bottom: $line-height-computed/2;
+  margin-bottom: 0.5rem;
 }
+
+// Breadcrumb
 
 .breadcrumb {
   margin-top: -15px;
@@ -34,16 +72,10 @@
   }
 }
 
-@media (min-width: $grid-float-breakpoint) {
-  .navbar-right {
-    .dropdown-menu {
-      left: 0;
-    }
-  }
-}
+// Form
 
 .form-control {
-  font-size: $font-size-base - 1;
+  font-size: $font-size-base;
 
   @include box-shadow(none);
   @include transition(border-color ease-in-out 0.15s, background-color ease-in-out 0.15s);
@@ -66,9 +98,13 @@
   font-size: 13px;
 }
 
+// Buttons
+
 .btn-inverse {
   @include button-variant($btn-inverse-color, $btn-inverse-bg, $btn-inverse-border);
 }
+
+// Alerts
 
 .alert {
   font-size: $font-size-small;
@@ -88,6 +124,8 @@
   }
 }
 
+// Badge
+
 .badge {
   font-size: 12px;
 
@@ -95,6 +133,8 @@
     margin-top: 2px;
   }
 }
+
+// Table
 
 .table-no-border {
   margin-left: -$table-cell-padding;
@@ -125,5 +165,31 @@
   &.table-no-border {
     margin-left: -4px;
     margin-right: -4px;
+  }
+}
+
+// Code
+
+pre {
+  display: block;
+  padding: 6.5px;
+  margin: 0 0 (1rem / 2);
+  font-size: 13px;
+  line-height: 1rem;
+  word-break: break-all;
+  word-wrap: break-word;
+  color: $pre-color;
+  background-color: $gray-100;
+  border: 1px solid $gray-400;
+  border-radius: $border-radius;
+
+  // Account for some code outputs that place code tags in pre tags
+  code {
+    padding: 0;
+    font-size: inherit;
+    color: inherit;
+    white-space: pre-wrap;
+    background-color: transparent;
+    border-radius: 0;
   }
 }

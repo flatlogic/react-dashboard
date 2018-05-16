@@ -4,14 +4,14 @@
   display: block;
   position: relative;
   margin-bottom: 30px;
-  padding: 15px 20px;
+  padding: $widget-padding-y $widget-padding-x;
   background: $widget-bg;
   border-radius: 3px;
 }
 
 .title {
   margin-top: 0;
-  margin-bottom: $line-height-computed/2;
+  margin-bottom: 1.5rem / 2;
   color: $widget-title-color;
 
   @include clearfix();

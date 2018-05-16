@@ -8,8 +8,8 @@ class Posts extends React.Component {
   render() {
     return (
       <Switch>
-        <Route path="/app/posts/new" exact component={PostNew} />
         <Route path="/app/posts" exact component={PostList} />
+        <Route path="/app/posts/new" exact component={PostNew} />
       </Switch>
     );
   }

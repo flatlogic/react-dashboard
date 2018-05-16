@@ -2,37 +2,52 @@
 
 .headerLink {
   a {
-    display: block;
+    display: flex;
     color: $sidebar-color;
+    align-items: center;
     text-decoration: none;
     cursor: pointer;
 
     &:hover,
     &:active,
     &:focus {
-      background-color: rgba(#fff, 0.1);
+      font-weight: $font-weight-semi-bold;
     }
   }
 
   > a {
     position: relative;
-    padding-left: 15px;
-    line-height: 44px;
+    padding: 0 15px;
+    line-height: 55px;
+    justify-content: space-between;
 
-    > i {
-      margin-right: 7px;
+    &:hover {
+      font-weight: $font-weight-thin;
+      background-color: $gray-100;
+    }
+
+    img {
+      width: 15px;
+      margin-right: 15px;
     }
   }
 }
 
-.caret {
-  float: right;
-  margin-top: 20px;
-  margin-right: 15px;
+.arrow {
+  color: $gray-400;
+  transition: 0.3s;
+  right: 0;
+}
+
+.arrowActive {
+  transform: rotate(-90deg);
 }
 
 .headerLinkActive {
-  font-weight: bold;
+  span {
+    color: $brand-danger;
+    font-weight: $font-weight-semi-bold;
+  }
 }
 
 .panel {
@@ -56,7 +71,13 @@
     }
 
     a {
-      padding: 4px 20px 4px 36px;
+      padding: 4px 20px 4px 44px;
+
+      &:hover,
+      &:active,
+      &:focus {
+        font-weight: $font-weight-semi-bold;
+      }
     }
   }
 }

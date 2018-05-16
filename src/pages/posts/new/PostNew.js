@@ -6,17 +6,21 @@ import {
   Col,
   Form,
   FormGroup,
-  FormControl,
+  Input,
   Button,
-  ControlLabel,
+  ButtonGroup,
   Alert,
-} from 'react-bootstrap';
+  Label,
+  Breadcrumb,
+  BreadcrumbItem,
+} from 'reactstrap';
 import {connect} from 'react-redux';
 
 import withMeta from '../../../core/withMeta';
 import Widget from '../../../components/Widget';
-import s from './PostNew.scss';
+
 import {createPost} from '../../../actions/posts';
+import s from './PostNew.scss';
 
 class PostNew extends React.Component {
   static propTypes = {
@@ -44,15 +48,15 @@ class PostNew extends React.Component {
     };
   }
 
-  changeTitle(event) {
+  changeTitle = (event) => {
     this.setState({title: event.target.value});
   }
 
-  changeContent(event) {
+  changeContent = (event) => {
     this.setState({content: event.target.value});
   }
 
-  doCreatePost(e) {
+  doCreatePost = (e) => {
     this.props
       .dispatch(
         createPost({
@@ -72,12 +76,10 @@ class PostNew extends React.Component {
   render() {
     return (
       <div className={s.root}>
-        <ol className="breadcrumb">
-          <li>
-            <span className="text-muted">YOU ARE HERE</span>
-          </li>
-          <li className="active">New Post</li>
-        </ol>
+         <Breadcrumb>
+          <BreadcrumbItem>YOU ARE HERE</BreadcrumbItem>
+          <BreadcrumbItem active>New Post</BreadcrumbItem>
+        </Breadcrumb>
         <h1>Create new post</h1>
         <Row>
           <Col sm={6}>
@@ -88,52 +90,42 @@ class PostNew extends React.Component {
                 </span>
               }
             >
-              {/* eslint-disable */}
-              <Form horizontal onSubmit={this.doCreatePost.bind(this)}>
+              <Form onSubmit={this.doCreatePost}>
                 {this.props.message && (
                   <Alert className="alert-sm" bsStyle="info">
                     {this.props.message}
                   </Alert>
                 )}
-                <FormGroup controlId="formHorizontalEmail">
-                  <Col componentClass={ControlLabel} sm={2}>
-                    Title
-                  </Col>
-                  <Col sm={10}>
-                    <FormControl
-                      type="text"
-                      placeholder="Title"
-                      value={this.state.title}
-                      required
-                      onChange={this.changeTitle.bind(this)}
-                    />
-                  </Col>
-                </FormGroup>
-                <FormGroup controlId="formHorizontalEmail">
-                  <Col componentClass={ControlLabel} sm={2}>
-                    Content
-                  </Col>
-                  <Col sm={10}>
-                    <textarea
-                      className="form-control"
-                      placeholder="Post Content"
-                      value={this.state.content}
-                      required
-                      onChange={this.changeContent.bind(this)}
-                    />
-                  </Col>
-                </FormGroup>
-                {/* eslint-enable */}
                 <FormGroup>
-                  <Col smOffset={2} sm={10}>
-                    <div className="btn-toolbar pull-right">
-                      <Button>Cancel</Button>
-                      <Button bsStyle="danger" type="submit">
-                        {this.props.isFetching ? 'Creating...' : 'Create'}
-                      </Button>
-                    </div>
-                  </Col>
+                  <Label for="input-title">Title</Label>
+                  <Input
+                    id="input-title"
+                    type="text"
+                    placeholder="Title"
+                    value={this.state.title}
+                    required
+                    onChange={this.changeTitle}
+                  />
                 </FormGroup>
+                <FormGroup>
+                  <Label for="input-content">Content</Label>
+                  <textarea
+                    id="input-content"
+                    className="form-control"
+                    placeholder="Post Content"
+                    value={this.state.content}
+                    required
+                    onChange={this.changeContent}
+                  />
+                </FormGroup>
+                <div className="d-flex justify-content-end">
+                  <ButtonGroup>
+                    <Button color="default">Cancel</Button>
+                    <Button color="danger" type="submit">
+                      {this.props.isFetching ? 'Creating...' : 'Create'}
+                    </Button>
+                  </ButtonGroup>
+                </div>
               </Form>
             </Widget>
           </Col>

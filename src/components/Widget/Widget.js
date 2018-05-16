@@ -8,6 +8,7 @@
  */
 
 import React from 'react';
+import cx from 'classnames';
 import PropTypes from 'prop-types';
 import withStyles from 'isomorphic-style-loader/lib/withStyles';
 import s from './Widget.scss';
@@ -30,7 +31,7 @@ class Widget extends React.Component {
 
   render() {
     return (
-      <section className={[s.widget, this.props.className].join(' ')}>
+      <section className={cx(s.widget, this.props.className)}>
         {this.props.title &&
         (typeof this.props.title === 'string' ? (
           <h5 className={s.title}>{this.props.title}</h5>

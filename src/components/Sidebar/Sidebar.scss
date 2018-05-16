@@ -11,30 +11,19 @@
 }
 
 .logo {
-  margin: 0 0 17px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   height: $navbar-height;
   width: 100%;
-  align-items: center;
-  justify-content: center;
-  display: flex;
+  background: $logo-gradient;
 
-  a {
-    text-decoration: none;
-    color: #fff;
+  a img {
+    width: $sidebar-width-open - 60px;
   }
 }
 
 .nav {
   padding: 10px 0;
   overflow-y: auto;
-}
-
-.footer {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  padding: 10px;
-  background-color: #5a6365;
-  font-size: 13px;
 }

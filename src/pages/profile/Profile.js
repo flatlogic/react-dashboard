@@ -1,82 +1,77 @@
-import React from 'react';
+import React, {PureComponent} from 'react';
 import withStyles from 'isomorphic-style-loader/lib/withStyles';
 import {
   Row,
   Col,
   Form,
   FormGroup,
-  FormControl,
-  Checkbox,
+  Label,
+  Input,
   Button,
-  ControlLabel,
-} from 'react-bootstrap';
+  ButtonGroup,
+  Breadcrumb,
+  BreadcrumbItem,
+} from 'reactstrap';
 
 import Widget from '../../components/Widget';
 
 import s from './Profile.scss';
 
-const Profile = () => (
-  <div className={s.root}>
-    <ol className="breadcrumb">
-      <li>
-        <span className="text-muted">YOU ARE HERE</span>
-      </li>
-      <li className="active">Profile</li>
-    </ol>
-    <h1>Profile</h1>
-    <Row>
-      <Col sm={6}>
-        <Widget
-          title={
-            <span>
-              Edit Profile <span className="fw-semi-bold">Form</span>
-            </span>
-          }
-        >
-          <Form horizontal>
-            <FormGroup controlId="formHorizontalEmail">
-              <Col componentClass={ControlLabel} sm={2}>
-                Username
-              </Col>
-              <Col sm={10}>
-                <FormControl type="text" placeholder="Username" />
-              </Col>
-            </FormGroup>
-            <FormGroup controlId="formHorizontalEmail">
-              <Col componentClass={ControlLabel} sm={2}>
-                Email
-              </Col>
-              <Col sm={10}>
-                <FormControl type="email" placeholder="Email" />
-              </Col>
-            </FormGroup>
-            <FormGroup controlId="formHorizontalPassword">
-              <Col componentClass={ControlLabel} sm={2}>
-                Password
-              </Col>
-              <Col sm={10}>
-                <FormControl type="password" placeholder="Password" />
-              </Col>
-            </FormGroup>
-            <FormGroup>
-              <Col smOffset={2} sm={10}>
-                <Checkbox>Remember me</Checkbox>
-              </Col>
-            </FormGroup>
+class Profile extends PureComponent {
+  onSubmit(e) { // eslint-disable-line
+    e.preventDefault();
+  }
 
-            <FormGroup>
-              <Col smOffset={2} sm={10}>
-                <div className="btn-toolbar pull-right">
-                  <Button>Cancel</Button>
-                  <Button bsStyle="danger">Save</Button>
+  render() {
+    return (
+      <div className={s.root}>
+        <Breadcrumb>
+          <BreadcrumbItem>YOU ARE HERE</BreadcrumbItem>
+          <BreadcrumbItem active>Profile</BreadcrumbItem>
+        </Breadcrumb>
+        <h1 className="mb-lg">Profile</h1>
+        <Row>
+          <Col sm={6}>
+            <Widget
+              title={
+                <h5>
+                  Edit Profile <span className="fw-semi-bold">Form</span>
+                </h5>
+              }
+            >
+              <Form onSubmit={this.onSubmit}>
+                <FormGroup>
+                  <Label for="input-name">Name</Label>
+                  <Input size="lg" type="text" name="name" id="input-name"/>
+                </FormGroup>
+                <FormGroup>
+                  <Label for="input-email">Email</Label>
+                  <Input size="lg" type="email" name="email" id="input-email"/>
+                </FormGroup>
+                <FormGroup>
+                  <Label for="input-password">Password</Label>
+                  <Input size="lg" type="password" name="password" id="input-password"/>
+                </FormGroup>
+                <div className="d-flex justify-content-between align-items-center">
+                  <div className="d-flex">
+                    <div className="abc-checkbox">
+                      <Input id="input-checkbox" type="checkbox" />
+                      <Label for="input-checkbox" />
+                    </div>
+                    <span>Remember me</span>
+                  </div>
+                  <ButtonGroup className="pull-right">
+                    <Button className="ml-sm" color="default">Cancel</Button>
+                    <Button color="danger">Save</Button>
+                  </ButtonGroup>
                 </div>
-              </Col>
-            </FormGroup>
-          </Form>
-        </Widget>
-      </Col>
-    </Row>
-  </div>
-);
+              </Form>
+            </Widget>
+          </Col>
+        </Row>
+      </div>
+    )
+  }
+}
 
 export default withStyles(s)(Profile);

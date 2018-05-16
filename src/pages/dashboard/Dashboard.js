@@ -1,20 +1,28 @@
-import React from 'react';
+import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import withStyles from 'isomorphic-style-loader/lib/withStyles';
 import {
-  Button,
-  ButtonGroup,
   ButtonToolbar,
-  DropdownButton,
-  MenuItem,
-  ProgressBar,
-  Alert,
+} from 'react-bootstrap';
+
+import {  
   Row,
   Col,
-  ListGroup,
+  Alert, 
+  Button,
+  ButtonGroup,
+  Breadcrumb,
+  BreadcrumbItem,
+  Progress,
   Badge,
-  Glyphicon,
-} from 'react-bootstrap';
+  ListGroup,
+  ButtonDropdown,
+  DropdownMenu,
+  DropdownToggle,
+  DropdownItem,
+  Table
+} from 'reactstrap';
+
 import {Link} from 'react-router-dom';
 import {connect} from 'react-redux';
 
@@ -23,7 +31,7 @@ import {fetchPosts} from '../../actions/posts';
 
 import s from './Dashboard.scss';
 
-class Dashboard extends React.Component {
+class Dashboard extends Component {
   /* eslint-disable */
   static propTypes = {
     posts: PropTypes.any,
@@ -37,33 +45,30 @@ class Dashboard extends React.Component {
     isFetching: false,
   };
 
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      alert1Visible: true,
-      alert2Visible: true,
-      alert3Visible: true,
-      alert4Visible: true,
-    };
-  }
+  state = {
+    isDropdownOpened: false
+  };
 
   componentWillMount() {
     this.props.dispatch(fetchPosts());
   }
 
+  toggleDropdown = () => {
+    this.setState(prevState => ({
+      isDropdownOpened: !prevState.isDropdownOpened,
+    }));
+  }
+
   render() {
     return (
       <div className={s.root}>
-        <ol className="breadcrumb">
-          <li>
-            <span className="text-muted">YOU ARE HERE</span>
-          </li>
-          <li className="active">Dashboard</li>
-        </ol>
+        <Breadcrumb>
+          <BreadcrumbItem>YOU ARE HERE</BreadcrumbItem>
+          <BreadcrumbItem active>Dashboard</BreadcrumbItem>
+        </Breadcrumb>
         <h1 className="mb-lg">Dashboard</h1>
         <Row>
-          <Col sm={6}>
+          <Col sm={12} md={6}>
             <Widget
               title={
                 <div>
@@ -74,14 +79,14 @@ class Dashboard extends React.Component {
                       className="form-control input-sm"
                     />
                   </div>
-                  <h5 className="mt-0">
-                    <Glyphicon glyph="user" className="mr-xs opacity-70" />{' '}
+                  <h5 className="mt-0 mb-3">
+                    <i className="fa fa-user mr-xs opacity-70" />{' '}
                     Users
                   </h5>
                 </div>
               }
             >
-              <table className="table mb-0">
+              <Table responsive className="mb-0">
                 <thead>
                 <tr>
                   <th>ID</th>
@@ -96,7 +101,7 @@ class Dashboard extends React.Component {
                   <td>Alice</td>
                   <td>alice@email.com</td>
                   <td>
-                    <span className="label label-success">active</span>
+                    <span className="py-0 px-1 bg-success rounded text-white">active</span>
                   </td>
                 </tr>
                 <tr>
@@ -104,9 +109,7 @@ class Dashboard extends React.Component {
                   <td>Bob</td>
                   <td>bob@email.com</td>
                   <td>
-                      <span className="label label-warning text-default">
-                        delayed
-                      </span>
+                    <span className="py-0 px-1 bg-warning rounded text-white">delayed</span>
                   </td>
                 </tr>
                 <tr>
@@ -114,7 +117,7 @@ class Dashboard extends React.Component {
                   <td>Duck</td>
                   <td>duck@email.com</td>
                   <td>
-                    <span className="label label-success">active</span>
+                    <span className="py-0 px-1 bg-success rounded text-white">active</span>
                   </td>
                 </tr>
                 <tr>
@@ -122,77 +125,49 @@ class Dashboard extends React.Component {
                   <td>Shepherd</td>
                   <td>shepherd@email.com</td>
                   <td>
-                    <span className="label bg-dark">removed</span>
+                    <span className="py-0 px-1 bg-danger rounded text-white">removed</span>
                   </td>
                 </tr>
                 </tbody>
-              </table>
+              </Table>
             </Widget>
           </Col>
-          <Col sm={6}>
-            {this.state.alert1Visible && (
-              <Alert
-                className="alert-sm"
-                bsStyle="warning"
-                onDismiss={() =>
-                  this.setState({
-                    alert1Visible: false,
-                  })
-                }
-              >
-                <span className="fw-semi-bold">Warning:</span> Best check yo
-                self, you&#39;re not looking too good.
-              </Alert>
-            )}
-            {this.state.alert2Visible && (
-              <Alert
-                className="alert-sm"
-                bsStyle="success"
-                onDismiss={() =>
-                  this.setState({
-                    alert2Visible: false,
-                  })
-                }
-              >
-                <span className="fw-semi-bold">Success:</span> You successfully
-                read this important alert message.
-              </Alert>
-            )}
-            {this.state.alert3Visible && (
-              <Alert
-                className="alert-sm"
-                bsStyle="info"
-                onDismiss={() =>
-                  this.setState({
-                    alert3Visible: false,
-                  })
-                }
-              >
-                <span className="fw-semi-bold">Info:</span> This alert needs
-                your attention, but it&#39;s not super important.
-              </Alert>
-            )}
-            {this.state.alert4Visible && (
-              <Alert
-                className="alert-sm clearfix"
-                bsStyle="danger"
-                onDismiss={() =>
-                  this.setState({
-                    alert4Visible: false,
-                  })
-                }
-              >
-                <span className="fw-semi-bold">Danger:</span> Change this and
-                that and try again.
-                <span className="pull-right">
-                  <Button bsStyle="danger" bsSize="xsmall">
-                    Take this action
-                  </Button>
-                  <span> or </span>
-                  <Button bsSize="xsmall">Cancel</Button>
-                </span>
-              </Alert>
-            )}
+          <Col sm={12} md={6}>
+            <Alert
+              className="alert-sm"
+              color="warning"
+            >
+              <span className="fw-semi-bold">Warning:</span> Best check yo
+              self, you&#39;re not looking too good.
+            </Alert>
+            <Alert
+              className="alert-sm"
+              color="success"
+            >
+              <span className="fw-semi-bold">Success:</span> You successfully
+              read this important alert message.
+            </Alert>
+            <Alert
+              className="alert-sm"
+              color="info"
+            >
+              <span className="fw-semi-bold">Info:</span> This alert needs
+              your attention, but it&#39;s not super important.
+            </Alert>
+            <Alert
+              className="alert-sm clearfix"
+              color="danger"
+            >
+              <span className="fw-semi-bold">Danger:</span> Change this and
+              that and try again.
+              <span className="pull-right mr-sm">
+                <Button color="danger" size="sm">
+                  Take this action
+                </Button>
+                <span> or </span>
+                <Button color="default" size="sm">Cancel</Button>
+              </span>
+          </Alert>
           </Col>
         </Row>
         <Row>
@@ -209,7 +184,7 @@ class Dashboard extends React.Component {
                   </div>
                   <h5 className="mt-0 mb-0">
                     Recent posts{' '}
-                    <Badge bsStyle="success" className="ml-xs">
+                    <Badge color="success" className="ml-xs">
                       5
                     </Badge>
                   </h5>
@@ -248,73 +223,76 @@ class Dashboard extends React.Component {
           <Col sm={6}>
             <ListGroup>
               <Link to="/app" className="list-group-item">
-                <Glyphicon glyph="phone" className="mr-xs opacity-70" />{' '}
-                Incoming calls <Badge bsStyle="danger">3</Badge>
+                <i className="fa fa-phone mr-xs opacity-70" />{' '}
+                Incoming calls <Badge color="danger">3</Badge>
               </Link>
               <Link to="/app" className="list-group-item">
-                <Glyphicon glyph="bell" className="mr-xs opacity-70" />{' '}
-                Notifications <Badge bsStyle="warning">6</Badge>
+                <i className="fa fa-bell-o mr-xs opacity-70" />{' '}
+                Notifications <Badge color="warning">6</Badge>
               </Link>
               <Link to="/app" className="list-group-item">
-                <Glyphicon glyph="comment" className="mr-xs opacity-70" />{' '}
-                Messages <Badge bsStyle="success">18</Badge>
+                <i className="fa fa-comment-o mr-xs opacity-70" />{' '}
+                Messages <Badge color="success">18</Badge>
               </Link>
               <Link to="/app" className="list-group-item">
-                <Glyphicon glyph="eye-open" className="mr-xs opacity-70" />{' '}
+                <i className="fa fa-eye mr-xs opacity-70" />{' '}
                 Visits total
               </Link>
               <Link to="/app" className="list-group-item">
-                <Glyphicon glyph="cloud" className="mr-xs opacity-70" /> Inbox{' '}
-                <Glyphicon
-                  glyph="chevron-right"
-                  className="opacity-70 pull-right"
-                />
+                <i className="fa fa-cloud mr-xs opacity-70" /> Inbox{' '}
               </Link>
             </ListGroup>
           </Col>
         </Row>
-        <h3 className="mb">Some standard react-bootstrap components</h3>
+        <h3 className="mb">Some standard reactstrap components</h3>
         <Row className="mb">
           <Col sm={6}>
             <ButtonToolbar className="mb">
-              <Button bsSize="small">Default</Button>
-              <Button bsSize="small" bsStyle="success">
+              <Button size="sm" color="default" className="mr-sm mb-xs">
+                Default
+              </Button>
+              <Button size="sm" color="success" className="mr-sm mb-xs">
                 Success
               </Button>
-              <Button bsSize="small" bsStyle="info">
+              <Button size="sm" color="info" className="mr-sm mb-xs">
                 Info
               </Button>
-              <Button bsSize="small" bsStyle="warning">
+              <Button size="sm" color="warning" className="mr-sm mb-xs">
                 Warning
               </Button>
-              <Button bsSize="small" bsStyle="inverse">
-                Inverse
+              <Button size="sm" color="danger" className="mb-xs">
+                Danger
               </Button>
             </ButtonToolbar>
             <ButtonGroup className="mb">
-              <Button>1</Button>
-              <Button>2</Button>
-              <DropdownButton title="Dropdown" id="bg-nested-dropdown">
-                <MenuItem eventKey="1">Dropdown link</MenuItem>
-                <MenuItem eventKey="2">Dropdown link</MenuItem>
-              </DropdownButton>
+              <Button color="default">1</Button>
+              <Button color="default">2</Button>
+              <ButtonDropdown isOpen={this.state.isDropdownOpened} toggle={this.toggleDropdown}>
+                <DropdownToggle color="default" caret>
+                  Dropdown
+                </DropdownToggle>
+                <DropdownMenu>
+                  <DropdownItem>1</DropdownItem>
+                  <DropdownItem>2</DropdownItem>
+                </DropdownMenu>
+              </ButtonDropdown>
             </ButtonGroup>
             <p>
               For more components please checkout{' '}
               <a
-                href="https://react-bootstrap.github.io/components.html"
+                href="https://reactstrap.github.io/"
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                react-bootstrap documentation
+                reactstrap documentation
               </a>
             </p>
           </Col>
           <Col sm={6}>
-            <ProgressBar className="progress-sm" bsStyle="success" now={40} />
-            <ProgressBar className="progress-sm" bsStyle="info" now={20} />
-            <ProgressBar className="progress-sm" bsStyle="warning" now={60} />
-            <ProgressBar className="progress-sm" bsStyle="danger" now={80} />
+            <Progress className="progress-sm" color="success" value={40} />
+            <Progress className="progress-sm" color="info" value={20} />
+            <Progress className="progress-sm" color="warning" value={60} />
+            <Progress className="progress-sm" color="danger" value={80} />
           </Col>
         </Row>
       </div>

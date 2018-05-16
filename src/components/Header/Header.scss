@@ -1,17 +1,136 @@
 /**
- * React Starter Kit (https://www.reactstarterkit.com/)
- *
- * Copyright © 2014-present Kriasoft, LLC. All rights reserved.
- *
- * This source code is licensed under the MIT license found in the
- * LICENSE.txt file in the root directory of this source tree.
- */
+  * React Starter Kit (https://www.reactstarterkit.com/)
+  *
+  * Copyright © 2014-present Kriasoft, LLC. All rights reserved.
+  *
+  * This source code is licensed under the MIT license found in the
+  * LICENSE.txt file in the root directory of this source tree.
+*/
 
 @import '../../styles/app';
 
-.menuButton {
-  font-size: $font-size-large;
-  margin-left: -$navbar-padding-horizontal + 5;
-  margin-top: -1px;
-  margin-bottom: -2px;
+.root {
+  background: $navbar-bg-color;
+
+  :global {
+    .input-group {
+      background-color: $gray-100;
+
+      @include media-breakpoint-down(xs) {
+        display: none;
+      }
+
+      input {
+        background: transparent;
+        border: none;
+        width: 250px;
+
+        @include media-breakpoint-down(md) {
+          width: 125px;
+        }
+
+        @include media-breakpoint-down(sm) {
+          width: 175px;
+        }
+
+        &:hover,
+        &:active,
+        &:focus {
+          border: none;
+          outline: none;
+          box-shadow: none;
+        }
+      }
+
+      .input-group-append {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        i {
+          font-size: 1.25rem;
+        }
+      }
+    }
+
+    .dropdown-menu {
+      border: none;
+      margin-top: 0.7rem;
+    }
+
+    .dropdown-item {
+      &:active {
+        background-color: $gray-200;
+        color: $text-color;
+      }
+
+      &:focus {
+        outline: none;
+      }
+
+      a {
+        display: block;
+        color: $text-color;
+
+        &:hover {
+          color: $text-color;
+          text-decoration: none;
+          cursor: default;
+        }
+      }
+    }
+  }
+}
+
+.arrow {
+  color: $gray-400;
+  transition: 0.3s;
+  right: 0;
+}
+
+.arrowActive {
+  transform: rotate(180deg);
+}
+
+.adminPhoto {
+  width: 40px;
+  height: 40px;
+}
+
+.headerIcon {
+  display: flex;
+  align-items: center;
+  position: relative;
+
+  &:nth-child(n + 2) {
+    margin-left: 1.25rem;
+
+    @include media-breakpoint-down(sm) {
+      display: none;
+    }
+  }
+
+  &:first-child {
+    margin-right: 1.25rem;
+  }
+
+  img {
+    max-height: 1.65rem;
+    width: 1.65rem;
+  }
+
+  span {
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    top: 12px;
+    right: -6px;
+    color: $white;
+    font-size: 0.55rem;
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background-color: theme-color('danger');
+  }
 }
