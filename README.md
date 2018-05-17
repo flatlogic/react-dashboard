@@ -66,10 +66,6 @@ app on the fly and refresh all the connected browsers.
 
 For more info please refer to [getting started](./docs/getting-started.md) guide to download and run the project (Node.js >= 6.5)
 
-## Credits
-This project is heavily based on (is a fork of) [React Starter Kit](https://github.com/kriasoft/react-starter-kit)
-by Konstantin Tarkus ([@koistya](https://github.com/koistya)). The difference is Bootstrap & React Router integration.
-
 ## Support
 For any additional information please refer to [Flatlogic homepage](https://flatlogic.com).
 
