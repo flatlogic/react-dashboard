@@ -8,15 +8,22 @@
  */
 
 import React from 'react';
+import cx from 'classnames';
 import withStyles from 'isomorphic-style-loader/lib/withStyles';
-import {Switch, Route, withRouter} from 'react-router';
+import { Switch, Route, withRouter } from 'react-router';
 
 // an example of react-router code-splitting
 /* eslint-disable */
-import loadPosts from 'bundle-loader?lazy!../../pages/posts/Posts';
-import loadPrivacy from 'bundle-loader?lazy!../../pages/privacy/Privacy';
-import loadProfile from 'bundle-loader?lazy!../../pages/profile/Profile';
-import loadNotFound from 'bundle-loader?lazy!../../pages/notFound/NotFound';
+import loadPosts from 'bundle-loader?lazy!../../pages/posts';
+import loadPrivacy from 'bundle-loader?lazy!../../pages/privacy';
+import loadProfile from 'bundle-loader?lazy!../../pages/profile';
+import loadTypography from 'bundle-loader?lazy!../../pages/typography';
+import loadTables from 'bundle-loader?lazy!../../pages/tables';
+import loadNotifications from 'bundle-loader?lazy!../../pages/notifications';
+import loadCharts from 'bundle-loader?lazy!../../pages/charts';
+import loadIcons from 'bundle-loader?lazy!../../pages/icons';
+import loadMaps from 'bundle-loader?lazy!../../pages/google';
+import loadNotFound from 'bundle-loader?lazy!../../pages/notFound';
 /* eslint-enable */
 
 import s from './Layout.scss';
@@ -31,6 +38,12 @@ import Dashboard from '../../pages/dashboard/Dashboard';
 const PostsBundle = Bundle.generateBundle(loadPosts);
 const PrivacyBundle = Bundle.generateBundle(loadPrivacy);
 const ProfileBundle = Bundle.generateBundle(loadProfile);
+const TypographyBundle = Bundle.generateBundle(loadTypography);
+const TablesBundle = Bundle.generateBundle(loadTables);
+const NotificationsBundle = Bundle.generateBundle(loadNotifications);
+const ChartsBundle = Bundle.generateBundle(loadCharts);
+const IconsBundle = Bundle.generateBundle(loadIcons);
+const MapsBundle = Bundle.generateBundle(loadMaps);
 const NotFoundBundle = Bundle.generateBundle(loadNotFound);
 
 class Layout extends React.Component {
@@ -47,9 +60,7 @@ class Layout extends React.Component {
       <div className={s.root}>
         <Sidebar />
         <div
-          className={[s.wrap, this.state.sidebarOpen ? s.sidebarOpen : ''].join(
-            ' ',
-          )}
+          className={cx(s.wrap, {[s.sidebarOpen]: this.state.sidebarOpen})}
         >
           <Header
             sidebarToggle={() =>
@@ -62,8 +73,14 @@ class Layout extends React.Component {
             <Switch>
               <Route path="/app" exact component={Dashboard} />
               <Route path="/app/posts" component={PostsBundle} />
-              <Route path="/app/profile" exact component={ProfileBundle} />
               <Route path="/app/privacy" exact component={PrivacyBundle} />
+              <Route path="/app/profile" exact component={ProfileBundle} />
+              <Route path="/app/typography" exact component={TypographyBundle} />
+              <Route path="/app/tables" exact component={TablesBundle} />
+              <Route path="/app/notifications" exact component={NotificationsBundle} />
+              <Route path="/app/components/charts" exact component={ChartsBundle} />
+              <Route path="/app/components/icons" exact component={IconsBundle} />
+              <Route path="/app/components/maps" exact component={MapsBundle} />
               <Route component={NotFoundBundle} />
             </Switch>
           </main>

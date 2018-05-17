@@ -9,8 +9,10 @@
 
 import React from 'react';
 import PropTypes from 'prop-types';
+import cx from 'classnames';
 import withStyles from 'isomorphic-style-loader/lib/withStyles';
 import { Link } from 'react-router-dom';
+
 import s from './Footer.scss';
 
 class Footer extends React.Component {
@@ -24,7 +26,7 @@ class Footer extends React.Component {
 
   render() {
     return (
-      <footer className={[s.root, this.props.className].join(' ')}>
+      <footer className={cx(s.root, this.props.className)}>
         <div className={s.container}>
           <span>© 2017 &nbsp;Flatlogic LLC </span>
           <span className={s.spacer}>·</span>

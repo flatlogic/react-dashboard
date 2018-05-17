@@ -10,8 +10,20 @@ $opacity-variants: (10: 0.1, 20: 0.2, 30: 0.3, 40: 0.4, 50: 0.5, 60: 0.6, 70: 0.
 
 @include property-variants('.opacity', 'opacity', $opacity-variants);
 
+.fw-thin {
+  font-weight: 300;
+}
+
+.fw-normal {
+  font-weight: 400;
+}
+
 .fw-semi-bold {
   font-weight: 600;
+}
+
+.fw-bold {
+  font-weight: 700;
 }
 
 .fs-sm {
@@ -22,29 +34,12 @@ $opacity-variants: (10: 0.1, 20: 0.2, 30: 0.3, 40: 0.4, 50: 0.5, 60: 0.6, 70: 0.
   color: $text-color;
 }
 
-// Add colors for badges
-.badge-primary {
-  @include label-variant($label-primary-bg);
-}
-
-.badge-success {
-  @include label-variant($label-success-bg);
-}
-
-.badge-info {
-  @include label-variant($label-info-bg);
-}
-
-.badge-warning {
-  @include label-variant($label-warning-bg);
-}
-
-.badge-danger {
-  @include label-variant($label-danger-bg);
-}
-
 @include bg-variant('.bg-dark', $text-color);
 
 .td-underline {
   text-decoration: underline;
+}
+
+.widget-table-overflow {
+  margin: 0 #{-$widget-padding-x} #{-$widget-padding-y};
 }

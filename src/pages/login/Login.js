@@ -1,14 +1,23 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import withStyles from 'isomorphic-style-loader/lib/withStyles';
-import {Row, Col, Grid, Alert} from 'react-bootstrap';
-import {connect} from 'react-redux';
-import {withRouter, Redirect} from 'react-router';
+import {
+  Row,
+  Col, 
+  Alert, 
+  Button, 
+  Form, 
+  FormGroup, 
+  Input
+} from 'reactstrap';
+import { connect } from 'react-redux';
+import { withRouter, Redirect } from 'react-router';
 
 import Widget from '../../components/Widget';
 import Footer from '../../components/Footer';
+
 import s from './Login.scss'; // eslint-disable-line
-import {loginUser} from '../../actions/user';
+import { loginUser } from '../../actions/user';
 
 class Login extends React.Component {
   static propTypes = {
@@ -35,15 +44,15 @@ class Login extends React.Component {
     };
   }
 
-  changeLogin(event) {
+  changeLogin = (event) => {
     this.setState({login: event.target.value});
   }
 
-  changePassword(event) {
+  changePassword = (event) => {
     this.setState({password: event.target.value});
   }
 
-  doLogin(e) {
+  doLogin = (e) => {
     this.props.dispatch(
       loginUser({
         login: this.state.login,
@@ -64,10 +73,9 @@ class Login extends React.Component {
     }
 
     return (
-      <div className={s.root}>
-        <Grid>
+        <div className={s.root}>
           <Row>
-            <Col xs={10} xsOffset={1} sm={6} smOffset={3} lg={4} lgOffset={4}>
+            <Col xs={{size: 10, offset: 1}} sm={{size: 6, offset: 3}} lg={{size:4, offset: 4}}>
               <p className="text-center">React Dashboard</p>
               <Widget className={s.widget}>
                 <h4 className="mt-0">Login to your Web App</h4>
@@ -75,56 +83,49 @@ class Login extends React.Component {
                   User your username and password to sign in<br />
                   Don&#39;t have an account? Sign up now!
                 </p>
-                {/* eslint-disable */}
-                <form className="mt" onSubmit={this.doLogin.bind(this)}>
-                  {/* eslint-enable */}
+                <Form className="mt" onSubmit={this.doLogin}>
                   {this.props.errorMessage && (
-                    <Alert className="alert-sm" bsStyle="danger">
+                    <Alert size="sm" color="danger">
                       {this.props.errorMessage}
                     </Alert>
                   )}
-                  <div className="form-group">
-                    {/* eslint-disable */}
-                    <input
-                      className="form-control no-border"
+                  <FormGroup className="form-group">
+                    <Input
+                      className="no-border"
                       value={this.state.login}
-                      onChange={this.changeLogin.bind(this)}
+                      onChange={this.changeLogin}
                       type="text"
                       required
                       name="username"
                       placeholder="Username"
                     />
-                  </div>
-                  <div className="form-group">
-                    <input
-                      className="form-control no-border"
+                  </FormGroup>
+                  <FormGroup>
+                    <Input
+                      className="no-border"
                       value={this.state.password}
-                      onChange={this.changePassword.bind(this)}
+                      onChange={this.changePassword}
                       type="password"
                       required
                       name="password"
                       placeholder="Password"
                     />
-                  </div>
-                  <div className="clearfix">
-                    <div className="btn-toolbar pull-right">
-                      <button type="reset" className="btn btn-default btn-sm">
+                  </FormGroup>
+                  <div className="d-flex justify-content-between align-items-center">
+                    <a href="#" className="fs-sm">Trouble with account?</a> {/* eslint-disable-line */}
+                    <div>
+                      <Button color="default" size="sm">
                         Create an account
-                      </button>
-                      <button type="submit" className="btn btn-success btn-sm">
+                      </Button>
+                      <Button color="success" size="sm" type="submit">
                         {this.props.isFetching ? 'Loading...' : 'Login'}
-                      </button>
+                      </Button>
                     </div>
-                    <a className="mt-sm pull-right fs-sm">
-                      Trouble with account?
-                    </a>
-                    {/* eslint-enable */}
                   </div>
-                </form>
+                </Form>
               </Widget>
             </Col>
           </Row>
-        </Grid>
         <Footer className="text-center" />
       </div>
     );

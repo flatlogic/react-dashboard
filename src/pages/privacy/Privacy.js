@@ -8,6 +8,7 @@
  */
 
 import React from 'react';
+
 import Page from '../../components/Page';
 
 class Privacy extends React.Component {

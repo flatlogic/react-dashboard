@@ -1,62 +1,61 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import withStyles from 'isomorphic-style-loader/lib/withStyles';
-import {ProgressBar} from 'react-bootstrap';
 import {withRouter, Link} from 'react-router-dom';
 
-import s from './Sidebar.scss';
+import Icon from '../Icon';
 import LinksGroup from './LinksGroup/LinksGroup';
+
+import s from './Sidebar.scss';
 
 const Sidebar = () => (
   <nav className={s.root}>
     <header className={s.logo}>
-      <Link to="/app">React Dashboard</Link>
+      <Link to="/app">
+        <Icon glyph="logo" />
+      </Link>
     </header>
-
     <ul className={s.nav}>
       <LinksGroup
         header="Dashboard"
         headerLink="/app"
-        iconName="glyphicon-tree-conifer"
+        glyph="dashboard"
       />
       <LinksGroup
-        header="Posts"
-        headerLink="/app/posts"
+        header="Typography"
+        headerLink="/app/typography"
+        glyph="typography"
+      />
+      <LinksGroup
+        header="Tables Basic"
+        headerLink="/app/tables"
+        glyph="tables"
+      />
+      <LinksGroup
+        header="Notifications"
+        headerLink="/app/notifications"
+        glyph="notifications"
+      />
+      <LinksGroup
+        header="Components"
+        headerLink="/app/components"
         childrenLinks={[
           {
-            name: 'Show all',
-            link: '/app/posts',
+            name: 'Charts',
+            link: '/app/components/charts',
           },
           {
-            name: 'Create new',
-            link: '/app/posts/new',
+            name: 'Icons',
+            link: '/app/components/icons',
+          },
+          {
+            name: 'Maps',
+            link: '/app/components/maps',
           },
         ]}
-        iconName="glyphicon-list-alt"
-      />
-      <LinksGroup
-        header={
-          <span>
-            Profile
-            <sup className="text-warning fw-semi-bold">&nbsp;new</sup>
-          </span>
-        }
-        headerLink="/app/profile"
-        iconName="glyphicon-user"
-      />
-      <LinksGroup
-        className="visible-xs"
-        header="Logout"
-        headerLink="/login"
-        iconName="glyphicon-off"
+        glyph="components"
       />
     </ul>
-    <footer className={s.footer}>
-      <p className="text-gray-lighter opacity-60 ml-xs mr-xs mb-xs">
-        58% ready
-      </p>
-      <ProgressBar now={58} bsStyle="success" className="progress-xs mb-sm" />
-    </footer>
   </nav>
 );
 

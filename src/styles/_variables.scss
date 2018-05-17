@@ -10,17 +10,63 @@
 /*
  * Typography
  * ======================================================================== */
-$font-size-base: 16px;
+$font-size-base: 1rem;
+$font-size-lg: 1.25rem !default;
+$font-size-sm: 0.875rem !default;
+$font-size-large: 1.1rem;
+$font-size-small: 0.9rem;
+$font-size-index: 0.7rem;
 $font-family-base: 'Nunito', 'HelveticaNeue-Light', sans-serif;
 
-$text-color:                     #555;
-$link-color:                     #337ab7;
+$line-height-computed: 1.5rem;
+
+$font-weight-thin: 300;
+$font-weight-normal: 400;
+$font-weight-semi-bold: 600;
+$font-weight-bold: 700;
+
+$glyphicons-halflings-include-bonus: false !default;
+$glyphicons-halflings-class-prefix: glyphicon !default;
+$glyphicons-halflings-font-base-size: 14px !default;
+
+$glyphicons-halflings-font-path: '../fonts/glyphicons' !default;
+
+$gray-100: #f9f6f2;
+$gray-200: #efedea;
+$gray-300: #cccbca;
+$gray-400: #ccc;
+$gray-500: #666;
+$gray-600: #6c757d;
+$gray-700: #4d4d4d;
+$gray-800: #343a40;
+$gray-900: #212529;
+
+$gray-light: $gray-100;
+$text-muted: $gray-300 !default;
 
 $brand-primary:         #3754a5 !default; // #337ab7
-$brand-success:         #05c1a1 !default;
+$brand-secondary:       #beccfd !default;
+$brand-success:         #1ab394 !default;
 $brand-info:            #5d80f9 !default;
-$brand-warning:         #f7be1e !default;
-$brand-danger:          #f45c43 !default;
+$brand-warning:         #f3c363 !default;
+$brand-danger:          #eb3349 !default;
+
+$theme-colors: (
+  primary: $brand-primary,
+  secondary: $brand-secondary,
+  success: $brand-success,
+  info: $brand-info,
+  warning: $brand-warning,
+  danger: $brand-danger,
+  light: $gray-300,
+  dark: $gray-800,
+  inverse: $gray-700,
+  gray: $gray-400,
+  default: #f8f8f8
+);
+
+$text-color:                     $gray-700;
+$link-color:                     #337ab7;
 
 $state-success-text:             $brand-success !default;
 $state-success-bg:               lighten($brand-success, 70%) !default;
@@ -50,6 +96,11 @@ $alert-danger-bg:             #fbdcd7 !default;
 $alert-danger-text:           $state-danger-text !default;
 $alert-danger-border:         rgba($alert-danger-text, 0.09) !default;
 
+//== Gradients
+//
+
+$logo-gradient: linear-gradient(to right, $brand-danger, #f45c43);
+
 //== Iconography
 //
 $icon-font-path: '../../node_modules/bootstrap-sass/assets/fonts/bootstrap/'; // overriding bootstrap variable
@@ -62,7 +113,7 @@ $max-content-width: 1000px;
 
 $grid-float-breakpoint: 0;
 
-$body-bg: #e5e9ec;
+$body-bg: $gray-100;
 
 /*
  * Media queries breakpoints
@@ -79,31 +130,35 @@ $screen-lg-min: 1200px; /* Large screen / wide desktop */
 $content-padding-horizontal: 30px;
 $content-padding-vertical: 40px;
 
-$navbar-height:      50px;
+$navbar-bg-color: #fff;
+$navbar-height:  75px !default;
 $navbar-border-radius: 0;
+$navbar-margin-bottom: -$navbar-height !default;
+
 $sidebar-width-open: 200px;
-$sidebar-width-closed: 50px;
 $sidebar-transition-time: 0.3s !default;
 
-$sidebar-bg-color: #50585a;
-$sidebar-color: #fff;
+$sidebar-bg-color: #fff;
+$sidebar-color: #4d4d4d;
 
-$navbar-margin-bottom: -$navbar-height;
 $breadcrumb-separator: '>';
 $breadcrumb-padding-horizontal: 0;
 $breadcrumb-bg: transparent;
 
 $badge-font-weight: 600;
 
+$breadcrumb-divider: '>';
+$breadcrumb-padding-y: 0;
+$breadcrumb-padding-x: 0;
+$breadcrumb-bg: transparent;
+
 $widget-bg: #fff;
 $widget-title-color: #444;
+$widget-padding-y: 15px;
+$widget-padding-x:  20px;
 
 $btn-inverse-color: #fff;
-$btn-inverse-bg: $sidebar-bg-color;
+$btn-inverse-bg: $gray-700;
 $btn-inverse-border: #414749;
 
-$input-height-small: 30px;
-
-// ===== Colors =====
-
-$primary-gray: gray;
+$input-height-small: 2rem;

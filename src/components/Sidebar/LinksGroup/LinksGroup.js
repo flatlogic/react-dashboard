@@ -1,9 +1,12 @@
 import React, {Component} from 'react';
+import cx from 'classnames';
 import PropTypes from 'prop-types';
 import withStyles from 'isomorphic-style-loader/lib/withStyles';
-import {NavLink} from 'react-router-dom';
-import {Panel} from 'react-bootstrap';
-import {Route} from 'react-router';
+import { NavLink } from 'react-router-dom';
+import { Collapse } from 'reactstrap';
+import { Route } from 'react-router';
+
+import Icon from '../../Icon/Icon';
 
 import s from './LinksGroup.scss';
 
@@ -13,7 +16,7 @@ class LinksGroup extends Component {
     header: PropTypes.node.isRequired,
     headerLink: PropTypes.string,
     childrenLinks: PropTypes.array,
-    iconName: PropTypes.string.isRequired,
+    glyph: PropTypes.string,
     className: PropTypes.string,
   };
   /* eslint-enable */
@@ -22,6 +25,7 @@ class LinksGroup extends Component {
     headerLink: null,
     childrenLinks: null,
     className: '',
+    glyph: null,
   };
 
   constructor(props) {
@@ -33,16 +37,20 @@ class LinksGroup extends Component {
   }
 
   render() {
-    if (!this.props.childrenLinks) {
+    const { className, childrenLinks, headerLink, header, glyph } = this.props;
+    const { isOpen } = this.state;
+    if (!childrenLinks) {
       return (
-        <li className={[s.headerLink, this.props.className].join(' ')}>
+        <li className={cx(s.headerLink, className)}>
           <NavLink
-            to={this.props.headerLink}
+            to={headerLink}
             activeClassName={s.headerLinkActive}
             exact
           >
-            <i className={`glyphicon ${this.props.iconName}`} />
-            {this.props.header}
+            <div>
+              {glyph && <Icon glyph={glyph} />}
+              <span>{header}</span>
+            </div>
           </NavLink>
         </li>
       );
@@ -50,33 +58,32 @@ class LinksGroup extends Component {
     /* eslint-disable */
     return (
       <Route
-        path={this.props.headerLink}
+        path={headerLink}
         children={({match}) => {
-          const expanded = !!match || this.state.isOpen;
           return (
-            <li className={[s.headerLink, this.props.className].join(' ')}>
+            <li className={cx(s.headerLink, className)}>
               <a
-                className={match ? s.headerLinkActive : ''}
-                onClick={() => this.setState({isOpen: !this.state.isOpen})}
+                className={cx({[s.headerLinkActive]: !!match && match.url.indexOf(headerLink) !== -1 })}
+                onClick={() => this.setState({isOpen: !isOpen})}
               >
-                <i className={`glyphicon ${this.props.iconName}`} />
-
-                {this.props.header}
-
-                <b className={['caret', s.caret].join(' ')} />
+                <div>
+                  {glyph && <Icon glyph={glyph} />}
+                  <span>{header}</span>
+                </div>
+                <b className={cx('fa fa-angle-left arrow', s.arrow, {[s.arrowActive]: isOpen})} />
               </a>
               {/* eslint-enable */}
-              <Panel className={s.panel} collapsible expanded={expanded}>
+              <Collapse className={s.panel} isOpen={isOpen}>
                 <ul>
-                  {this.props.childrenLinks &&
-                  this.props.childrenLinks.map(child => (
+                  {childrenLinks &&
+                  childrenLinks.map(child => (
                     <li key={child.name}>
                       <NavLink
                         to={child.link}
                         exact
                         onClick={() =>
                           this.setState({
-                            isOpen: false,
+                            isOpen: true,
                           })
                         }
                         activeClassName={s.headerLinkActive}
@@ -86,7 +93,7 @@ class LinksGroup extends Component {
                     </li>
                   ))}
                 </ul>
-              </Panel>
+              </Collapse>
             </li>
           );
         }}

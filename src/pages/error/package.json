@@ -1,0 +1,6 @@
+{
+  "name": "Error",
+  "version": "0.0.0",
+  "private": true,
+  "main": "./Error.js"
+}

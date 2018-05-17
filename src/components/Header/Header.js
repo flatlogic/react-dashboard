@@ -8,20 +8,29 @@
  */
 
 import { connect } from 'react-redux';
+import cx from 'classnames';
 import React from 'react';
 import PropTypes from 'prop-types';
 import withStyles from 'isomorphic-style-loader/lib/withStyles';
 import {
   Navbar,
-  MenuItem,
   Nav,
-  NavDropdown,
   NavItem,
-  Glyphicon,
-  Badge,
-} from 'react-bootstrap';
-import { logoutUser } from '../../actions/user';
+  Button,
+  Dropdown,
+  DropdownToggle,
+  DropdownMenu,
+  DropdownItem,
+  Input,
+  InputGroup,
+  InputGroupAddon,
+} from 'reactstrap';
+import { NavLink } from 'react-router-dom';
 
+import Icon from '../Icon';
+
+import photo from '../../images/photo.jpg';
+import { logoutUser } from '../../actions/user';
 import s from './Header.scss';
 
 class Header extends React.Component {
@@ -34,50 +43,74 @@ class Header extends React.Component {
     sidebarToggle: () => {},
   };
 
-  doLogout() {
+  state = { isOpen: false };
+  
+  toggleDropdown = () => {
+    this.setState(prevState => ({
+      isOpen: !prevState.isOpen,
+    }));
+  }
+
+  doLogout = () => {
     this.props.dispatch(logoutUser());
   }
 
   render() {
+    const {isOpen} = this.state;
     return (
-      <Navbar fluid>
-        <Nav pullLeft>
+      <Navbar className={s.root}>
+        <Nav>
           <NavItem
-            className={['visible-xs', s.menuButton].join(' ')}
-            eventKey={1}
+            className={cx('visible-xs', s.headerIcon)}
             href="#"
             onClick={this.props.sidebarToggle}
           >
-            <Glyphicon glyph="menu-hamburger" />
+            <i className="fa fa-bars fa-2x text-muted" />
+          </NavItem>
+          <NavItem>
+            <InputGroup>
+              <Input placeholder="Search for..." />
+              <InputGroupAddon addonType="append" className="px-2">
+                <i className="fa fa-search text-muted" />
+              </InputGroupAddon>
+            </InputGroup>
           </NavItem>
         </Nav>
-        <Nav pullRight>
-          <NavDropdown
-            eventKey={1}
-            title={
-              <span>
-                <Glyphicon glyph="user" className="mr-sm" />
-                John <span className="fw-semi-bold">Willington</span>
-                <Badge className="ml-sm badge-warning">4</Badge>
-              </span>
-            }
-            noCaret
-            id="basic-nav-dropdown"
-          >
-            <MenuItem eventKey={3.1}>Notifications</MenuItem>
-            <MenuItem eventKey={3.2}>Action</MenuItem>
-            <MenuItem eventKey={3.3}>Something else here</MenuItem>
-            <MenuItem divider />
-            <MenuItem eventKey={3.4}>Separated link</MenuItem>
-          </NavDropdown>
-          {/* eslint-disable */}
-          <NavItem
-            className="hidden-xs"
-            eventKey={2}
-            onClick={this.doLogout.bind(this)}
-          >
-            {/* eslint-enable */}
-            Logout
+        <Nav className="ml-auto">
+          <Dropdown isOpen={isOpen} toggle={this.toggleDropdown}>
+            <DropdownToggle nav>
+              <img className={cx('rounded-circle mr-sm', s.adminPhoto)} src={photo} alt="administrator" />
+              <span className="text-body">Administrator</span>
+              <i className={cx('fa fa-angle-down ml-sm', s.arrow, {[s.arrowActive]: isOpen})} />
+            </DropdownToggle>
+            <DropdownMenu style={{width: '100%'}}>
+              <DropdownItem>
+                <NavLink to="/app/posts">Posts</NavLink>
+              </DropdownItem>
+              <DropdownItem>
+                <NavLink to="/app/profile">Profile</NavLink>
+              </DropdownItem>
+              <DropdownItem onClick={this.doLogout}>
+                Logout
+              </DropdownItem>
+            </DropdownMenu>
+          </Dropdown>
+          <NavItem className={cx('', s.headerIcon)}>
+            <Button>
+              <Icon glyph="mail"/>
+              <span>8</span>
+            </Button>
+          </NavItem>
+          <NavItem className={cx('', s.headerIcon)}>
+            <Button>
+              <Icon glyph="notification"/>
+              <span>13</span>
+            </Button>
+          </NavItem>
+          <NavItem className={cx('', s.headerIcon)}>
+            <Button>
+              <Icon glyph="settings"/>
+            </Button>
           </NavItem>
         </Nav>
       </Navbar>
