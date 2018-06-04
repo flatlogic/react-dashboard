@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import withStyles from 'isomorphic-style-loader/lib/withStyles';
 import {
   Row,
   Col,
@@ -18,6 +19,7 @@ import {
 import { Sparklines, SparklinesBars } from 'react-sparklines';
 
 import Widget from '../../components/Widget';
+import s from './Static.scss';
 
 class Tables extends Component {
 
@@ -61,7 +63,7 @@ class Tables extends Component {
           picture: require('../../images/tables/3.jpg'), // eslint-disable-line global-require
           description: 'Down the road',
           label: {
-            colorClass: 'danger',
+            colorClass: 'success',
             text: 'INFO!',
           },
           info: {
@@ -151,7 +153,7 @@ class Tables extends Component {
                 Table <span className="fw-semi-bold">Styles</span>
               </h5>} settings close
             >
-              <Table>
+              <Table borderless className={s.mainTable}>
                 <thead>
                   <tr>
                     <th className="hidden-sm-down">#</th>
@@ -169,7 +171,7 @@ class Tables extends Component {
                     <tr key={row.id}>
                       <td>{row.id}</td>
                       <td>
-                        <img className="img-rounded" src={row.picture} alt="" height="50" />
+                        <img className="img-rounded" src={row.picture} alt="" height="60" />
                       </td>
                       <td>
                         {row.description}
@@ -201,8 +203,9 @@ class Tables extends Component {
                       </td>
                       <td className="width-150">
                         <Progress
-                          color={row.progress.colorClass} value={row.progress.percent}
-                          className="progress-sm mb-xs"
+                          style={{height: '7px'}}
+                          color="success" value={row.progress.percent}
+                          className="progress-sm mb-xs rounded mt-xs"
                         />
                       </td>
                     </tr>,
@@ -212,7 +215,7 @@ class Tables extends Component {
               </Table>
               <div className="clearfix">
                 <div className="float-right">
-                  <Button color="primary" className="mr-xs" size="sm">Send to...</Button>
+                  <Button color="danger" className="mr-xs" size="sm">Send to...</Button>
                   <UncontrolledButtonDropdown>
                     <DropdownToggle color="default" className="mr-xs" size="sm" caret>Clear</DropdownToggle>
                     <DropdownMenu right>
@@ -599,4 +602,4 @@ class Tables extends Component {
 
 }
 
-export default Tables;
+export default withStyles(s)(Tables);

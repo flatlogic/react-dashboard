@@ -44,7 +44,7 @@ class Header extends React.Component {
   };
 
   state = { isOpen: false };
-  
+
   toggleDropdown = () => {
     this.setState(prevState => ({
       isOpen: !prevState.isOpen,
@@ -61,7 +61,7 @@ class Header extends React.Component {
       <Navbar className={s.root}>
         <Nav>
           <NavItem
-            className={cx('visible-xs', s.headerIcon)}
+            className={cx('visible-xs mr-4 d-sm-up-none', s.headerIcon, s.sidebarToggler)}
             href="#"
             onClick={this.props.sidebarToggle}
           >
@@ -71,12 +71,29 @@ class Header extends React.Component {
             <InputGroup>
               <Input placeholder="Search for..." />
               <InputGroupAddon addonType="append" className="px-2">
-                <i className="fa fa-search text-muted" />
+                <i className="fa fa-search" />
               </InputGroupAddon>
             </InputGroup>
           </NavItem>
         </Nav>
         <Nav className="ml-auto">
+          <NavItem className={cx('', s.headerIcon)}>
+            <Button>
+              <Icon glyph="mail"/>
+              <span>8</span>
+            </Button>
+          </NavItem>
+          <NavItem className={cx('', s.headerIcon)}>
+            <Button>
+              <Icon glyph="notification"/>
+              <span>13</span>
+            </Button>
+          </NavItem>
+          <NavItem className={cx('', s.headerIcon)}>
+            <Button>
+              <Icon glyph="settings"/>
+            </Button>
+          </NavItem>
           <Dropdown isOpen={isOpen} toggle={this.toggleDropdown}>
             <DropdownToggle nav>
               <img className={cx('rounded-circle mr-sm', s.adminPhoto)} src={photo} alt="administrator" />
@@ -95,23 +112,6 @@ class Header extends React.Component {
               </DropdownItem>
             </DropdownMenu>
           </Dropdown>
-          <NavItem className={cx('', s.headerIcon)}>
-            <Button>
-              <Icon glyph="mail"/>
-              <span>8</span>
-            </Button>
-          </NavItem>
-          <NavItem className={cx('', s.headerIcon)}>
-            <Button>
-              <Icon glyph="notification"/>
-              <span>13</span>
-            </Button>
-          </NavItem>
-          <NavItem className={cx('', s.headerIcon)}>
-            <Button>
-              <Icon glyph="settings"/>
-            </Button>
-          </NavItem>
         </Nav>
       </Navbar>
     );

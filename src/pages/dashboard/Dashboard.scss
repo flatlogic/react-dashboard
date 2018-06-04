@@ -10,5 +10,16 @@
 @import '../../styles/app';
 
 .root {
-  // some styles
+  // styles here
+}
+
+.usersTable {
+  th,
+  td {
+    border-color: $white;
+  }
+
+  thead {
+    border-bottom: 1px solid $gray-200;
+  }
 }

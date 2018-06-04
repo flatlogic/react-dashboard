@@ -193,3 +193,25 @@ pre {
     border-radius: 0;
   }
 }
+
+// List
+
+.list-group {
+  padding: 0 1.25rem;
+  background: $white;
+
+  .list-group-item {
+    border: none;
+    padding: 1.25rem 0;
+    color: theme-color('info');
+    border-top: 1px solid $gray-200;
+
+    &:hover {
+      z-index: 0;
+    }
+
+    &:first-child {
+      border-top: none;
+    }
+  }
+}
