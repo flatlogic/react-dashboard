@@ -78,7 +78,7 @@ For any additional information please refer to [Flatlogic homepage](https://flat
 - Like our page on [Facebook](https://www.facebook.com/flatlogic/) :thumbsup:
 
 ## Premium themes
-Looking for premium themes and templates? Check out our products at [flatlogic.com](https://flatlogic.com/products).
+Looking for premium themes and templates? Check out more [admin dashboard templates at flatlogic.com](https://flatlogic.com/admin-dashboards).
 
 ## License
 
