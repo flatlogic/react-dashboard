@@ -178,7 +178,9 @@ app.get('*', async (req, res, next) => {
     const data = {
       title: 'React Dashboard',
       description:
-        'React Dashboard Starter project based on react-router 4, redux, graphql, bootstrap',
+        'React Admin Starter project based on react-router 4, redux, graphql, bootstrap 4',
+      keywords: 'react dashboard, react admin template, react dashboard open source, react starter, react admin, react themes, react dashboard template',
+      author: 'Flatlogic LLC'
     };
     data.styles = [{ id: 'css', cssText: [...css].join('') }];
     data.scripts = [assets.vendor.js, assets.client.js];
