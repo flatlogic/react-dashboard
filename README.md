@@ -3,9 +3,9 @@ built with [React](https://facebook.github.io/react/), [Bootstrap](http://getboo
 [Redux](http://redux.js.org/) and [GraphQL](http://graphql.org/) based on
 [React Starter Kit](https://www.reactstarterkit.com) and latest industry best practices.
 
-[Demo](https://flatlogic-react-dashboard.herokuapp.com/). Use following credentials: user/password.
+[Demo](https://flatlogic.com/admin-dashboards/react-dashboard/demo). Use following credentials: user/password.
 
-[![react-dashboard](screenshot.png)](https://flatlogic-react-dashboard.herokuapp.com/)
+[![react-dashboard](screenshot.png)](https://flatlogic.com/admin-dashboards/react-dashboard/demo)
 
 This seed project is a sort of a free version of a template that may be found on
 [Themeforest](https://themeforest.net/category/site-templates/admin-templates)
