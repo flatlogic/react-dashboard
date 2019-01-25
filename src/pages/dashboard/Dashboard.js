@@ -46,7 +46,7 @@ class Dashboard extends Component {
     isDropdownOpened: false
   };
 
-  componentWillMount() {
+  componentDidMount() {
     this.props.dispatch(fetchPosts());
   }
 
@@ -217,6 +217,11 @@ class Dashboard extends Component {
                 )}
                 </tbody>
               </table>
+              <div className="d-flex justify-content-end">
+                <Link to="/app/posts" className="btn btn-default">
+                  View all Posts <Badge className="ml-xs" color="danger">13</Badge>
+                </Link>
+              </div>
             </Widget>
           </Col>
           <Col sm={6}>

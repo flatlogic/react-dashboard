@@ -1,7 +1,7 @@
 /**
- * React Starter Kit (https://www.reactstarterkit.com/)
+ * Flatlogic Dashboards (https://flatlogic.com/admin-dashboards)
  *
- * Copyright © 2014-present Kriasoft, LLC. All rights reserved.
+ * Copyright © 2015-present Flatlogic, LLC. All rights reserved.
  *
  * This source code is licensed under the MIT license found in the
  * LICENSE.txt file in the root directory of this source tree.
@@ -98,7 +98,7 @@ app.post('/login', (req, res) => {
     });
     res.json({ id_token: token });
   } else {
-    res.status(401).json({ message: 'To login use user/password' });
+    res.status(401).json({ message: 'To login use user: "user", password: "password".' });
   }
 });
 

@@ -41,6 +41,10 @@ const Sidebar = () => (
         headerLink="/app/components"
         childrenLinks={[
           {
+            name: 'Buttons',
+            link: '/app/components/buttons',
+          },
+          {
             name: 'Charts',
             link: '/app/components/charts',
           },

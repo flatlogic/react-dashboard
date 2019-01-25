@@ -1,7 +1,7 @@
 /**
- * React Starter Kit (https://www.reactstarterkit.com/)
+ * Flatlogic Dashboards (https://flatlogic.com/admin-dashboards)
  *
- * Copyright © 2014-present Kriasoft, LLC. All rights reserved.
+ * Copyright © 2015-present Flatlogic, LLC. All rights reserved.
  *
  * This source code is licensed under the MIT license found in the
  * LICENSE.txt file in the root directory of this source tree.
@@ -14,21 +14,21 @@ import { makeDir, moveDir, cleanDir } from './lib/fs';
 import run from './run';
 
 // GitHub Pages
-const remote = {
-  name: 'github',
-  url: 'https://github.com/<user>/<repo>.git',
-  branch: 'gh-pages',
-  website: 'https://<user>.github.io/<repo>/',
-  static: true,
-};
+// const remote = {
+//   name: 'github',
+//   url: 'https://github.com/flatlogic-react-dashboard.git',
+//   branch: 'gh-pages',
+//   website: 'https://<user>.github.io/<repo>/',
+//   static: true,
+// };
 
 // Heroku
-// const remote = {
-//   name: 'heroku',
-//   url: 'https://git.heroku.com/<app>.git',
-//   branch: 'master',
-//   website: 'https://<app>.herokuapp.com',
-// };
+const remote = {
+  name: 'heroku',
+  url: 'https://git.heroku.com/flatlogic-react-dashboard.git',
+  branch: 'master',
+  website: 'https://flatlogic-react-dashboard.herokuapp.com',
+};
 
 // Azure Web Apps
 // const remote = {

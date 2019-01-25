@@ -1,7 +1,7 @@
 /**
- * React Starter Kit (https://www.reactstarterkit.com/)
+ * Flatlogic Dashboards (https://flatlogic.com/admin-dashboards)
  *
- * Copyright © 2014-present Kriasoft, LLC. All rights reserved.
+ * Copyright © 2015-present Flatlogic, LLC. All rights reserved.
  *
  * This source code is licensed under the MIT license found in the
  * LICENSE.txt file in the root directory of this source tree.
@@ -28,7 +28,7 @@ class Footer extends React.Component {
     return (
       <footer className={cx(s.root, this.props.className)}>
         <div className={s.container}>
-          <span>© 2017 &nbsp;Flatlogic LLC </span>
+          <span>© 2019 &nbsp;Flatlogic LLC </span>
           <span className={s.spacer}>·</span>
           <Link to="/app/tos">Terms of Service</Link>
           <span className={s.spacer}>·</span>
