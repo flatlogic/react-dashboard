@@ -3,9 +3,14 @@
   "version": "0.0.0",
   "private": true,
   "engines": {
-    "node": "8.10.0"
+    "node": "^8.10.0"
   },
-  "browserslist": [">1%", "last 4 versions", "Firefox ESR", "not ie < 9"],
+  "browserslist": [
+    ">1%",
+    "last 4 versions",
+    "Firefox ESR",
+    "not ie < 9"
+  ],
   "dependencies": {
     "@babel/polyfill": "7.0.0-beta.32",
     "awesome-bootstrap-checkbox": "^1.0.1",
@@ -145,9 +150,18 @@
     "jquery": "3.3.1"
   },
   "lint-staged": {
-    "*.{js,jsx}": ["eslint --fix", "git add --force"],
-    "*.{json,graphql}": ["prettier --write", "git add --force"],
-    "*.{css,less,scss,sss}": ["stylelint --fix", "git add --force"]
+    "*.{js,jsx}": [
+      "eslint --fix",
+      "git add --force"
+    ],
+    "*.{json,graphql}": [
+      "prettier --write",
+      "git add --force"
+    ],
+    "*.{css,less,scss,sss}": [
+      "stylelint --fix",
+      "git add --force"
+    ]
   },
   "scripts": {
     "precommit": "lint-staged",
