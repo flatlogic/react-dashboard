@@ -56,7 +56,7 @@
     "redux": "^4.0.4",
     "redux-logger": "^3.0.1",
     "redux-thunk": "^2.3.0",
-    "sequelize": "^5.14.0",
+    "sequelize": "^5.15.1",
     "serialize-javascript": "^1.7.0",
     "source-map-support": "^0.5.13",
     "sqlite3": "^4.0.9",
