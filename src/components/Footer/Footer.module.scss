@@ -1,0 +1,29 @@
+/**
+ * Flatlogic Dashboards (https://flatlogic.com/admin-dashboards)
+ *
+ * Copyright © 2015-present Flatlogic, LLC. All rights reserved.
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE.txt file in the root directory of this source tree.
+ */
+
+ @import '../../styles/app';
+
+ .root {
+   position: absolute;
+   bottom: 0;
+   left: 0;
+   right: 0;
+   font-size: $font-size-small - 1;
+ }
+ 
+ .container {
+   margin: 0 auto;
+   padding: 7px $content-padding-horizontal;
+ }
+ 
+ .spacer {
+   display: inline-block;
+   padding: 0 5px;
+ }
+ 

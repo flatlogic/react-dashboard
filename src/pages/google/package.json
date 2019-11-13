@@ -1,0 +1,6 @@
+{
+  "name": "Google",
+  "version": "0.0.0",
+  "private": true,
+  "main": "./Google.js"
+}

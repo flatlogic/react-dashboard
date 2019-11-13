@@ -1,0 +1,32 @@
+@import '../../styles/app';
+
+.root {
+  height: 100%;
+}
+
+.wrap {
+  min-height: 100%;
+  position: absolute;
+  left: 0;
+  right: 0;
+  transition: left 0.3s ease-in-out, right 0.3s ease-in-out;
+
+  @include media-breakpoint-up(md) {
+    left: $sidebar-width-open;
+    right: 0;
+  }
+}
+
+.sidebarOpen {
+  @include media-breakpoint-down(sm) {
+    left: $sidebar-width-open;
+    right: -$sidebar-width-open;
+  }
+}
+
+.content {
+  min-height: 100%;
+  // 20px for footer height
+  padding: #{$navbar-height + $content-padding-vertical} $content-padding-horizontal ($content-padding-vertical + 20px);
+  background-color: $body-bg;
+}

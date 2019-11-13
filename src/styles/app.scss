@@ -1,0 +1,12 @@
+/**
+ * Customized version of bootstrap using variables from _variables.scss.
+ * This file is loaded via separate loader thus allowing to use original bootstrap classes (e.g. .btn-default) through out the app.
+ */
+ 
+
+ @import '../../node_modules/bootstrap/scss/functions';
+ @import '_variables';
+ @import '../../node_modules/bootstrap/scss/variables';
+ @import '../../node_modules/bootstrap/scss/mixins';
+ @import '_mixins';
+ 

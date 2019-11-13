@@ -1,0 +1,15 @@
+@import '../../styles/app';
+
+.root {
+  padding-top: 25vh;
+}
+
+.widget {
+  max-width: 360px;
+  margin: 0 auto;
+  padding: 30px !important;
+
+  :global .form-control {
+    font-size: 14px;
+  }
+}

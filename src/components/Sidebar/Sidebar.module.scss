@@ -1,0 +1,29 @@
+@import '../../styles/app';
+
+.root {
+  width: $sidebar-width-open;
+  position: fixed;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  background-color: $sidebar-bg-color;
+  color: $sidebar-color;
+}
+
+.logo {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: $navbar-height;
+  width: 100%;
+  background: $logo-gradient;
+
+  a img {
+    width: $sidebar-width-open - 60px;
+  }
+}
+
+.nav {
+  padding: 10px 0;
+  overflow-y: auto;
+}

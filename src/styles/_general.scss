@@ -1,0 +1,27 @@
+html {
+  font-weight: 100;
+  font-size: 14px;
+}
+
+body {
+  overflow-x: hidden;
+}
+
+html,
+body,
+.app {
+  height: 100%;
+}
+
+a {
+  cursor: pointer;
+  transition: color 0.1s ease-in-out, background-color 0.1s ease-in-out;
+}
+
+th {
+  font-weight: 600;
+}
+
+label {
+  font-weight: 600;
+}

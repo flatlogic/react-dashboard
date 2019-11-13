@@ -1,0 +1,45 @@
+$margin-vertical-variants: (xlg: 40px, lg: $line-height-computed*3/2, md: $line-height-computed, sm: $line-height-computed/2, xs: $line-height-computed/4, 0: 0);
+$margin-horizontal-variants: (lg: 20px, md: 15px, sm: 10px, xs: 5px, 0: 0);
+
+@include property-variants('.mt', 'margin-top', $margin-vertical-variants);
+@include property-variants('.mb', 'margin-bottom', $margin-vertical-variants);
+@include property-variants('.ml', 'margin-left', $margin-horizontal-variants);
+@include property-variants('.mr', 'margin-right', $margin-horizontal-variants);
+
+$opacity-variants: (10: 0.1, 20: 0.2, 30: 0.3, 40: 0.4, 50: 0.5, 60: 0.6, 70: 0.7, 80: 0.8, 90: 0.9);
+
+@include property-variants('.opacity', 'opacity', $opacity-variants);
+
+.fw-thin {
+  font-weight: 300;
+}
+
+.fw-normal {
+  font-weight: 400;
+}
+
+.fw-semi-bold {
+  font-weight: 600;
+}
+
+.fw-bold {
+  font-weight: 700;
+}
+
+.fs-sm {
+  font-size: $font-size-small;
+}
+
+.text-default {
+  color: $text-color;
+}
+
+@include bg-variant('.bg-dark', $text-color);
+
+.td-underline {
+  text-decoration: underline;
+}
+
+.widget-table-overflow {
+  margin: 0 #{-$widget-padding-x} #{-$widget-padding-y};
+}
