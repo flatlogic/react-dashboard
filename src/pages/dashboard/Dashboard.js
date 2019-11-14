@@ -20,7 +20,7 @@ import {
   DropdownItem,
   Table
 } from 'reactstrap';
-
+import { mock } from './mock'
 
 import Widget from '../../components/Widget';
 
@@ -46,7 +46,9 @@ class Dashboard extends Component {
   };
 
   componentDidMount() {
-    this.props.dispatch(fetchPosts());
+    if(process.env.NODE_ENV === "development") {
+      this.props.dispatch(fetchPosts());      
+    }
   }
 
   formatDate = (str) => {
@@ -205,9 +207,14 @@ class Dashboard extends Component {
                 ))}
                 {this.props.posts &&
                 !this.props.posts.length && (
-                  <tr>
-                    <td colSpan="100">No posts yet</td>
-                  </tr>
+                  mock.map(post => (
+                    <tr key={post.id}>
+                      <td>{post.updatedAt}</td>
+                      <td>
+                        <Link to="/app/posts">{post.title}</Link>
+                      </td>
+                    </tr>
+                  ))
                 )}
                 {this.props.isFetching && (
                   <tr>

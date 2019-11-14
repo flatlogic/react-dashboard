@@ -19,16 +19,15 @@ const schemaConfig = {
   }),
 };
 
-// for demo purposes forbid mutations in production environment
+// for demo purposes forbid mutations in production environment, if you want to enable mutation uncomment code below
 
-if(process.env.NODE_ENV === "development") {
-  schemaConfig.mutation = new ObjectType({
-    name: 'Mutation',
-    fields: {
-      addPost,
-    },
-  });
-}
+// schemaConfig.mutation = new ObjectType({
+//   name: 'Mutation',
+//   fields: {
+//     addPost,
+//   },
+// });
+
 
 
 const schema = new Schema(schemaConfig);

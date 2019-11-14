@@ -7,6 +7,7 @@ import {
   Breadcrumb,
   BreadcrumbItem,
 } from 'reactstrap';
+import { mock } from './mock'
 
 import s from './PostList.module.scss';
 import Widget from '../../../components/Widget';
@@ -30,7 +31,9 @@ class PostList extends React.Component {
   };
 
   componentDidMount() {
-    this.props.dispatch(fetchPosts());
+    if(process.env.NODE_ENV === "development") {
+      this.props.dispatch(fetchPosts());      
+    }
   }
 
   formatDate = (str) => {
@@ -80,9 +83,13 @@ class PostList extends React.Component {
               ))}
               {this.props.posts &&
               !this.props.posts.length && (
-                <tr>
-                  <td colSpan="100">No posts yet</td>
-                </tr>
+                mock.map(post => (
+                  <tr key={post.id}>
+                    <td>{post.title}</td>
+                    <td>{post.content.slice(0, 80)}...</td>
+                    <td>{post.updatedAt}</td>
+                  </tr>
+                ))
               )}
               {this.props.isFetching && (
                 <tr>
