@@ -20,7 +20,6 @@ import {
   DropdownItem,
   Table
 } from 'reactstrap';
-import uuid from 'uuid/v4'
 
 
 import Widget from '../../components/Widget';
@@ -48,6 +47,10 @@ class Dashboard extends Component {
 
   componentDidMount() {
     this.props.dispatch(fetchPosts());
+  }
+
+  formatDate = (str) => {
+    return str.replace(/,.*$/,"");
   }
 
   toggleDropdown = () => {
@@ -194,13 +197,13 @@ class Dashboard extends Component {
                 {this.props.posts &&
                 this.props.posts.map(post => (
                   <tr key={post.id}>
-                    <td>{new Date(post.updatedAt).toLocaleString()}</td>
+                    <td>{this.formatDate(new Date(post.updatedAt).toLocaleString())}</td>
                     <td>
                       <Link to="/app/posts">{post.title}</Link>
                     </td>
                   </tr>
                 ))}
-                {/* {this.props.posts &&
+                {this.props.posts &&
                 !this.props.posts.length && (
                   <tr>
                     <td colSpan="100">No posts yet</td>
@@ -210,31 +213,7 @@ class Dashboard extends Component {
                   <tr>
                     <td colSpan="100">Loading...</td>
                   </tr>
-                )} */}
-                  <tr key={uuid()}>
-                    <td>{new Date().toLocaleString()}</td>
-                    <td>
-                      <Link to="/app/posts">Post title</Link>
-                    </td>
-                  </tr>
-                  <tr key={uuid()}>
-                    <td>{new Date().toLocaleString()}</td>
-                    <td>
-                      <Link to="/app/posts">Post title</Link>
-                    </td>
-                  </tr>
-                  <tr key={uuid()}>
-                    <td>{new Date().toLocaleString()}</td>
-                    <td>
-                      <Link to="/app/posts">Post title</Link>
-                    </td>
-                  </tr>
-                  <tr key={uuid()}>
-                    <td>{new Date().toLocaleString()}</td>
-                    <td>
-                      <Link to="/app/posts">Post title</Link>
-                    </td>
-                  </tr>
+                )}
                 </tbody>
               </table>
               <div className="d-flex justify-content-end">

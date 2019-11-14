@@ -11,85 +11,74 @@ import {
   Col,
   Form
 } from 'reactstrap';
-import Widget from '../../components/Widget';
-import { loginUser, receiveToken } from '../../actions/user';
-import jwt from "jsonwebtoken";
 import s from './Login.module.scss';
-import config from "../../config";
+import Widget from '../../components/Widget';
 import Footer from "../../components/Footer";
+import { loginUser } from '../../actions/user';
+import jwt from 'jsonwebtoken';
+import config from '../../config'
 
 class Login extends React.Component {
-    static propTypes = {
-        dispatch: PropTypes.func.isRequired,
+  static propTypes = {
+    dispatch: PropTypes.func.isRequired,
+    isAuthenticated: PropTypes.bool,
+    isFetching: PropTypes.bool,
+    location: PropTypes.any, // eslint-disable-line
+    errorMessage: PropTypes.string,
+  };
+
+  static defaultProps = {
+    isAuthenticated: false,
+    isFetching: false,
+    location: {},
+    errorMessage: null,
+  };
+
+  static isAuthenticated(token) {
+    // We check if app runs with backend mode
+    if (!config.isBackend && token) return true;
+    if (!token) return;
+    const date = new Date().getTime() / 1000;
+    const data = jwt.decode(token);
+    return date < data.exp;
+}
+
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      login: 'user',
+      password: 'password',
+    };
+  }
+
+  changeLogin = (event) => {
+    this.setState({login: event.target.value});
+  }
+
+  changePassword = (event) => {
+    this.setState({password: event.target.value});
+  }
+
+  doLogin = (e) => {
+    this.props.dispatch(
+      loginUser({
+        login: this.state.login,
+        password: this.state.password,
+      }),
+    );
+    e.preventDefault();
+  }
+
+  render() {
+    const {from} = this.props.location.state || {
+      from: {pathname: '/app'},
     };
 
-    static isAuthenticated(token) {
-        // We check if app runs with backend mode
-        if (!config.isBackend && token) return true;
-        if (!token) return;
-        const date = new Date().getTime() / 1000;
-        const data = jwt.decode(token);
-        return date < data.exp;
+    if (this.props.isAuthenticated) {
+      // cant access login page while logged in
+      return <Redirect to={from} />;
     }
-
-    constructor(props) {
-        super(props);
-
-        this.state = {
-            email: 'admin@flatlogic.com',
-            password: 'password',
-        };
-
-        this.doLogin = this.doLogin.bind(this);
-        this.googleLogin = this.googleLogin.bind(this);
-        this.microsoftLogin = this.microsoftLogin.bind(this);
-        this.changeEmail = this.changeEmail.bind(this);
-        this.changePassword = this.changePassword.bind(this);
-        this.signUp = this.signUp.bind(this);
-    }
-
-    changeEmail(event) {
-        this.setState({ email: event.target.value });
-    }
-
-    changePassword(event) {
-        this.setState({ password: event.target.value });
-    }
-
-    doLogin(e) {
-        e.preventDefault();
-        this.props.dispatch(loginUser({ email: this.state.email, password: this.state.password }));
-    }
-
-    googleLogin() {
-        this.props.dispatch(loginUser({social: "google"}));
-    }
-
-    microsoftLogin() {
-        this.props.dispatch(loginUser({social: "microsoft"}));
-    }
-
-    componentDidMount() {
-        const params = new URLSearchParams(this.props.location.search);
-        const token = params.get('token');
-        if (token) {
-            this.props.dispatch(receiveToken(token));
-        }
-    }
-
-    signUp() {
-        this.props.history.push('/register');
-    }
-
-    render() {
-        const { from } = this.props.location.state || { from: { pathname: '/app' } }; // eslint-disable-line
-
-        // cant access login page while logged in
-        if (Login.isAuthenticated(localStorage.getItem('token'))) {
-            return (
-                <Redirect to={from} />
-            );
-        }
 
         return (
           <div className={s.root}>

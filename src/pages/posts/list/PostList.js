@@ -7,7 +7,6 @@ import {
   Breadcrumb,
   BreadcrumbItem,
 } from 'reactstrap';
-import uuid from 'uuid/v4'
 
 import s from './PostList.module.scss';
 import Widget from '../../../components/Widget';
@@ -30,8 +29,12 @@ class PostList extends React.Component {
     description: 'About description',
   };
 
-  componentWillMount() {
+  componentDidMount() {
     this.props.dispatch(fetchPosts());
+  }
+
+  formatDate = (str) => {
+    return str.replace(/,.*$/,"")
   }
 
   render() {
@@ -72,10 +75,10 @@ class PostList extends React.Component {
                 <tr key={post.id}>
                   <td>{post.title}</td>
                   <td>{post.content.slice(0, 80)}...</td>
-                  <td>{new Date(post.updatedAt).toLocaleString()}</td>
+                  <td>{this.formatDate(new Date(post.updatedAt).toLocaleString())}</td>
                 </tr>
               ))}
-              {/* {this.props.posts &&
+              {this.props.posts &&
               !this.props.posts.length && (
                 <tr>
                   <td colSpan="100">No posts yet</td>
@@ -85,32 +88,7 @@ class PostList extends React.Component {
                 <tr>
                   <td colSpan="100">Loading...</td>
                 </tr>
-              )} */}
-                <tr key={uuid()}>
-                  <td>Post title</td>
-                  <td>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Possimus tempora repellendus provident similique rerum sit unde ex veritatis itaque a....</td>
-                  <td>{new Date().toLocaleString()}</td>
-                </tr>
-                <tr key={uuid()}>
-                  <td>Post title</td>
-                  <td>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Possimus tempora repellendus provident similique rerum sit unde ex veritatis itaque a....</td>
-                  <td>{new Date().toLocaleString()}</td>
-                </tr>
-                <tr key={uuid()}>
-                  <td>Post title</td>
-                  <td>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Possimus tempora repellendus provident similique rerum sit unde ex veritatis itaque a....</td>
-                  <td>{new Date().toLocaleString()}</td>
-                </tr>
-                <tr key={uuid()}>
-                  <td>Post title</td>
-                  <td>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Possimus tempora repellendus provident similique rerum sit unde ex veritatis itaque a....</td>
-                  <td>{new Date().toLocaleString()}</td>
-                </tr>
-                <tr key={uuid()}>
-                  <td>Post title</td>
-                  <td>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Possimus tempora repellendus provident similique rerum sit unde ex veritatis itaque a....</td>
-                  <td>{new Date().toLocaleString()}</td>
-                </tr>
+              )}
               </tbody>
             </Table>
           </div>

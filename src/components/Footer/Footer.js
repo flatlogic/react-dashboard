@@ -33,7 +33,7 @@ class Footer extends React.Component {
           <span className={s.spacer}>·</span>
           <Link to="/app/privacy">Privacy Policy</Link>
           <span className={s.spacer}>·</span>
-          <Link to="/not-found">Support</Link>
+          <Link to="/app/not-found">Support</Link>
         </div>
       </footer>
     );

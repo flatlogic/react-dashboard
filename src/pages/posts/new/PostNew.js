@@ -90,7 +90,7 @@ class PostNew extends React.Component {
             >
               <Form onSubmit={this.doCreatePost}>
                 {this.props.message && (
-                  <Alert className="alert-sm" bsStyle="info">
+                  <Alert className="alert-sm" bsstyle="info">
                     {this.props.message}
                   </Alert>
                 )}
