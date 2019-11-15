@@ -48,8 +48,15 @@ in [package.json](../package.json) file.
 
 This command will start the app with simultaneously with express server,
 set up your database, start local server XAMPP, opensever, or other tool
-to start database, connect to it in file src > data > sequelize.js.
-Also go to src > data > schema.js and enable mutation. This preparation
+to start database, connect to it in file 
+```shell
+src > data > sequelize.js.
+```
+Also go to  
+```shell
+src > data > schema.js 
+```
+and enable mutation. This preparation
 will enable to realize CRUD operations locally
 
 
