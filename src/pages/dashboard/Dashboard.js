@@ -3,7 +3,6 @@ import cx from 'classnames';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
-import withStyles from 'isomorphic-style-loader/lib/withStyles';
 import {
   Row,
   Col,
@@ -21,12 +20,12 @@ import {
   DropdownItem,
   Table
 } from 'reactstrap';
-
+import { mock } from './mock'
 
 import Widget from '../../components/Widget';
 
 import { fetchPosts } from '../../actions/posts';
-import s from './Dashboard.scss';
+import s from './Dashboard.module.scss';
 
 class Dashboard extends Component {
   /* eslint-disable */
@@ -47,7 +46,13 @@ class Dashboard extends Component {
   };
 
   componentDidMount() {
-    this.props.dispatch(fetchPosts());
+    if(process.env.NODE_ENV === "development") {
+      this.props.dispatch(fetchPosts());      
+    }
+  }
+
+  formatDate = (str) => {
+    return str.replace(/,.*$/,"");
   }
 
   toggleDropdown = () => {
@@ -175,11 +180,7 @@ class Dashboard extends Component {
               title={
                 <div>
                   <div className="pull-right mt-n-xs">
-                    {/* eslint-disable */}
-                    <a href="#" className="td-underline fs-sm">
-                      Options
-                    </a>
-                    {/* eslint-enable */}
+                    <Link to="/app/main" className="td-underline fs-sm">Options</Link>
                   </div>
                   <h5 className="mt-0 mb-0">
                     Recent posts{' '}
@@ -198,7 +199,7 @@ class Dashboard extends Component {
                 {this.props.posts &&
                 this.props.posts.map(post => (
                   <tr key={post.id}>
-                    <td>{new Date(post.updatedAt).toLocaleString()}</td>
+                    <td>{this.formatDate(new Date(post.updatedAt).toLocaleString())}</td>
                     <td>
                       <Link to="/app/posts">{post.title}</Link>
                     </td>
@@ -206,9 +207,14 @@ class Dashboard extends Component {
                 ))}
                 {this.props.posts &&
                 !this.props.posts.length && (
-                  <tr>
-                    <td colSpan="100">No posts yet</td>
-                  </tr>
+                  mock.map(post => (
+                    <tr key={post.id}>
+                      <td>{post.updatedAt}</td>
+                      <td>
+                        <Link to="/app/posts">{post.title}</Link>
+                      </td>
+                    </tr>
+                  ))
                 )}
                 {this.props.isFetching && (
                   <tr>
@@ -312,4 +318,4 @@ function mapStateToProps(state) {
   };
 }
 
-export default connect(mapStateToProps)(withStyles(s)(Dashboard));
+export default connect(mapStateToProps)(Dashboard);

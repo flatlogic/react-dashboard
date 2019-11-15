@@ -1,3 +1,5 @@
+import appConfig from '../config';
+
 export const LOGIN_REQUEST = 'LOGIN_REQUEST';
 export const LOGIN_SUCCESS = 'LOGIN_SUCCESS';
 export const LOGIN_FAILURE = 'LOGIN_FAILURE';
@@ -65,11 +67,11 @@ export function loginUser(creds) {
     credentials: 'include',
     body: `login=${creds.login}&password=${creds.password}`,
   };
-
+  
   return dispatch => {
     // We dispatch requestLogin to kickoff the call to the API
     dispatch(requestLogin(creds));
-
+    if(process.env.NODE_ENV === "development") {
     return fetch('/login', config)
       .then(response => response.json().then(user => ({ user, response })))
       .then(({ user, response }) => {
@@ -87,5 +89,9 @@ export function loginUser(creds) {
         return Promise.resolve(user);
       })
       .catch(err => console.error('Error: ', err));
+    } else {
+      localStorage.setItem('id_token', appConfig.id_token);
+      dispatch(receiveLogin({id_token: appConfig.id_token}))
+    }
   };
 }

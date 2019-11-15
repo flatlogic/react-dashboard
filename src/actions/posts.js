@@ -84,7 +84,7 @@ export function createPost(postData) {
   return dispatch => {
     // We dispatch requestCreatePost to kickoff the call to the API
     dispatch(requestCreatePost(postData));
-
+    if(process.env.NODE_ENV === "development") {
     return fetch('/graphql', config)
       .then(response => response.json().then(post => ({ post, response })))
       .then(({ post, response }) => {
@@ -102,6 +102,10 @@ export function createPost(postData) {
         return Promise.resolve(post);
       })
       .catch(err => console.error('Error: ', err));
+    } else {
+      dispatch(createPostError(''));
+      return Promise.reject();
+    }
   };
 }
 

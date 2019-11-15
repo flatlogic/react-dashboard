@@ -1,103 +1,61 @@
-/**
- * Flatlogic Dashboards (https://flatlogic.com/admin-dashboards)
- *
- * Copyright © 2015-present Flatlogic, LLC. All rights reserved.
- *
- * This source code is licensed under the MIT license found in the
- * LICENSE.txt file in the root directory of this source tree.
- */
-
 import React from 'react';
-import PropTypes from 'prop-types';
-import { Switch, Route, Redirect, withRouter } from 'react-router';
-import { connect, Provider as ReduxProvider } from 'react-redux';
+import { connect } from 'react-redux';
+import { Switch, Route, Redirect } from 'react-router';
+import { HashRouter } from 'react-router-dom';
+import { ToastContainer } from 'react-toastify';
 
-import Bundle from '../core/Bundle';
+import ErrorPage from '../pages/error';
 
-/* eslint-disable */
-import loadRegister from 'bundle-loader?lazy!../pages/register/Register';
-import loadNotFound from 'bundle-loader?lazy!../pages/notFound/NotFound';
-/* eslint-enable */
+import '../styles/theme.scss';
+import LayoutComponent from '../components/Layout';
+//import DocumentationLayoutComponent from '../documentation/DocumentationLayout';
+import Login from '../pages/login';
+import Register from '../pages/register';
+import { logoutUser } from '../actions/user';
 
-import LayoutComponent from '../components/Layout/Layout';
-import LoginComponent from '../pages/login/Login';
-
-// import { auth } from '../config';
-
-const RegisterBundle = Bundle.generateBundle(loadRegister);
-const NotFoundBundle = Bundle.generateBundle(loadNotFound);
-
-const ContextType = {
-  // Enables critical path CSS rendering
-  // https://github.com/kriasoft/isomorphic-style-loader
-  insertCss: PropTypes.func.isRequired,
-  // Universal HTTP client
-  fetch: PropTypes.func.isRequired,
-  // Integrate Redux
-  // http://redux.js.org/docs/basics/UsageWithReact.html
-  ...ReduxProvider.childContextTypes,
+const PrivateRoute = ({dispatch, component, ...rest }) => {
+    if (!Login.isAuthenticated(localStorage.getItem('id_token'))) {
+        dispatch(logoutUser());
+        return (<Redirect to="/login"/>)
+    } else {
+        return ( // eslint-disable-line
+            <Route {...rest} render={props => (React.createElement(component, props))}/>
+        );
+    }
 };
 
-/* eslint-disable */
-const PrivateRoute = ({ component, isAuthenticated, ...rest }) =>
-  <Route
-    {...rest}
-    render={props =>
-      isAuthenticated
-        ? React.createElement(component, props)
-        : <Redirect
-            to={{
-              pathname: '/login',
-              state: { from: props.location },
-            }}
-          />}
-  />;
-/* eslint-enable */
+const CloseButton = ({closeToast}) => <i onClick={closeToast} className="la la-close notifications-close"/>
 
 class App extends React.PureComponent {
-  static propTypes = {
-    context: PropTypes.shape(ContextType),
-    isAuthenticated: PropTypes.bool,
-  };
-
-  static defaultProps = {
-    context: null,
-    isAuthenticated: false,
-  };
-
-  static contextTypes = {
-    router: PropTypes.any,
-    store: PropTypes.any,
-  };
-
-  static childContextTypes = ContextType;
-
-  getChildContext() {
-    // fixme. find better solution?
-    return this.props.context || this.context.router.staticContext;
-  }
-
   render() {
     return (
-      <Switch>
-        <Route path="/" exact render={() => <Redirect to="/app" />} />
-        <PrivateRoute
-          isAuthenticated={this.props.isAuthenticated}
-          path="/app"
-          component={LayoutComponent}
-        />
-        <Route path="/login" exact component={LoginComponent} />
-        <Route path="/register" exact component={RegisterBundle} />
-        <Route component={NotFoundBundle} />
-      </Switch>
+        <div>
+            <ToastContainer
+                autoClose={5000}
+                hideProgressBar
+                closeButton={<CloseButton/>}
+            />
+            <HashRouter>
+                <Switch>
+                    <Route path="/" exact render={() => <Redirect to="/app/main"/>}/>
+                    <Route path="/app" exact render={() => <Redirect to="/app/main"/>}/>
+                    <PrivateRoute path="/app" dispatch={this.props.dispatch} component={LayoutComponent}/>
+                    <Route path="/documentation" exact
+                           render={() => <Redirect to="/documentation/getting-started/overview"/>}/>
+                    {/* <Route path="/documentation" component={DocumentationLayoutComponent}/> */}
+                    <Route path="/register" exact component={Register}/>
+                    <Route path="/login" exact component={Login}/>
+                    <Route path="/error" exact component={ErrorPage}/>
+                </Switch>
+            </HashRouter>
+        </div>
+
     );
   }
 }
 
-function mapStateToProps(store) {
-  return {
-    isAuthenticated: store.auth.isAuthenticated,
-  };
-}
+const mapStateToProps = state => ({
+  isAuthenticated: state.auth.isAuthenticated,
+});
 
-export default withRouter(connect(mapStateToProps)(App));
+export default connect(mapStateToProps)(App);

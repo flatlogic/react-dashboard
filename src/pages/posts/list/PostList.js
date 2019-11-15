@@ -1,6 +1,5 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import withStyles from 'isomorphic-style-loader/lib/withStyles';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import {
@@ -8,9 +7,9 @@ import {
   Breadcrumb,
   BreadcrumbItem,
 } from 'reactstrap';
+import { mock } from './mock'
 
-import s from './PostList.scss';
-import withMeta from '../../../core/withMeta';
+import s from './PostList.module.scss';
 import Widget from '../../../components/Widget';
 import { fetchPosts } from '../../../actions/posts';
 
@@ -31,8 +30,14 @@ class PostList extends React.Component {
     description: 'About description',
   };
 
-  componentWillMount() {
-    this.props.dispatch(fetchPosts());
+  componentDidMount() {
+    if(process.env.NODE_ENV === "development") {
+      this.props.dispatch(fetchPosts());      
+    }
+  }
+
+  formatDate = (str) => {
+    return str.replace(/,.*$/,"")
   }
 
   render() {
@@ -73,14 +78,18 @@ class PostList extends React.Component {
                 <tr key={post.id}>
                   <td>{post.title}</td>
                   <td>{post.content.slice(0, 80)}...</td>
-                  <td>{new Date(post.updatedAt).toLocaleString()}</td>
+                  <td>{this.formatDate(new Date(post.updatedAt).toLocaleString())}</td>
                 </tr>
               ))}
               {this.props.posts &&
               !this.props.posts.length && (
-                <tr>
-                  <td colSpan="100">No posts yet</td>
-                </tr>
+                mock.map(post => (
+                  <tr key={post.id}>
+                    <td>{post.title}</td>
+                    <td>{post.content.slice(0, 80)}...</td>
+                    <td>{post.updatedAt}</td>
+                  </tr>
+                ))
               )}
               {this.props.isFetching && (
                 <tr>
@@ -103,4 +112,4 @@ function mapStateToProps(state) {
   };
 }
 
-export default connect(mapStateToProps)(withStyles(s)(withMeta(PostList)));
+export default connect(mapStateToProps)(PostList);

@@ -1,5 +1,4 @@
 import React from 'react';
-import withStyles from 'isomorphic-style-loader/lib/withStyles';
 import {
   withGoogleMap,
   withScriptjs,
@@ -7,7 +6,7 @@ import {
   Marker,
 } from 'react-google-maps';
 
-import s from './Google.scss';
+import s from './Google.module.scss';
 
 const BasicMap = withScriptjs(withGoogleMap(() =>
   <GoogleMap
@@ -36,4 +35,4 @@ class Maps extends React.Component {
   }
 }
 
-export default withStyles(s)(Maps);
+export default Maps;

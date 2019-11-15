@@ -10,10 +10,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import cx from 'classnames';
-import withStyles from 'isomorphic-style-loader/lib/withStyles';
 import { Link } from 'react-router-dom';
 
-import s from './Footer.scss';
+import s from './Footer.module.scss';
 
 class Footer extends React.Component {
   static propTypes = {
@@ -34,11 +33,11 @@ class Footer extends React.Component {
           <span className={s.spacer}>·</span>
           <Link to="/app/privacy">Privacy Policy</Link>
           <span className={s.spacer}>·</span>
-          <Link to="/not-found">Support</Link>
+          <Link to="/app/not-found">Support</Link>
         </div>
       </footer>
     );
   }
 }
 
-export default withStyles(s)(Footer);
+export default Footer;

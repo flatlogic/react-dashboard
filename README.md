@@ -1,7 +1,7 @@
 ## React Dashboard — "[isomorphic](http://nerds.airbnb.com/isomorphic-javascript-future-web-apps/)" admin dashboard template
-built with [React](https://facebook.github.io/react/), [Bootstrap](http://getbootstrap.com/), [React Router](https://reacttraining.com/react-router/) (with **Server Side Rendering**!),
+built with [React](https://facebook.github.io/react/), [Bootstrap](http://getbootstrap.com/), [React Router](https://reacttraining.com/react-router/),
 [Redux](http://redux.js.org/) and [GraphQL](http://graphql.org/) based on
-[React Starter Kit](https://www.reactstarterkit.com) and latest industry best practices.
+[Create React App](https://github.com/facebook/create-react-app) and latest industry best practices.
 
 [Demo](https://flatlogic.com/admin-dashboards/react-dashboard/demo). Use following credentials: user/password.
 
@@ -15,19 +15,16 @@ You may use it to bootstrap the development of your next web app.
 
 ## Features
 * React
-* Server Side Rendering
 * Mobile friendly layout (responsive)
 * React Router
 * Bootstrap3
 * GraphQL
 * Nodejs backend inegration
 * Sass styles
-* Webpack build
 * Stylish, clean, responsive layout
 * Lots of utility css classes for rapid development (flatlogic css set)
 * Authentication
 * CRUD operations examples
-* Browsersync for the ease of development
 
 ## Quick Start
 
@@ -47,17 +44,30 @@ $ cd MyApp
 This will install both run-time project dependencies and developer tools listed
 in [package.json](../package.json) file.
 
-#### 3. Run `yarn start`
+#### 3. Run `yarn dev`
 
-This command will build the app from the source files (`/src`) into the output
-`/build` folder. As soon as the initial build completes, it will start the
-Node.js server (`node build/server.js`) and [Browsersync](https://browsersync.io/)
-with [HMR](https://webpack.github.io/docs/hot-module-replacement) on top of it.
+This command will start the app with simultaneously with express server,
+set up your database, start local server XAMPP, opensever, or other tool
+to start database, connect to it in file 
+```shell
+src > data > sequelize.js.
+```
+Also go to  
+```shell
+src > data > schema.js 
+```
+and enable mutation. This preparation
+will enable to realize CRUD operations locally
 
-> [http://localhost:3000/](http://localhost:3000/) — Node.js server (`build/server.js`)<br>
+### 4. How to create db
+
+Create db. For instance name it "sequelize" and add posts table to it,
+your table should have same structure as you can see on the screenshot
+<br>
+![table structure](table.png)
+
+> [http://localhost:3000/](http://localhost:3000/) — Node.js server<br>
 > [http://localhost:3000/graphql](http://localhost:3000/graphql) — GraphQL server and IDE<br>
-> [http://localhost:3001/](http://localhost:3001/) — BrowserSync proxy with HMR, React Hot Transform<br>
-> [http://localhost:3002/](http://localhost:3002/) — BrowserSync control panel (UI)
 
 Now you can open your web app in a browser, on mobile devices and start
 hacking. Whenever you modify any of the source files inside the `/src` folder,

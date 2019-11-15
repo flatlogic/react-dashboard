@@ -1,5 +1,3 @@
-/* eslint-disable import/prefer-default-export */
-
 import { TOGGLE_SIDEBAR, OPEN_SIDEBAR, CLOSE_SIDEBAR } from '../constants';
 
 export function toggleSidebar() {

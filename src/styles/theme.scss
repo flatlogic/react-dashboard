@@ -1,17 +1,11 @@
-/**
- * Customized version of bootstrap using variables from _variables.scss.
- * This file is loaded via separate loader thus allowing to use original bootstrap classes (e.g. .btn-default) through out the app.
- */
 @import url('https://fonts.googleapis.com/css?family=Nunito:300,400,600,800');
 @import '../../node_modules/bootstrap/scss/functions';
-@import 'variables';
+@import '_variables';
 @import '../../node_modules/bootstrap/scss/bootstrap';
 @import '../../node_modules/glyphicons-halflings/scss/glyphicons-halflings';
 @import '../../node_modules/awesome-bootstrap-checkbox/awesome-bootstrap-checkbox';
 @import '../../node_modules/font-awesome/css/font-awesome.min.css';
-@import '../../node_modules/messenger/build/css/messenger.css';
-@import '../../node_modules/messenger/build/css/messenger-theme-air.css';
-@import 'mixins';
-@import 'overrides';
-@import 'general';
-@import 'utils';
+@import '_mixins';
+@import '_overrides';
+@import '_general';
+@import '_utils';

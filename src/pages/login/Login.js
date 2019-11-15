@@ -1,23 +1,22 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import withStyles from 'isomorphic-style-loader/lib/withStyles';
-import {
-  Row,
-  Col, 
+import { withRouter, Redirect } from 'react-router-dom';
+import { connect } from 'react-redux';
+import { 
   Alert, 
   Button, 
-  Form, 
   FormGroup, 
-  Input
+  Input, 
+  Row,
+  Col,
+  Form
 } from 'reactstrap';
-import { connect } from 'react-redux';
-import { withRouter, Redirect } from 'react-router';
-
+import s from './Login.module.scss';
 import Widget from '../../components/Widget';
-import Footer from '../../components/Footer';
-
-import s from './Login.scss'; // eslint-disable-line
+import Footer from "../../components/Footer";
 import { loginUser } from '../../actions/user';
+import jwt from 'jsonwebtoken';
+import config from '../../config'
 
 class Login extends React.Component {
   static propTypes = {
@@ -35,12 +34,21 @@ class Login extends React.Component {
     errorMessage: null,
   };
 
+  static isAuthenticated(token) {
+    // We check if app runs with backend mode
+    if (!config.isBackend && token) return true;
+    if (!token) return;
+    const date = new Date().getTime() / 1000;
+    const data = jwt.decode(token);
+    return date < data.exp;
+}
+
   constructor(props) {
     super(props);
 
     this.state = {
-      login: '',
-      password: '',
+      login: 'user',
+      password: 'password',
     };
   }
 
@@ -72,8 +80,8 @@ class Login extends React.Component {
       return <Redirect to={from} />;
     }
 
-    return (
-        <div className={s.root}>
+        return (
+          <div className={s.root}>
           <Row>
             <Col xs={{size: 10, offset: 1}} sm={{size: 6, offset: 3}} lg={{size:4, offset: 4}}>
               <p className="text-center">React Dashboard</p>
@@ -126,18 +134,19 @@ class Login extends React.Component {
               </Widget>
             </Col>
           </Row>
-        <Footer className="text-center" />
-      </div>
-    );
-  }
+          <Footer className="text-center" />
+          </div>
+        );
+    }
 }
 
 function mapStateToProps(state) {
-  return {
-    isFetching: state.auth.isFetching,
-    isAuthenticated: state.auth.isAuthenticated,
-    errorMessage: state.auth.errorMessage,
-  };
+    return {
+        isFetching: state.auth.isFetching,
+        isAuthenticated: state.auth.isAuthenticated,
+        errorMessage: state.auth.errorMessage,
+    };
 }
 
-export default withRouter(connect(mapStateToProps)(withStyles(s)(Login)));
+export default withRouter(connect(mapStateToProps)(Login));
+
