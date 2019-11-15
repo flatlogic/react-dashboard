@@ -59,6 +59,11 @@ src > data > schema.js
 and enable mutation. This preparation
 will enable to realize CRUD operations locally
 
+### 4. How to create db
+
+Create db. For instance name it "sequelize" and add posts table to it,
+your table should have same structure as you can see on the screenshot
+![table structure](table.png)
 
 > [http://localhost:3000/](http://localhost:3000/) — Node.js server<br>
 > [http://localhost:3000/graphql](http://localhost:3000/graphql) — GraphQL server and IDE<br>
