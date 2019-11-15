@@ -1,14 +1,13 @@
 import React, {Component} from 'react';
 import cx from 'classnames';
 import PropTypes from 'prop-types';
-import withStyles from 'isomorphic-style-loader/lib/withStyles';
 import { NavLink } from 'react-router-dom';
 import { Collapse } from 'reactstrap';
 import { Route } from 'react-router';
 
 import Icon from '../../Icon/Icon';
 
-import s from './LinksGroup.scss';
+import s from './LinksGroup.module.scss';
 
 class LinksGroup extends Component {
   /* eslint-disable */
@@ -102,4 +101,4 @@ class LinksGroup extends Component {
   }
 }
 
-export default withStyles(s)(LinksGroup);
+export default LinksGroup;

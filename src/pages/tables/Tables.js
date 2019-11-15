@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import withStyles from 'isomorphic-style-loader/lib/withStyles';
 import {
   Row,
   Col,
@@ -19,7 +18,7 @@ import {
 import { Sparklines, SparklinesBars } from 'react-sparklines';
 
 import Widget from '../../components/Widget';
-import s from './Static.scss';
+import s from './Static.module.scss';
 
 class Tables extends Component {
 
@@ -129,10 +128,25 @@ class Tables extends Component {
   }
 
   changeCheck(ev, checkbox, id) {
-    this.state[checkbox][id] = ev.target.checked;
-    if (!ev.target.checked) {
-      this.state[checkbox][0] = false;
+    const { checkboxes1, checkboxes2, checkboxes3 } = this.state;
+    if(checkbox === "checkboxes1") {
+      const checkedBox1 = checkboxes1[id] = ev.target.checked;
+      this.setState({
+        checkedBox1
+      }) 
+    } else if (checkbox === "checkboxes2") {
+      const checkedBox2 = checkboxes2[id] = ev.target.checked;
+      this.setState({
+        checkedBox2,
+      })      
+    } else {
+      const checkedBox3 = checkboxes3[id] = ev.target.checked;
+      this.setState({
+        checkedBox3
+      })  
     }
+
+
     this.setState({
       [checkbox]: this.state[checkbox],
     });
@@ -602,4 +616,4 @@ class Tables extends Component {
 
 }
 
-export default withStyles(s)(Tables);
+export default Tables;

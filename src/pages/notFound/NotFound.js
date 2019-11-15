@@ -8,9 +8,8 @@
  */
 
 import React from 'react';
-import withStyles from 'isomorphic-style-loader/lib/withStyles';
 
-import s from './NotFound.scss';
+import s from './NotFound.module.scss';
 
 class NotFound extends React.Component {
   render() {
@@ -23,4 +22,4 @@ class NotFound extends React.Component {
   }
 }
 
-export default withStyles(s)(NotFound);
+export default NotFound

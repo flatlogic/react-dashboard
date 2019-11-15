@@ -1,6 +1,6 @@
 {
-  "name": "Error",
+  "name": "error",
   "version": "0.0.0",
   "private": true,
-  "main": "./Error.js"
+  "main": "./ErrorPage.js"
 }

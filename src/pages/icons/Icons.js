@@ -1,5 +1,4 @@
 import React from 'react';
-import withStyles from 'isomorphic-style-loader/lib/withStyles';
 import {
   TabContent,
   TabPane, 
@@ -14,7 +13,7 @@ import {
 } from 'reactstrap';
 import classnames from 'classnames';
 
-import s from './Icons.scss';
+import s from './Icons.module.scss';
 
 class Icons extends React.Component {
   constructor(props) {
@@ -2968,4 +2967,4 @@ class Icons extends React.Component {
   }
 }
 
-export default withStyles(s)(Icons);
+export default Icons;

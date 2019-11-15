@@ -11,7 +11,6 @@ import { connect } from 'react-redux';
 import cx from 'classnames';
 import React from 'react';
 import PropTypes from 'prop-types';
-import withStyles from 'isomorphic-style-loader/lib/withStyles';
 import {
   Navbar,
   Nav,
@@ -31,7 +30,7 @@ import Icon from '../Icon';
 
 import photo from '../../images/photo.jpg';
 import { logoutUser } from '../../actions/user';
-import s from './Header.scss';
+import s from './Header.module.scss';
 
 class Header extends React.Component {
   static propTypes = {
@@ -123,4 +122,4 @@ function mapStateToProps(state) {
     init: state.runtime.initialNow,
   };
 }
-export default connect(mapStateToProps)(withStyles(s)(Header));
+export default connect(mapStateToProps)(Header);

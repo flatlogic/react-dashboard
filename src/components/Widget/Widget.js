@@ -10,9 +10,8 @@
 import React from 'react';
 import cx from 'classnames';
 import PropTypes from 'prop-types';
-import withStyles from 'isomorphic-style-loader/lib/withStyles';
 
-import s from './Widget.scss';
+import s from './Widget.module.scss';
 
 class Widget extends React.Component {
   static propTypes = {
@@ -45,4 +44,4 @@ class Widget extends React.Component {
   }
 }
 
-export default withStyles(s)(Widget);
+export default Widget;

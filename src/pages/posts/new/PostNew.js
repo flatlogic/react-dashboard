@@ -1,6 +1,5 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import withStyles from 'isomorphic-style-loader/lib/withStyles';
 import {
   Row,
   Col,
@@ -16,11 +15,10 @@ import {
 } from 'reactstrap';
 import { connect } from 'react-redux';
 
-import withMeta from '../../../core/withMeta';
 import Widget from '../../../components/Widget';
 
 import { createPost } from '../../../actions/posts';
-import s from './PostNew.scss';
+import s from './PostNew.module.scss';
 
 class PostNew extends React.Component {
   static propTypes = {
@@ -92,7 +90,7 @@ class PostNew extends React.Component {
             >
               <Form onSubmit={this.doCreatePost}>
                 {this.props.message && (
-                  <Alert className="alert-sm" bsStyle="info">
+                  <Alert className="alert-sm" bsstyle="info">
                     {this.props.message}
                   </Alert>
                 )}
@@ -142,4 +140,4 @@ function mapStateToProps(state) {
   };
 }
 
-export default connect(mapStateToProps)(withStyles(s)(withMeta(PostNew)));
+export default connect(mapStateToProps)(PostNew);
