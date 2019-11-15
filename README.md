@@ -63,6 +63,7 @@ will enable to realize CRUD operations locally
 
 Create db. For instance name it "sequelize" and add posts table to it,
 your table should have same structure as you can see on the screenshot
+<br>
 ![table structure](table.png)
 
 > [http://localhost:3000/](http://localhost:3000/) — Node.js server<br>
