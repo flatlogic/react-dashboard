@@ -11,25 +11,9 @@ import React from 'react';
 import cx from 'classnames';
 import { Switch, Route, withRouter } from 'react-router';
 
-// an example of react-router code-splitting
-/* eslint-disable */
-// import loadPosts from 'bundle-loader?lazy!../../pages/posts';
-// import loadPrivacy from 'bundle-loader?lazy!../../pages/privacy';
-// import loadProfile from 'bundle-loader?lazy!../../pages/profile';
-// import loadTypography from 'bundle-loader?lazy!../../pages/typography';
-// import loadTables from 'bundle-loader?lazy!../../pages/tables';
-// import loadButtons from 'bundle-loader?lazy!../../pages/buttons';
-// import loadNotifications from 'bundle-loader?lazy!../../pages/notifications';
-// import loadCharts from 'bundle-loader?lazy!../../pages/charts';
-// import loadIcons from 'bundle-loader?lazy!../../pages/icons';
-// import loadMaps from 'bundle-loader?lazy!../../pages/google';
-// import loadNotFound from 'bundle-loader?lazy!../../pages/notFound';
-/* eslint-enable */
-
 import s from './Layout.module.scss';
 import Header from '../Header';
 import Footer from '../Footer';
-//import Bundle from '../../core/Bundle';
 import Sidebar from '../Sidebar';
 
 // Dashboard component is loaded directly as an example of server side rendering
@@ -45,17 +29,6 @@ import Notifications from '../../pages/notifications'
 import Posts from '../../pages/posts'
 import Profile from '../../pages/profile'
 import Privacy from '../../pages/privacy'
-// const PostsBundle = Bundle.generateBundle(loadPosts);
-// const PrivacyBundle = Bundle.generateBundle(loadPrivacy);
-// const ProfileBundle = Bundle.generateBundle(loadProfile);
-// const TypographyBundle = Bundle.generateBundle(loadTypography);
-// const TablesBundle = Bundle.generateBundle(loadTables);
-// const ButtonsBundle = Bundle.generateBundle(loadButtons);
-// const NotificationsBundle = Bundle.generateBundle(loadNotifications);
-// const ChartsBundle = Bundle.generateBundle(loadCharts);
-// const IconsBundle = Bundle.generateBundle(loadIcons);
-// const MapsBundle = Bundle.generateBundle(loadMaps);
-// const NotFoundBundle = Bundle.generateBundle(loadNotFound);
 
 class Layout extends React.Component {
   constructor(props) {

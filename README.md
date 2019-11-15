@@ -1,68 +1,82 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## React Dashboard — "[isomorphic](http://nerds.airbnb.com/isomorphic-javascript-future-web-apps/)" admin dashboard template
+built with [React](https://facebook.github.io/react/), [Bootstrap](http://getbootstrap.com/), [React Router](https://reacttraining.com/react-router/),
+[Redux](http://redux.js.org/) and [GraphQL](http://graphql.org/) based on
+[Create React App](https://github.com/facebook/create-react-app) and latest industry best practices.
 
-## Available Scripts
+[Demo](https://flatlogic.com/admin-dashboards/react-dashboard/demo). Use following credentials: user/password.
 
-In the project directory, you can run:
+[![react-dashboard](screenshot.png)](https://flatlogic.com/admin-dashboards/react-dashboard/demo)
 
-### `yarn start`
+This seed project is a sort of a free version of a template that may be found on
+[Themeforest](https://themeforest.net/category/site-templates/admin-templates)
+or [Wrapbootstrap](https://wrapbootstrap.com/themes/admin) with working backend integration.
+You may use it to bootstrap the development of your next web app.
 
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
+## Features
+* React
+* Mobile friendly layout (responsive)
+* React Router
+* Bootstrap3
+* GraphQL
+* Nodejs backend inegration
+* Sass styles
+* Stylish, clean, responsive layout
+* Lots of utility css classes for rapid development (flatlogic css set)
+* Authentication
+* CRUD operations examples
 
-### `yarn test`
+## Quick Start
 
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+#### 1. Get the latest version
 
-### `yarn build`
+You can start by cloning the latest version of React Dashboard on your
+local machine by running:
 
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
+```shell
+$ git clone -o react-dashboard -b master --single-branch \
+      https://github.com/flatlogic/react-dashboard.git MyApp
+$ cd MyApp
+```
 
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
+#### 2. Run `yarn install`
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+This will install both run-time project dependencies and developer tools listed
+in [package.json](../package.json) file.
 
-### `yarn eject`
+#### 3. Run `yarn dev`
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+This command will start the app with simultaneously with express server,
+set up your database, start local server XAMPP, opensever, or other tool
+to start database, connect to it in file src > data > sequelize.js.
+Also go to src > data > schema.js and enable mutation. This preparation
+will enable to realize CRUD operations locally
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
 
-Instead, it will copy all the configuration files and the transitive dependencies (Webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+> [http://localhost:3000/](http://localhost:3000/) — Node.js server<br>
+> [http://localhost:3000/graphql](http://localhost:3000/graphql) — GraphQL server and IDE<br>
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+Now you can open your web app in a browser, on mobile devices and start
+hacking. Whenever you modify any of the source files inside the `/src` folder,
+the module bundler ([Webpack](http://webpack.github.io/)) will recompile the
+app on the fly and refresh all the connected browsers.
 
-## Learn More
+For more info please refer to [getting started](./docs/getting-started.md) guide to download and run the project (Node.js >= 6.5)
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+## Support
+For any additional information please refer to [Flatlogic homepage](https://flatlogic.com).
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+## How can I support developers?
+- Star our GitHub repo :star:
+- [Tweet about it](https://twitter.com/intent/tweet?text=Amazing%20dashboard%20built%20with%20NodeJS,%20React%20and%20Bootstrap!&url=https://github.com/flatlogic/react-dashboard&via=flatlogic).
+- Create pull requests, submit bugs, suggest new features or documentation updates :wrench:
+- Follow [@flatlogic on Twitter](https://twitter.com/flatlogic).
+- Subscribe to Flatlogic newsletter at [flatlogic.com](https://flatlogic.com/)
+- Like our page on [Facebook](https://www.facebook.com/flatlogic/) :thumbsup:
 
-### Code Splitting
+## Premium themes
+Looking for premium themes and templates? Check out more [admin dashboard templates at flatlogic.com](https://flatlogic.com/admin-dashboards).
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
+## License
 
-### Analyzing the Bundle Size
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
-
-### Making a Progressive Web App
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
-
-### Advanced Configuration
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
-
-### Deployment
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `yarn build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+[MIT](https://github.com/flatlogic/react-dashboard/blob/master/LICENSE.txt) and another [MIT](https://github.com/flatlogic/react-dashboard/blob/master/LICENSE-react-starter-kit.txt) from RSK.
