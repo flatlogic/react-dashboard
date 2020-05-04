@@ -1,4 +1,9 @@
 # Changelog
+
+## [1.3.0]
+ 
+### Updated
+- Update libs
  
 ## [1.2.0]
  
