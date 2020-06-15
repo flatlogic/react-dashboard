@@ -6,7 +6,8 @@
     "minimist": "^1.2.2",
     "acorn": "^7.1.1",
     "serialize-javascript": "^2.1.1",
-    "kind-of": "^6.0.3"
+    "kind-of": "^6.0.3",
+    "websocket-extensions": "^0.1.4"
   },
   "dependencies": {
     "@babel/core": "7.6.0",
