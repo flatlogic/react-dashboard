@@ -1,5 +1,10 @@
 # Changelog
 
+## [1.4.0]
+ 
+### Updated
+- Update libs, fixed text visibility
+
 ## [1.3.0]
  
 ### Updated

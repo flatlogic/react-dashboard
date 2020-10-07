@@ -337,7 +337,7 @@ class Tables extends Component {
                       <td>Mark</td>
                       <td>Otto</td>
                       <td><a href="#">ottoto@example.com</a></td>
-                      <td><Badge color="gray" className="text-gray" pill>Pending</Badge></td>
+                      <td><Badge color="gray" className="text-gray-light" pill>Pending</Badge></td>
                     </tr>
                     <tr>
                       <td>2</td>
@@ -351,7 +351,7 @@ class Tables extends Component {
                       <td>Larry</td>
                       <td>the Bird</td>
                       <td><a href="#">larry@example.com</a></td>
-                      <td><Badge color="gray" className="text-gray" pill>New</Badge></td>
+                      <td><Badge color="gray" className="text-gray-light" pill>New</Badge></td>
                     </tr>
                     <tr>
                       <td>4</td>
