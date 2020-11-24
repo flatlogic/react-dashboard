@@ -1,5 +1,10 @@
 # Changelog
 
+## [1.4.1]
+ 
+### Updated
+- Added link to flatlogic on login page
+
 ## [1.4.0]
  
 ### Updated
