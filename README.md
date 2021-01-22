@@ -19,7 +19,7 @@ You may use it to bootstrap the development of your next web app.
 * React Router
 * Bootstrap3
 * GraphQL
-* Nodejs backend inegration
+* Nodejs backend integration
 * Sass styles
 * Stylish, clean, responsive layout
 * Lots of utility css classes for rapid development (flatlogic css set)
