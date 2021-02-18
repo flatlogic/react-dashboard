@@ -3,7 +3,7 @@ built with [React](https://facebook.github.io/react/), [Bootstrap](http://getboo
 [Redux](http://redux.js.org/) and [GraphQL](http://graphql.org/) based on
 [Create React App](https://github.com/facebook/create-react-app) and latest industry best practices.
 
-[Demo](https://flatlogic.com/admin-dashboards/react-dashboard/demo). Use following credentials: user/password.
+[View Demo](https://flatlogic.com/admin-dashboards/react-dashboard/demo) | [Download](https://github.com/flatlogic/react-dashboard.git) | [More templates](https://flatlogic.com/templates) | [Support forum](https://flatlogic.com/forum)
 
 [![react-dashboard](screenshot.png)](https://flatlogic.com/admin-dashboards/react-dashboard/demo)
 
@@ -77,7 +77,7 @@ app on the fly and refresh all the connected browsers.
 For more info please refer to [getting started](./docs/getting-started.md) guide to download and run the project (Node.js >= 6.5)
 
 ## Support
-For any additional information please refer to [Flatlogic homepage](https://flatlogic.com).
+For any additional information please go to our [**support forum**](https://flatlogic.com/forum) and raise your questions or feedback provide there. We highly appreciate your participation!
 
 ## How can I support developers?
 - Star our GitHub repo :star:
