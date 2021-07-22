@@ -1,5 +1,14 @@
 # Changelog
 
+## [1.4.2]
+
+### Updated
+- Added widget to icons on page icons, 
+- Updated styling badge component
+- Updated styling alerts on page Dashboard
+- Add styling to component sidebar, layout, buttons 
+
+
 ## [1.4.1]
  
 ### Updated

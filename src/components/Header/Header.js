@@ -68,7 +68,7 @@ class Header extends React.Component {
           </NavItem>
           <NavItem>
             <InputGroup>
-              <Input placeholder="Search for..." />
+              <Input placeholder="Search for..." style={{background: '#F3F3F3'}}/>
               <InputGroupAddon addonType="append" className="px-2">
                 <i className="fa fa-search" />
               </InputGroupAddon>

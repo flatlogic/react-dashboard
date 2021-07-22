@@ -14,6 +14,7 @@ import {
 import classnames from 'classnames';
 
 import s from './Icons.module.scss';
+import Widget from '../../components/Widget';
 
 class Icons extends React.Component {
   constructor(props) {
@@ -101,12 +102,12 @@ class Icons extends React.Component {
             </NavLink>
           </NavItem>
         </Nav>
-
         {/* tab content */}
 
         <TabContent activeTab={this.state.activeTab}>
 
           <TabPane tabId="1">
+          <Widget>
             <div>
               <h4>Built-in <span className="fw-semi-bold">Glyphicons</span></h4>
               <Row className="icon-list">
@@ -311,10 +312,12 @@ class Icons extends React.Component {
                 />expand</Col>
               </Row>
             </div>
+          </Widget>
           </TabPane>
 
           {/* tab #2 */}
           <TabPane tabId="2">
+          <Widget>
             <div>
               <h4>Awesome <span className="fw-semi-bold">Font Awesome</span></h4>
               <Row className="icon-list">
@@ -713,10 +716,12 @@ class Icons extends React.Component {
                 /> yahoo</a></Col>
               </Row>
             </div>
+          </Widget>
           </TabPane>
 
           {/* tab #3 */}
           <TabPane tabId="3">
+          <Widget>
             <div>
               <Row className="icon-list">
                 <Col className="icon-list-item" lg={3} md={4} xs={12}><a href="../icon/adjust"><i
@@ -1994,10 +1999,12 @@ class Icons extends React.Component {
 
               </Row>
             </div>
+          </Widget>
           </TabPane>
 
           {/* tab #4 */}
           <TabPane tabId="4">
+          <Widget>
             <div>
               <Row className="icon-list">
                 <Col md={4} lg={3} xs={12} className="icon-list-item"><a
@@ -2019,10 +2026,12 @@ class Icons extends React.Component {
                 /> spinner</a></Col>
               </Row>
             </div>
+          </Widget>
           </TabPane>
 
           {/* tab #5 */}
           <TabPane tabId="5">
+          <Widget>
             <div>
               <Row className="icon-list">
                 <Col md={4} lg={3} xs={12} className="icon-list-item"><a
@@ -2240,10 +2249,12 @@ class Icons extends React.Component {
                 >(alias)</span></a></Col>
               </Row>
             </div>
+          </Widget>
           </TabPane>
 
           {/* tab #6 */}
           <TabPane tabId="6">
+          <Widget>
             <div>
               <Row className="icon-list">
                 <Col className="icon-list-item" lg={3} md={4} xs={12}><a href="../icon/adn"><i
@@ -2608,10 +2619,12 @@ class Icons extends React.Component {
                 ><i className="fa fa-youtube-square" /> youtube-square</a></Col>
               </Row>
             </div>
+          </Widget>
           </TabPane>
 
           {/* tab #7 */}
           <TabPane tabId="7">
+          <Widget>
             <div>
               <h4>File Type <span className="fw-semi-bold">Icons</span></h4>
               <Row className="icon-list">
@@ -2960,6 +2973,7 @@ class Icons extends React.Component {
               </Row>
 
             </div>
+          </Widget>
           </TabPane>
         </TabContent>
       </section>

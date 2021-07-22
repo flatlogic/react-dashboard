@@ -128,7 +128,9 @@
 
 .badge {
   font-size: 12px;
-
+  &.badge-pill {
+    border-radius: 10rem;
+  }
   .list-group-item > & {
     margin-top: 2px;
   }
