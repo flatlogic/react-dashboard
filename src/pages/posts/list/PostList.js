@@ -91,11 +91,11 @@ class PostList extends React.Component {
                   </tr>
                 ))
               )}
-              {this.props.isFetching && (
-                <tr>
-                  <td colSpan="100">Loading...</td>
-                </tr>
-              )}
+              {/*{this.props.isFetching && (*/}
+              {/*  <tr>*/}
+              {/*    <td colSpan="100">Loading...</td>*/}
+              {/*  </tr>*/}
+              {/*)}*/}
               </tbody>
             </Table>
           </div>

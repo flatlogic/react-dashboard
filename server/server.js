@@ -1,9 +1,9 @@
-import express from 'express'
+import express from 'express';
 import helmet from 'helmet';
 import jwt from 'jsonwebtoken';
 import cookieParser from 'cookie-parser';
 import expressJwt from 'express-jwt';
-import expressGraphQL from 'express-graphql';
+import {graphqlHTTP} from 'express-graphql';
 import schema from '../src/data/schema'
 import dotenv from 'dotenv';
 import config from './config';
@@ -49,11 +49,11 @@ app.post('/login', (req, res) => {
 
 app.use(
   '/graphql',
-  expressJwt({
-    secret: config.auth.jwt.secret,
-    getToken: req => req.cookies.id_token,
-  }),
-  expressGraphQL(req => ({
+  // expressJwt({
+  //   //secret: config.auth.jwt.secret,
+  //   getToken: req => req.cookies.id_token,
+  // }),
+    graphqlHTTP(req => ({
     schema,
     graphiql: process.env.REACT_APP_NODE_ENV,
     rootValue: { request: req },
@@ -65,7 +65,7 @@ const PORT = process.env.REACT_APP_PORT || 5000;
 
 const server = app.listen(PORT, console.log(`Server running in ${process.env.REACT_APP_NODE_ENV} mode on port ${PORT}`))
 
-process.on('unhandledRejection', (err, promise) => {
+process.on('unhandledRejection', (err) => {
   console.log(`Unhandled Rejection: ${err.message}`)
   // Close server 
   server.close(() => process.exit(1))

@@ -15,6 +15,7 @@ import {
   Navbar,
   Nav,
   NavItem,
+  NavLink,
   Button,
   Dropdown,
   DropdownToggle,
@@ -24,7 +25,6 @@ import {
   InputGroup,
   InputGroupAddon,
 } from 'reactstrap';
-import { NavLink } from 'react-router-dom';
 
 import Icon from '../Icon';
 
@@ -106,8 +106,8 @@ class Header extends React.Component {
               <DropdownItem>
                 <NavLink to="/app/profile">Profile</NavLink>
               </DropdownItem>
-              <DropdownItem onClick={this.doLogout}>
-                Logout
+              <DropdownItem>
+                <NavLink onClick={this.doLogout} href="#">Logout</NavLink>
               </DropdownItem>
             </DropdownMenu>
           </Dropdown>
