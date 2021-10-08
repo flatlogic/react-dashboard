@@ -191,7 +191,7 @@ class Tables extends Component {
                         {row.description}
                         {row.label &&
                         <div>
-                          <Badge color={row.label.colorClass}>{row.label.text}</Badge>
+                          <Badge  color={row.label.colorClass} pill>{row.label.text}</Badge>
                         </div>
                         }
                       </td>
@@ -284,7 +284,7 @@ class Tables extends Component {
                     </td>
                     <td>Mark</td>
                     <td>Otto</td>
-                    <td><Badge color="danger">Online</Badge></td>
+                    <td><Badge className={s.Badge} color="danger" pill>Online</Badge></td>
                   </tr>
                   <tr>
                     <td>
@@ -296,9 +296,9 @@ class Tables extends Component {
                         <Label for="checkbox3" />
                       </div>
                     </td>
-                    <td>Jacob <Badge color="warning" className="text-gray-dark">ALERT!</Badge></td>
+                    <td>Jacob <Badge color="warning" className={`text-gray-dark ${s.Badge}`} pill>ALERT!</Badge></td>
                     <td>Thornton</td>
-                    <td><span className="badge bg-gray">Away</span></td>
+                    <td><span className={`badge badge-pill bg-gray ${s.Badge}`}>Away</span></td>
                   </tr>
                   <tr>
                     <td>
@@ -312,7 +312,7 @@ class Tables extends Component {
                     </td>
                     <td>Larry</td>
                     <td>the Bird</td>
-                    <td><Badge color="danger">Construct</Badge></td>
+                    <td><Badge className={s.Badge} color="danger" pill>Construct</Badge></td>
                   </tr>
                 </tbody>
               </Table>
@@ -337,28 +337,28 @@ class Tables extends Component {
                       <td>Mark</td>
                       <td>Otto</td>
                       <td><a href="#">ottoto@example.com</a></td>
-                      <td><Badge color="gray" className="text-gray-light" pill>Pending</Badge></td>
+                      <td><Badge color="gray" className={`text-gray-light ${s.Badge}`} pill>Pending</Badge></td>
                     </tr>
                     <tr>
                       <td>2</td>
                       <td>Jacob</td>
                       <td>Thornton</td>
                       <td><a href="#">fat.thor@example.com</a></td>
-                      <td><Badge color="gray" className="text-gray-light" pill>Unconfirmed</Badge></td>
+                      <td><Badge color="gray" className={`text-gray-light ${s.Badge}`} pill>Unconfirmed</Badge></td>
                     </tr>
                     <tr>
                       <td>3</td>
                       <td>Larry</td>
                       <td>the Bird</td>
                       <td><a href="#">larry@example.com</a></td>
-                      <td><Badge color="gray" className="text-gray-light" pill>New</Badge></td>
+                      <td><Badge color="gray" className={`text-gray-light ${s.Badge}`} pill>New</Badge></td>
                     </tr>
                     <tr>
                       <td>4</td>
                       <td>Peter</td>
                       <td>Horadnia</td>
                       <td><a href="#">peter@example.com</a></td>
-                      <td><Badge color="gray" className="text-gray-light" pill>Active</Badge></td>
+                      <td><Badge color="gray" className={`text-gray-light ${s.Badge}`} pill>Active</Badge></td>
                     </tr>
                   </tbody>
                   {/* eslint-enable */}
@@ -406,7 +406,7 @@ class Tables extends Component {
                     <td className="text-right">$25 224.2</td>
                     <td className="text-center">
                       <Sparklines data={[13, 14, 16, 15, 4, 14, 20]} style={{ width: '35px', height: '20px' }}>
-                        <SparklinesBars style={{ stroke: 'white', fill: '#618fb0' }} />
+                        <SparklinesBars style={{ stroke: 'white', fill: '#3754a5' }} />
                       </Sparklines>
                     </td>
                   </tr>
@@ -424,7 +424,7 @@ class Tables extends Component {
                     <td className="text-right">$87 346.1</td>
                     <td className="text-center">
                       <Sparklines data={[14, 12, 16, 11, 17, 19, 16]} style={{ width: '35px', height: '20px' }}>
-                        <SparklinesBars style={{ stroke: 'white', fill: '#999' }} />
+                        <SparklinesBars style={{ stroke: 'white', fill: '#beccfd' }} />
                       </Sparklines>
                     </td>
                   </tr>
@@ -442,7 +442,7 @@ class Tables extends Component {
                     <td className="text-right">$57 944.6</td>
                     <td className="text-center">
                       <Sparklines data={[11, 17, 19, 16, 14, 12, 16]} style={{ width: '35px', height: '20px' }}>
-                        <SparklinesBars style={{ stroke: 'white', fill: '#f0b518' }} />
+                        <SparklinesBars style={{ stroke: 'white', fill: '#1ab394' }} />
                       </Sparklines>
                     </td>
                   </tr>
@@ -460,7 +460,7 @@ class Tables extends Component {
                     <td className="text-right">$118 533.1</td>
                     <td className="text-center">
                       <Sparklines data={[13, 14, 20, 16, 15, 4, 14]} style={{ width: '35px', height: '20px' }}>
-                        <SparklinesBars style={{ stroke: 'white', fill: '#e5603b' }} />
+                        <SparklinesBars style={{ stroke: 'white', fill: '#eb3349' }} />
                       </Sparklines>
                     </td>
                   </tr>
@@ -478,7 +478,7 @@ class Tables extends Component {
                     <td className="text-right">$72 854.5</td>
                     <td className="text-center">
                       <Sparklines data={[16, 15, 4, 14, 13, 14, 20]} style={{ width: '35px', height: '20px' }}>
-                        <SparklinesBars style={{ stroke: 'white', fill: '#618fb0' }} />
+                        <SparklinesBars style={{ stroke: 'white', fill: '#f3c363' }} />
                       </Sparklines>
                     </td>
                   </tr>
@@ -528,7 +528,7 @@ class Tables extends Component {
                       <td className="text-right">$25 224.2</td>
                       <td className="text-center">
                         <Sparklines data={[13, 14, 16, 15, 4, 14, 20]} style={{ width: '35px', height: '20px' }}>
-                          <SparklinesBars style={{ stroke: 'white', fill: '#618fb0' }} />
+                          <SparklinesBars style={{ stroke: 'white', fill: '#3754a5' }} />
                         </Sparklines>
                       </td>
                     </tr>
@@ -546,7 +546,7 @@ class Tables extends Component {
                       <td className="text-right">$87 346.1</td>
                       <td className="text-center">
                         <Sparklines data={[14, 12, 16, 11, 17, 19, 16]} style={{ width: '35px', height: '20px' }}>
-                          <SparklinesBars style={{ stroke: 'white', fill: '#999' }} />
+                          <SparklinesBars style={{ stroke: 'white', fill: '#beccfd' }} />
                         </Sparklines>
                       </td>
                     </tr>
@@ -564,7 +564,7 @@ class Tables extends Component {
                       <td className="text-right">$57 944.6</td>
                       <td className="text-center">
                         <Sparklines data={[11, 17, 19, 16, 14, 12, 16]} style={{ width: '35px', height: '20px' }}>
-                          <SparklinesBars style={{ stroke: 'white', fill: '#f0b518' }} />
+                          <SparklinesBars style={{ stroke: 'white', fill: '#1ab394' }} />
                         </Sparklines>
                       </td>
                     </tr>
@@ -582,7 +582,7 @@ class Tables extends Component {
                       <td className="text-right">$118 533.1</td>
                       <td className="text-center">
                         <Sparklines data={[13, 14, 20, 16, 15, 4, 14]} style={{ width: '35px', height: '20px' }}>
-                          <SparklinesBars style={{ stroke: 'white', fill: '#e5603b' }} />
+                          <SparklinesBars style={{ stroke: 'white', fill: '#f3c363' }} />
                         </Sparklines>
                       </td>
                     </tr>
@@ -600,7 +600,7 @@ class Tables extends Component {
                       <td className="text-right">$72 854.5</td>
                       <td className="text-center">
                         <Sparklines data={[16, 15, 4, 14, 13, 14, 20]} style={{ width: '35px', height: '20px' }}>
-                          <SparklinesBars style={{ stroke: 'white', fill: '#618fb0' }} />
+                          <SparklinesBars style={{ stroke: 'white', fill: '#eb3349' }} />
                         </Sparklines>
                       </td>
                     </tr>

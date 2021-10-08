@@ -123,14 +123,12 @@ class Notifications extends React.Component {
               <h5 className="m-t-1">Notification Types</h5>
               <p>Different types of notifications for lost of use cases. Custom classes are also
                 supported.</p>
-              <p><Button color="info" id="show-info-message" onClick={this.addInfoNotification}>Info
+              <p className={'text-info'}><Button color="info" style={{background: '#3498db'}} id="show-info-message" onClick={this.addInfoNotification}>Info
                 Message</Button></p>
-              <p><Button color="danger" id="show-error-message" onClick={this.addErrorNotification}>Error
+              <p><Button color="danger" style={{background: '#e74c3c'}} id="show-error-message" onClick={this.addErrorNotification}>Error
                 + Retry Message</Button></p>
-              <p><Button
-                color="success" id="show-success-message" onClick={this.addSuccessNotification}
-              >Success
-                Message</Button></p>
+              <p><Button color="success" style={{background: '#07bc0c'}} id="show-success-message" onClick={this.addSuccessNotification}>
+                Success Message</Button></p>
             </Col>
 
             <Col lg="4" xs="12">

@@ -15,8 +15,6 @@ import s from './Login.module.scss';
 import Widget from '../../components/Widget';
 import Footer from "../../components/Footer";
 import { loginUser } from '../../actions/user';
-import jwt from 'jsonwebtoken';
-import config from '../../config'
 
 class Login extends React.Component {
   static propTypes = {
@@ -35,12 +33,7 @@ class Login extends React.Component {
   };
 
   static isAuthenticated(token) {
-    // We check if app runs with backend mode
-    if (!config.isBackend && token) return true;
-    if (!token) return;
-    const date = new Date().getTime() / 1000;
-    const data = jwt.decode(token);
-    return date < data.exp;
+    if (token) return true;
 }
 
   constructor(props) {
@@ -71,12 +64,9 @@ class Login extends React.Component {
   }
 
   render() {
-    const {from} = this.props.location.state || {
-      from: {pathname: '/app'},
-    };
+    const {from} = this.props.location.state || {from: {pathname: '/app'}};
 
-    if (this.props.isAuthenticated) {
-      // cant access login page while logged in
+    if (Login.isAuthenticated(JSON.parse(localStorage.getItem('authenticated')))) {
       return <Redirect to={from} />;
     }
 

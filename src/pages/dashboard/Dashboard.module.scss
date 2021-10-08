@@ -12,6 +12,14 @@
  .root {
    // styles here
  }
+
+.alertTitle{
+  padding: 12px 16px;
+}
+
+.STitle{
+  margin-right: 16px;
+}
  
  .usersTable {
    th,
@@ -23,4 +31,3 @@
      border-bottom: 1px solid $gray-200;
    }
  }
- 

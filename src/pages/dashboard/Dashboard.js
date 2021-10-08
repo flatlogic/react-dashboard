@@ -137,38 +137,43 @@ class Dashboard extends Component {
           <Col sm={12} md={6}>
             <Widget title="Alerts">
               <Alert
-                className="alert-sm"
+                //className="alert-sm"
+                className={cx('alert-sm', s.alertTitle)}
                 color="warning"
               >
-                <span className="fw-semi-bold">Warning:</span> Best check yo
+                <span className={cx('fw-semi-bold', s.STitle)}>Warning:</span> Best check yo
                 self, you&#39;re not looking too good.
               </Alert>
               <Alert
-                className="alert-sm"
+                //className="alert-sm"
+                className={cx('alert-sm', s.alertTitle)}
                 color="success"
               >
-                <span className="fw-semi-bold">Success:</span> You successfully
+                <span className={cx('fw-semi-bold', s.STitle)}>Success:</span> You successfully
                 read this important alert message.
               </Alert>
               <Alert
-                className="alert-sm"
+                //className="alert-sm"
+                className={cx('alert-sm', s.alertTitle)}
                 color="info"
               >
-                <span className="fw-semi-bold">Info:</span> This alert needs
+                <span className={cx('fw-semi-bold', s.STitle)}>Info:</span> This alert needs
                 your attention, but it&#39;s not super important.
               </Alert>
               <Alert
-                className="alert-sm clearfix"
+                //className="alert-sm clearfix"
+                className={cx('alert-sm clearfix', s.alertTitle)}
                 color="danger"
+                style={{display: 'flex', alignItems: 'center'}}
               >
-                <span className="fw-semi-bold">Danger:</span> Change this and
-                that and try again.
+                <span className='fw-semi-bold' style={{verticalAlign: 'middle !important'}}> Danger: </span>
+                <span className="px-2"> Change this and that and try again .</span>
                 <span className="pull-right mr-sm">
-                  <Button color="danger" size="sm">
-                    Take this action
-                  </Button>
-                  <span className="px-2"> or </span>
-                  <Button color="default" size="sm">Cancel</Button>
+                    <Button color="danger" size="sm" className="mb-xs">
+                      Take this action
+                    </Button>
+                    <span className="px-2"> or </span>
+                    <Button color="default" size="sm">Cancel</Button>
                 </span>
               </Alert>
             </Widget>
