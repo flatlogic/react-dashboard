@@ -113,7 +113,7 @@ class Header extends React.Component {
           </Dropdown>
         </Nav>
       </Navbar>
-      //Zohaib Hussain and Sami Jawed
+      //Zohaib Hussain and Sami Jaweds
     );
   }
 }
