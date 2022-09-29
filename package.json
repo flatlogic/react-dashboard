@@ -80,7 +80,7 @@
     "react-sparklines": "^1.7.0",
     "react-toastify": "^5.4.1",
     "reactstrap": "^8.6.0",
-    "recharts": "^1.8.5",
+    "recharts": "^2.1.14",
     "redux": "^4.0.4",
     "redux-thunk": "^2.3.0",
     "resolve": "1.12.0",
