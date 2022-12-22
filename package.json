@@ -55,7 +55,7 @@
     "jest-environment-jsdom-fourteen": "0.1.0",
     "jest-resolve": "24.9.0",
     "jest-watch-typeahead": "0.4.0",
-    "jsonwebtoken": "^8.5.1",
+    "jsonwebtoken": "^9.0.0",
     "mini-css-extract-plugin": "0.8.0",
     "mysql2": "^2.2.5",
     "node-sass": "^4.14.1",
