@@ -7,10 +7,7 @@ built with [React](https://facebook.github.io/react/), [Bootstrap](http://getboo
 
 [![react-dashboard](screenshot.png)](https://flatlogic.com/admin-dashboards/react-dashboard/demo)
 
-This seed project is a sort of a free version of a template that may be found on
-[Themeforest](https://themeforest.net/category/site-templates/admin-templates)
-or [Wrapbootstrap](https://wrapbootstrap.com/themes/admin) with working backend integration.
-You may use it to bootstrap the development of your next web app.
+This seed project is like a free version of a template you can find on [Themeforest](https://themeforest.net/category/site-templates/admin-templates) or [Wrapbootstrap](https://wrapbootstrap.com/themes/admin), with working backend integration, to get you started on your next [business software](https://flatlogic.com/) development.
 
 
 ## Features
