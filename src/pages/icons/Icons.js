@@ -12,8 +12,14 @@ import {
   BreadcrumbItem
 } from 'reactstrap';
 import classnames from 'classnames';
+import * as icons from "react-bootstrap-icons"
 
 import s from './Icons.module.scss';
+
+export const Icon = ({ iconName, ...props }) => {
+  const BootstrapIcon = icons[iconName]
+  return <BootstrapIcon {...props} />
+}
 
 class Icons extends React.Component {
   constructor(props) {
@@ -48,7 +54,7 @@ class Icons extends React.Component {
               className={classnames({ active: this.state.activeTab === '1' })}
               onClick={() => { this.toggle('1'); }}
             >
-              <span>Glypicons</span>
+              <span>Bootstrap Icons</span>
             </NavLink>
           </NavItem>
           <NavItem>
@@ -108,207 +114,26 @@ class Icons extends React.Component {
 
           <TabPane tabId="1">
             <div>
-              <h4>Built-in <span className="fw-semi-bold">Glyphicons</span></h4>
+              <h4>
+                Built-in <span className="fw-semi-bold">Bootstrap Icons</span>
+              </h4>
               <Row className="icon-list">
-                <Col md={4} lg={3} xs={12} className="icon-list-item"><span className="glyphicon glyphicon-asterisk" />asterisk</Col>
-                <Col md={4} lg={3} xs={12} className="icon-list-item"><span className="glyphicon glyphicon-plus" />plus</Col>
-                <Col md={4} lg={3} xs={12} className="icon-list-item"><span className="glyphicon glyphicon-euro" />euro</Col>
-                <Col md={4} lg={3} xs={12} className="icon-list-item"><span className="glyphicon glyphicon-minus" />minus</Col>
-                <Col md={4} lg={3} xs={12} className="icon-list-item"><span className="glyphicon glyphicon-cloud" />cloud</Col>
-                <Col md={4} lg={3} xs={12} className="icon-list-item"><span className="glyphicon glyphicon-envelope" />envelope</Col>
-                <Col md={4} lg={3} xs={12} className="icon-list-item"><span
-                  className="glyphicon glyphicon-pencil"
-                />pencil</Col>
-                <Col md={4} lg={3} xs={12} className="icon-list-item"><span className="glyphicon glyphicon-glass" />glass</Col>
-                <Col md={4} lg={3} xs={12} className="icon-list-item"><span className="glyphicon glyphicon-music" />music</Col>
-                <Col md={4} lg={3} xs={12} className="icon-list-item"><span
-                  className="glyphicon glyphicon-search"
-                />search</Col>
-                <Col md={4} lg={3} xs={12} className="icon-list-item"><span className="glyphicon glyphicon-heart" />heart</Col>
-                <Col md={4} lg={3} xs={12} className="icon-list-item"><span className="glyphicon glyphicon-star" />star</Col>
-                <Col md={4} lg={3} xs={12} className="icon-list-item"><span className="glyphicon glyphicon-star-empty" />star-empty</Col>
-                <Col md={4} lg={3} xs={12} className="icon-list-item"><span className="glyphicon glyphicon-user" />user</Col>
-                <Col md={4} lg={3} xs={12} className="icon-list-item"><span className="glyphicon glyphicon-film" />film</Col>
-                <Col md={4} lg={3} xs={12} className="icon-list-item"><span className="glyphicon glyphicon-th-large" />th-large</Col>
-                <Col md={4} lg={3} xs={12} className="icon-list-item"><span className="glyphicon glyphicon-th" />th</Col>
-                <Col md={4} lg={3} xs={12} className="icon-list-item"><span
-                  className="glyphicon glyphicon-th-list"
-                />th-list</Col>
-                <Col md={4} lg={3} xs={12} className="icon-list-item"><span className="glyphicon glyphicon-ok" />ok</Col>
-                <Col md={4} lg={3} xs={12} className="icon-list-item"><span
-                  className="glyphicon glyphicon-remove"
-                />remove</Col>
-                <Col md={4} lg={3} xs={12} className="icon-list-item"><span
-                  className="glyphicon glyphicon-zoom-in"
-                />zoom-in</Col>
-                <Col md={4} lg={3} xs={12} className="icon-list-item"><span className="glyphicon glyphicon-zoom-out" />zoom-out</Col>
-                <Col md={4} lg={3} xs={12} className="icon-list-item"><span className="glyphicon glyphicon-off" />off</Col>
-                <Col md={4} lg={3} xs={12} className="icon-list-item"><span
-                  className="glyphicon glyphicon-signal"
-                />signal</Col>
-                <Col md={4} lg={3} xs={12} className="icon-list-item"><span className="glyphicon glyphicon-cog" />cog</Col>
-                <Col md={4} lg={3} xs={12} className="icon-list-item"><span className="glyphicon glyphicon-trash" />trash</Col>
-                <Col md={4} lg={3} xs={12} className="icon-list-item"><span className="glyphicon glyphicon-home" />home</Col>
-                <Col md={4} lg={3} xs={12} className="icon-list-item"><span className="glyphicon glyphicon-file" />file</Col>
-                <Col md={4} lg={3} xs={12} className="icon-list-item"><span className="glyphicon glyphicon-time" />time</Col>
-                <Col md={4} lg={3} xs={12} className="icon-list-item"><span className="glyphicon glyphicon-road" />road</Col>
-                <Col md={4} lg={3} xs={12} className="icon-list-item"><span className="glyphicon glyphicon-download-alt" />download-alt</Col>
-                <Col md={4} lg={3} xs={12} className="icon-list-item"><span className="glyphicon glyphicon-download" />download</Col>
-                <Col md={4} lg={3} xs={12} className="icon-list-item"><span
-                  className="glyphicon glyphicon-upload"
-                />upload</Col>
-                <Col md={4} lg={3} xs={12} className="icon-list-item"><span className="glyphicon glyphicon-inbox" />inbox</Col>
-                <Col md={4} lg={3} xs={12} className="icon-list-item"><span className="glyphicon glyphicon-play-circle" />play-circle</Col>
-                <Col md={4} lg={3} xs={12} className="icon-list-item"><span
-                  className="glyphicon glyphicon-repeat"
-                />repeat</Col>
-                <Col md={4} lg={3} xs={12} className="icon-list-item"><span
-                  className="glyphicon glyphicon-refresh"
-                />refresh</Col>
-                <Col md={4} lg={3} xs={12} className="icon-list-item"><span className="glyphicon glyphicon-list-alt" />list-alt</Col>
-                <Col md={4} lg={3} xs={12} className="icon-list-item"><span className="glyphicon glyphicon-flag" />flag</Col>
-                <Col md={4} lg={3} xs={12} className="icon-list-item"><span className="glyphicon glyphicon-headphones" />headphones</Col>
-                <Col md={4} lg={3} xs={12} className="icon-list-item"><span className="glyphicon glyphicon-volume-off" />volume-off</Col>
-                <Col md={4} lg={3} xs={12} className="icon-list-item"><span className="glyphicon glyphicon-volume-down" />volume-down</Col>
-                <Col md={4} lg={3} xs={12} className="icon-list-item"><span className="glyphicon glyphicon-volume-up" />volume-up</Col>
-                <Col md={4} lg={3} xs={12} className="icon-list-item"><span
-                  className="glyphicon glyphicon-qrcode"
-                />qrcode</Col>
-                <Col md={4} lg={3} xs={12} className="icon-list-item"><span
-                  className="glyphicon glyphicon-barcode"
-                />barcode</Col>
-                <Col md={4} lg={3} xs={12} className="icon-list-item"><span className="glyphicon glyphicon-tag" />tag</Col>
-                <Col md={4} lg={3} xs={12} className="icon-list-item"><span className="glyphicon glyphicon-tags" />tags</Col>
-                <Col md={4} lg={3} xs={12} className="icon-list-item"><span className="glyphicon glyphicon-book" />book</Col>
-                <Col md={4} lg={3} xs={12} className="icon-list-item"><span className="glyphicon glyphicon-print" />print</Col>
-                <Col md={4} lg={3} xs={12} className="icon-list-item"><span className="glyphicon glyphicon-font" />font</Col>
-                <Col md={4} lg={3} xs={12} className="icon-list-item"><span className="glyphicon glyphicon-bold" />bold</Col>
-                <Col md={4} lg={3} xs={12} className="icon-list-item"><span
-                  className="glyphicon glyphicon-italic"
-                />italic</Col>
-                <Col md={4} lg={3} xs={12} className="icon-list-item"><span className="glyphicon glyphicon-text-height" />text-height</Col>
-                <Col md={4} lg={3} xs={12} className="icon-list-item"><span className="glyphicon glyphicon-text-width" />text-width</Col>
-                <Col md={4} lg={3} xs={12} className="icon-list-item"><span className="glyphicon glyphicon-align-left" />align-left</Col>
-                <Col md={4} lg={3} xs={12} className="icon-list-item"><span className="glyphicon glyphicon-align-center" />align-center</Col>
-                <Col md={4} lg={3} xs={12} className="icon-list-item"><span className="glyphicon glyphicon-align-right" />align-right</Col>
-                <Col md={4} lg={3} xs={12} className="icon-list-item"><span className="glyphicon glyphicon-align-justify" />align-justify</Col>
-                <Col md={4} lg={3} xs={12} className="icon-list-item"><span className="glyphicon glyphicon-list" />list</Col>
-                <Col md={4} lg={3} xs={12} className="icon-list-item"><span className="glyphicon glyphicon-indent-left" />indent-left</Col>
-                <Col md={4} lg={3} xs={12} className="icon-list-item"><span className="glyphicon glyphicon-indent-right" />indent-right</Col>
-                <Col md={4} lg={3} xs={12} className="icon-list-item"><span className="glyphicon glyphicon-facetime-video" />facetime-video</Col>
-                <Col md={4} lg={3} xs={12} className="icon-list-item"><span
-                  className="glyphicon glyphicon-picture"
-                />picture</Col>
-                <Col md={4} lg={3} xs={12} className="icon-list-item"><span className="glyphicon glyphicon-map-marker" />map-marker</Col>
-                <Col md={4} lg={3} xs={12} className="icon-list-item"><span
-                  className="glyphicon glyphicon-adjust"
-                />adjust</Col>
-                <Col md={4} lg={3} xs={12} className="icon-list-item"><span className="glyphicon glyphicon-tint" />tint</Col>
-                <Col md={4} lg={3} xs={12} className="icon-list-item"><span className="glyphicon glyphicon-edit" />edit</Col>
-                <Col md={4} lg={3} xs={12} className="icon-list-item"><span className="glyphicon glyphicon-share" />share</Col>
-                <Col md={4} lg={3} xs={12} className="icon-list-item"><span className="glyphicon glyphicon-check" />check</Col>
-                <Col md={4} lg={3} xs={12} className="icon-list-item"><span className="glyphicon glyphicon-move" />move</Col>
-                <Col md={4} lg={3} xs={12} className="icon-list-item"><span className="glyphicon glyphicon-step-backward" />step-backward</Col>
-                <Col md={4} lg={3} xs={12} className="icon-list-item"><span className="glyphicon glyphicon-fast-backward" />fast-backward</Col>
-                <Col md={4} lg={3} xs={12} className="icon-list-item"><span className="glyphicon glyphicon-backward" />backward</Col>
-                <Col md={4} lg={3} xs={12} className="icon-list-item"><span className="glyphicon glyphicon-play" />play</Col>
-                <Col md={4} lg={3} xs={12} className="icon-list-item"><span className="glyphicon glyphicon-pause" />pause</Col>
-                <Col md={4} lg={3} xs={12} className="icon-list-item"><span className="glyphicon glyphicon-stop" />stop</Col>
-                <Col md={4} lg={3} xs={12} className="icon-list-item"><span
-                  className="glyphicon glyphicon-forward"
-                />forward</Col>
-                <Col md={4} lg={3} xs={12} className="icon-list-item"><span className="glyphicon glyphicon-fast-forward" />fast-forward</Col>
-                <Col md={4} lg={3} xs={12} className="icon-list-item"><span className="glyphicon glyphicon-step-forward" />step-forward</Col>
-                <Col md={4} lg={3} xs={12} className="icon-list-item"><span className="glyphicon glyphicon-eject" />eject</Col>
-                <Col md={4} lg={3} xs={12} className="icon-list-item"><span className="glyphicon glyphicon-chevron-left" />chevron-left</Col>
-                <Col md={4} lg={3} xs={12} className="icon-list-item"><span className="glyphicon glyphicon-chevron-right" />chevron-right</Col>
-                <Col md={4} lg={3} xs={12} className="icon-list-item"><span className="glyphicon glyphicon-plus-sign" />plus-sign</Col>
-                <Col md={4} lg={3} xs={12} className="icon-list-item"><span className="glyphicon glyphicon-minus-sign" />minus-sign</Col>
-                <Col md={4} lg={3} xs={12} className="icon-list-item"><span className="glyphicon glyphicon-remove-sign" />remove-sign</Col>
-                <Col md={4} lg={3} xs={12} className="icon-list-item"><span
-                  className="glyphicon glyphicon-ok-sign"
-                />ok-sign</Col>
-                <Col md={4} lg={3} xs={12} className="icon-list-item"><span className="glyphicon glyphicon-question-sign" />question-sign</Col>
-                <Col md={4} lg={3} xs={12} className="icon-list-item"><span className="glyphicon glyphicon-info-sign" />info-sign</Col>
-                <Col md={4} lg={3} xs={12} className="icon-list-item"><span className="glyphicon glyphicon-screenshot" />screenshot</Col>
-                <Col md={4} lg={3} xs={12} className="icon-list-item"><span className="glyphicon glyphicon-remove-circle" />remove-circle</Col>
-                <Col md={4} lg={3} xs={12} className="icon-list-item"><span className="glyphicon glyphicon-ok-circle" />ok-circle</Col>
-                <Col md={4} lg={3} xs={12} className="icon-list-item"><span className="glyphicon glyphicon-ban-circle" />ban-circle</Col>
-                <Col md={4} lg={3} xs={12} className="icon-list-item"><span className="glyphicon glyphicon-arrow-left" />arrow-left</Col>
-                <Col md={4} lg={3} xs={12} className="icon-list-item"><span className="glyphicon glyphicon-arrow-right" />arrow-right</Col>
-                <Col md={4} lg={3} xs={12} className="icon-list-item"><span className="glyphicon glyphicon-arrow-up" />arrow-up</Col>
-                <Col md={4} lg={3} xs={12} className="icon-list-item"><span className="glyphicon glyphicon-arrow-down" />arrow-down</Col>
-                <Col md={4} lg={3} xs={12} className="icon-list-item"><span className="glyphicon glyphicon-share-alt" />share-alt</Col>
-                <Col md={4} lg={3} xs={12} className="icon-list-item"><span className="glyphicon glyphicon-resize-full" />resize-full</Col>
-                <Col md={4} lg={3} xs={12} className="icon-list-item"><span className="glyphicon glyphicon-resize-small" />resize-small</Col>
-                <Col md={4} lg={3} xs={12} className="icon-list-item"><span className="glyphicon glyphicon-exclamation-sign" />exclamation-sign</Col>
-                <Col md={4} lg={3} xs={12} className="icon-list-item"><span className="glyphicon glyphicon-gift" />gift</Col>
-                <Col md={4} lg={3} xs={12} className="icon-list-item"><span className="glyphicon glyphicon-leaf" />leaf</Col>
-                <Col md={4} lg={3} xs={12} className="icon-list-item"><span className="glyphicon glyphicon-eye-open" />eye-open</Col>
-                <Col md={4} lg={3} xs={12} className="icon-list-item"><span className="glyphicon glyphicon-eye-close" />eye-close</Col>
-                <Col md={4} lg={3} xs={12} className="icon-list-item"><span className="glyphicon glyphicon-warning-sign" />warning-sign</Col>
-                <Col md={4} lg={3} xs={12} className="icon-list-item"><span className="glyphicon glyphicon-plane" />plane</Col>
-                <Col md={4} lg={3} xs={12} className="icon-list-item"><span
-                  className="glyphicon glyphicon-random"
-                />random</Col>
-                <Col md={4} lg={3} xs={12} className="icon-list-item"><span
-                  className="glyphicon glyphicon-comment"
-                />comment</Col>
-                <Col md={4} lg={3} xs={12} className="icon-list-item"><span
-                  className="glyphicon glyphicon-magnet"
-                />magnet</Col>
-                <Col md={4} lg={3} xs={12} className="icon-list-item"><span className="glyphicon glyphicon-chevron-up" />chevron-up</Col>
-                <Col md={4} lg={3} xs={12} className="icon-list-item"><span className="glyphicon glyphicon-chevron-down" />chevron-down</Col>
-                <Col md={4} lg={3} xs={12} className="icon-list-item"><span
-                  className="glyphicon glyphicon-retweet"
-                />retweet</Col>
-                <Col md={4} lg={3} xs={12} className="icon-list-item"><span className="glyphicon glyphicon-shopping-cart" />shopping-cart</Col>
-                <Col md={4} lg={3} xs={12} className="icon-list-item"><span className="glyphicon glyphicon-folder-close" />folder-close</Col>
-                <Col md={4} lg={3} xs={12} className="icon-list-item"><span className="glyphicon glyphicon-folder-open" />folder-open</Col>
-                <Col md={4} lg={3} xs={12} className="icon-list-item"><span className="glyphicon glyphicon-resize-vertical" />resize-vertical</Col>
-                <Col md={4} lg={3} xs={12} className="icon-list-item"><span className="glyphicon glyphicon-resize-horizontal" />resize-horizontal</Col>
-                <Col md={4} lg={3} xs={12} className="icon-list-item"><span className="glyphicon glyphicon-hdd" />hdd</Col>
-                <Col md={4} lg={3} xs={12} className="icon-list-item"><span className="glyphicon glyphicon-bullhorn" />bullhorn</Col>
-                <Col md={4} lg={3} xs={12} className="icon-list-item"><span className="glyphicon glyphicon-certificate" />certificate</Col>
-                <Col md={4} lg={3} xs={12} className="icon-list-item"><span className="glyphicon glyphicon-thumbs-up" />thumbs-up</Col>
-                <Col md={4} lg={3} xs={12} className="icon-list-item"><span className="glyphicon glyphicon-thumbs-down" />thumbs-down</Col>
-                <Col md={4} lg={3} xs={12} className="icon-list-item"><span className="glyphicon glyphicon-hand-right" />hand-right</Col>
-                <Col md={4} lg={3} xs={12} className="icon-list-item"><span className="glyphicon glyphicon-hand-left" />hand-left</Col>
-                <Col md={4} lg={3} xs={12} className="icon-list-item"><span className="glyphicon glyphicon-hand-down" />hand-down</Col>
-                <Col md={4} lg={3} xs={12} className="icon-list-item"><span
-                  className="glyphicon glyphicon-circle-arrow-right"
-                />circle-arrow-right</Col>
-                <Col md={4} lg={3} xs={12} className="icon-list-item"><span className="glyphicon glyphicon-circle-arrow-left" />circle-arrow-left</Col>
-                <Col md={4} lg={3} xs={12} className="icon-list-item"><span className="glyphicon glyphicon-circle-arrow-down" />circle-arrow-down</Col>
-                <Col md={4} lg={3} xs={12} className="icon-list-item"><span className="glyphicon glyphicon-globe" />globe</Col>
-                <Col md={4} lg={3} xs={12} className="icon-list-item"><span className="glyphicon glyphicon-tasks" />tasks</Col>
-                <Col md={4} lg={3} xs={12} className="icon-list-item"><span
-                  className="glyphicon glyphicon-filter"
-                />filter</Col>
-                <Col md={4} lg={3} xs={12} className="icon-list-item"><span className="glyphicon glyphicon-fullscreen" />fullscreen</Col>
-                <Col md={4} lg={3} xs={12} className="icon-list-item"><span className="glyphicon glyphicon-dashboard" />dashboard</Col>
-                <Col md={4} lg={3} xs={12} className="icon-list-item"><span className="glyphicon glyphicon-heart-empty" />heart-empty</Col>
-                <Col md={4} lg={3} xs={12} className="icon-list-item"><span className="glyphicon glyphicon-link" />link</Col>
-                <Col md={4} lg={3} xs={12} className="icon-list-item"><span className="glyphicon glyphicon-phone" />phone</Col>
-                <Col md={4} lg={3} xs={12} className="icon-list-item"><span className="glyphicon glyphicon-usd" />usd</Col>
-                <Col md={4} lg={3} xs={12} className="icon-list-item"><span className="glyphicon glyphicon-gbp" />gbp</Col>
-                <Col md={4} lg={3} xs={12} className="icon-list-item"><span className="glyphicon glyphicon-sort" />sort</Col>
-                <Col md={4} lg={3} xs={12} className="icon-list-item"><span className="glyphicon glyphicon-sort-by-alphabet" />sort-by-alphabet</Col>
-                <Col md={4} lg={3} xs={12} className="icon-list-item"><span
-                  className="glyphicon glyphicon-sort-by-alphabet-alt"
-                />sort-by-alphabet-alt</Col>
-                <Col md={4} lg={3} xs={12} className="icon-list-item"><span className="glyphicon glyphicon-sort-by-order" />sort-by-order</Col>
-                <Col md={4} lg={3} xs={12} className="icon-list-item"><span className="glyphicon glyphicon-sort-by-order-alt" />sort-by-order-alt</Col>
-                <Col md={4} lg={3} xs={12} className="icon-list-item"><span
-                  className="glyphicon glyphicon-sort-by-attributes"
-                />sort-by-attributes</Col>
-                <Col md={4} lg={3} xs={12} className="icon-list-item"><span
-                  className="glyphicon glyphicon-sort-by-attributes-alt"
-                />sort-by-attributes-alt</Col>
-                <Col md={4} lg={3} xs={12} className="icon-list-item"><span className="glyphicon glyphicon-unchecked" />unchecked</Col>
-                <Col md={4} lg={3} xs={12} className="icon-list-item"><span
-                  className="glyphicon glyphicon-expand"
-                />expand</Col>
+                {Object.keys(icons).map((key) => {
+                  return (
+                    <Col
+                      md={4}
+                      lg={3}
+                      xs={12}
+                      className="icon-list-item"
+                    >
+                      <Icon
+                        iconName={key}
+                        className="align-center"
+                      />
+                      {key}
+                    </Col>
+                  )
+                })}
               </Row>
             </div>
           </TabPane>

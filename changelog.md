@@ -1,5 +1,14 @@
 # Changelog
 
+## [1.5.0] - 14/09/2023
+
+- Added react-scripts version 5 along with webpack version 5 support.
+- Added support for node.js version > 20
+- Updated React.js from 16 to 18 version
+- Removed old webpack configs.
+- Removed unnecessary dev dependencies.
+- Replaced deprecated glyphicons-halflings icon library with bootstrap-icons
+
 ## [1.4.2] - 22/12/2023
 
 - Updated dependencies
