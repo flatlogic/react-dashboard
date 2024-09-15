@@ -66,6 +66,14 @@ your table should have same structure as you can see on the screenshot
 > [http://localhost:3000/](http://localhost:3000/) — Node.js server<br>
 > [http://localhost:3000/graphql](http://localhost:3000/graphql) — GraphQL server and IDE<br>
 
+#### 5. Run `yarn build`
+
+Builds the app for production to the build folder.
+It correctly bundles React in production mode and optimizes the build for the best performance.
+
+The build is minified and the filenames include the hashes.
+Your app is ready to be deployed!
+
 Now you can open your web app in a browser, on mobile devices and start
 hacking. Whenever you modify any of the source files inside the `/src` folder,
 the module bundler ([Webpack](http://webpack.github.io/)) will recompile the
