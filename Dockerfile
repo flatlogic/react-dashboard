@@ -6,7 +6,7 @@ RUN apt-get update && apt-get install -y python3 python-is-python3 make g++ \
   && rm -rf /var/lib/apt/lists/*
 
 COPY package.json yarn.lock ./
-RUN yarn install --frozen-lockfile
+RUN yarn install
 
 COPY . .
 RUN yarn build
