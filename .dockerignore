@@ -1,0 +1,8 @@
+node_modules
+build
+.git
+.gitignore
+Dockerfile
+README.md
+screenshot.png
+table.png

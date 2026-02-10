@@ -7,6 +7,7 @@ import expressGraphQL from 'express-graphql';
 import schema from '../src/data/schema'
 import dotenv from 'dotenv';
 import config from './config';
+import path from 'path';
 
 
 const app = express();
@@ -60,6 +61,11 @@ app.use(
     pretty: process.env.REACT_APP_NODE_ENV,
   })),
 );
+
+app.use(express.static(path.join(__dirname, '..', 'build')));
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname, '..', 'build', 'index.html'));
+});
 
 const PORT = process.env.REACT_APP_PORT || 5000;
 
