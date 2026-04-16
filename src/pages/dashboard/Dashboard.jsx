@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo, useState } from 'react';
+import React, { useEffect, useMemo, useState, useCallback } from 'react';
 import {
   Alert,
   Badge,
@@ -23,13 +23,33 @@ import {
   Eye,
   Person,
   Telephone,
+  ArrowUp,
+  ArrowDown,
+  People,
+  Cart,
+  CurrencyDollar,
+  Activity,
 } from 'react-bootstrap-icons';
 import { Link } from 'react-router-dom';
+import {
+  LineChart,
+  Line,
+  XAxis,
+  YAxis,
+  CartesianGrid,
+  Tooltip,
+  Legend,
+  ResponsiveContainer,
+} from 'recharts';
 
 import { useAppDispatch, useAppSelector } from '../../app/hooks';
 import { fetchPosts } from '../../features/posts/postsSlice';
 import Widget from '../../components/Widget';
+import { getDashboardData, timeframeOptions } from './mock';
 import s from './Dashboard.module.scss';
+
+const STORAGE_KEY = 'dashboard_timeframe';
+const DEFAULT_TIMEFRAME = '7d';
 
 const formatDate = (value) =>
   new Intl.DateTimeFormat('en', {
@@ -37,6 +57,25 @@ const formatDate = (value) =>
     day: 'numeric',
     year: 'numeric',
   }).format(new Date(value));
+
+const formatNumber = (num) => {
+  if (num >= 10000) {
+    return (num / 10000).toFixed(1) + '万';
+  }
+  return num.toLocaleString();
+};
+
+const getStoredTimeframe = () => {
+  try {
+    const stored = localStorage.getItem(STORAGE_KEY);
+    if (stored && timeframeOptions.some(opt => opt.value === stored)) {
+      return stored;
+    }
+  } catch (e) {
+    console.warn('Failed to read timeframe from localStorage:', e);
+  }
+  return DEFAULT_TIMEFRAME;
+};
 
 const quickLinks = [
   {
@@ -69,11 +108,121 @@ const quickLinks = [
   },
 ];
 
+const TimeframeSelector = ({ value, onChange }) => (
+  <ButtonGroup className={s.timeframeGroup}>
+    {timeframeOptions.map((option) => (
+      <Button
+        key={option.value}
+        color={value === option.value ? 'primary' : 'secondary'}
+        outline={value !== option.value}
+        onClick={() => onChange(option.value)}
+        className={s.timeframeButton}
+      >
+        {option.label}
+      </Button>
+    ))}
+  </ButtonGroup>
+);
+
+const StatCard = ({ icon: Icon, title, value, growth, color }) => {
+  const isPositive = growth >= 0;
+  return (
+    <Widget className={s.statCard}>
+      <div className={s.statCardInner}>
+        <div className={s.statCardIcon} style={{ backgroundColor: `${color}15`, color }}>
+          <Icon size={24} />
+        </div>
+        <div className={s.statCardContent}>
+          <div className={s.statCardTitle}>{title}</div>
+          <div className={s.statCardValue}>{formatNumber(value)}</div>
+          <div className={`${s.statCardGrowth} ${isPositive ? s.statCardGrowthPositive : s.statCardGrowthNegative}`}>
+            {isPositive ? <ArrowUp size={14} /> : <ArrowDown size={14} />}
+            <span>{Math.abs(growth)}%</span>
+            <span className={s.statCardGrowthLabel}>vs 上期</span>
+          </div>
+        </div>
+      </div>
+    </Widget>
+  );
+};
+
+const EmptyState = ({ title, message, icon: Icon }) => (
+  <div className={s.emptyState}>
+    <div className={s.emptyStateIcon}>
+      {Icon ? <Icon size={48} /> : null}
+    </div>
+    <h5 className={s.emptyStateTitle}>{title}</h5>
+    <p className={s.emptyStateMessage}>{message}</p>
+  </div>
+);
+
+const MainChart = ({ data, hasData }) => {
+  if (!hasData || data.length === 0) {
+    return (
+      <EmptyState
+        title="暂无数据"
+        message="该时间段内没有可用的统计数据，请尝试切换其他时间段"
+        icon={Activity}
+      />
+    );
+  }
+
+  return (
+    <ResponsiveContainer height={350} width="100%">
+      <LineChart data={data} margin={{ top: 20, right: 30, left: 0, bottom: 0 }}>
+        <CartesianGrid strokeDasharray="3 3" stroke="#e9ecef" />
+        <XAxis
+          dataKey="name"
+          stroke="#6c757d"
+          fontSize={12}
+          tickLine={false}
+          axisLine={false}
+        />
+        <YAxis
+          stroke="#6c757d"
+          fontSize={12}
+          tickLine={false}
+          axisLine={false}
+          tickFormatter={(value) => `${value >= 1000 ? (value / 1000).toFixed(0) + 'k' : value}`}
+        />
+        <Tooltip
+          contentStyle={{
+            backgroundColor: '#fff',
+            border: '1px solid #e9ecef',
+            borderRadius: '0.375rem',
+            boxShadow: '0 2px 8px rgba(0,0,0,0.1)',
+          }}
+        />
+        <Legend />
+        <Line
+          type="monotone"
+          dataKey="pv"
+          stroke="#3754a5"
+          strokeWidth={2}
+          dot={{ r: 4, fill: '#3754a5' }}
+          activeDot={{ r: 6 }}
+          name="页面访问"
+        />
+        <Line
+          type="monotone"
+          dataKey="uv"
+          stroke="#eb3349"
+          strokeWidth={2}
+          dot={{ r: 4, fill: '#eb3349' }}
+          activeDot={{ r: 6 }}
+          name="独立访客"
+        />
+      </LineChart>
+    </ResponsiveContainer>
+  );
+};
+
 const Dashboard = () => {
   const dispatch = useAppDispatch();
   const posts = useAppSelector((state) => state.posts.items);
   const fetchStatus = useAppSelector((state) => state.posts.fetchStatus);
   const [isDropdownOpened, setIsDropdownOpened] = useState(false);
+  const [timeframe, setTimeframe] = useState(getStoredTimeframe);
 
   useEffect(() => {
     if (fetchStatus === 'idle' && posts.length === 0) {
@@ -81,7 +230,54 @@ const Dashboard = () => {
     }
   }, [dispatch, fetchStatus, posts.length]);
 
+  const handleTimeframeChange = useCallback((newTimeframe) => {
+    setTimeframe(newTimeframe);
+    try {
+      localStorage.setItem(STORAGE_KEY, newTimeframe);
+    } catch (e) {
+      console.warn('Failed to save timeframe to localStorage:', e);
+    }
+  }, []);
+
+  const dashboardData = useMemo(
+    () => getDashboardData(timeframe),
+    [timeframe]
+  );
+
+  const { stats, chartData, hasData } = dashboardData;
+
   const recentPosts = useMemo(() => posts.slice(0, 5), [posts]);
+
+  const statCards = [
+    {
+      icon: People,
+      title: '总用户数',
+      value: stats.totalUsers,
+      growth: stats.userGrowth,
+      color: '#3754a5',
+    },
+    {
+      icon: Activity,
+      title: '活跃用户',
+      value: stats.activeUsers,
+      growth: stats.userGrowth,
+      color: '#1ab394',
+    },
+    {
+      icon: Cart,
+      title: '新订单',
+      value: stats.newOrders,
+      growth: stats.orderGrowth,
+      color: '#f3c363',
+    },
+    {
+      icon: CurrencyDollar,
+      title: '总收入',
+      value: stats.revenue,
+      growth: stats.orderGrowth,
+      color: '#eb3349',
+    },
+  ];
 
   return (
     <div className={s.root}>
@@ -89,7 +285,34 @@ const Dashboard = () => {
         <BreadcrumbItem>YOU ARE HERE</BreadcrumbItem>
         <BreadcrumbItem active>Dashboard</BreadcrumbItem>
       </Breadcrumb>
-      <h1 className="mb-lg">Dashboard</h1>
+      <div className={s.pageHeader}>
+        <h1 className="mb-lg mb-0">Dashboard</h1>
+        <TimeframeSelector value={timeframe} onChange={handleTimeframeChange} />
+      </div>
+
+      <Row className="mb-lg">
+        {statCards.map((card, index) => (
+          <Col key={index} xs={12} sm={6} lg={3}>
+            <StatCard {...card} />
+          </Col>
+        ))}
+      </Row>
+
+      <Widget
+        title={
+          <div className={s.chartTitle}>
+            <h5 className="mt-0 mb-0">
+              <Activity className="me-2 opacity-75" />
+              数据趋势
+            </h5>
+            <span className={s.chartSubtitle}>基于当前选择的时间段</span>
+          </div>
+        }
+        className="mb-lg"
+      >
+        <MainChart data={chartData} hasData={hasData} />
+      </Widget>
+
       <Row>
         <Col md={6} sm={12}>
           <Widget
