@@ -1,5 +1,13 @@
 # Changelog
 
+## [Unreleased]
+
+### Security
+
+- Updated React Router 7, Vite 8, Vitest 4, and vulnerable transitive dependencies within their existing supported version ranges.
+- Refreshed the npm lockfile and documented reproducible installs with `npm ci`.
+- Marked Vite and Vitest configuration files as ES modules for compatibility with the updated Vite config loader.
+
 ## [2.0.0] - 25/03/2026
 
 ### Changed
