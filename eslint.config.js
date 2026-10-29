@@ -19,7 +19,7 @@ module.exports = tseslint.config(
   js.configs.recommended,
   ...tseslint.configs.recommended,
   {
-    files: ['**/*.{js,jsx,ts,tsx}'],
+    files: ['**/*.{js,jsx,ts,tsx,mts}'],
     languageOptions: {
       ecmaVersion: 'latest',
       sourceType: 'module',

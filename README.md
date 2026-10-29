@@ -31,7 +31,7 @@ Modern dashboard starter rebuilt on top of `Vite`, `React 19`, `React Router 7`,
 ## Getting started
 
 ```bash
-npm install
+npm ci
 npm run dev
 ```
 
@@ -85,5 +85,5 @@ VITE_BASE_PATH=/your-base-path/
 - The legacy CRA, GraphQL demo backend, old Redux setup, and browser JWT/polyfill hacks were removed.
 - The template keeps demo data local by default so it can run without a backend.
 - The app root redirects to `/login` for guests and to `/app/main` for active demo sessions.
-- The active local workflow is `npm install` + `npm run dev`; there is no `npm start` script in this template.
-- `yarn.lock` may still exist from the original project history, but the active workflow is `npm`.
+- The active local workflow is `npm ci` + `npm run dev`; there is no `npm start` script in this template.
+- Use the committed `package-lock.json` for reproducible dependency installs. The legacy `yarn.lock` has been removed.
