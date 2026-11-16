@@ -1,4 +1,5 @@
 import { seedPosts, type PostRecord } from './seedPosts';
+import { backendEnabled, backendRequest } from '../backend';
 
 export type { PostRecord } from './seedPosts';
 
@@ -42,11 +43,26 @@ const persistPosts = (posts: PostRecord[]) => {
 };
 
 export const listPosts = async (): Promise<PostRecord[]> => {
+  if (backendEnabled) {
+    const response = await backendRequest('/graphql', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ query: '{ posts { id title content updatedAt } }' }),
+    });
+    const result = await response.json();
+    if (result.errors) {
+      throw new Error(result.errors.map((error: { message: string }) => error.message).join('; '));
+    }
+    return sortPosts(result.data.posts);
+  }
   await delay(250);
   return readStoredPosts();
 };
 
 export const createPostRecord = async ({ title, content }: NewPostInput): Promise<PostRecord> => {
+  if (backendEnabled) {
+    throw new Error('Posts are read-only in this demo.');
+  }
   await delay(300);
 
   const nextPost: PostRecord = {

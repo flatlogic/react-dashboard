@@ -7,14 +7,13 @@ const Register = () => (
   <div className="container-fluid py-5">
     <div className="row justify-content-center">
       <div className="col-xl-5 col-lg-6">
-        <Widget title="Registration is intentionally lightweight">
+        <Widget title="Demo account">
           <p className="mb-3">
-            This template focuses on the front-end platform. Demo auth is local-only so you
-            can plug in your own identity provider or backend without fighting legacy code.
+            Registration is unavailable in this demo. Sign in with the username
+            <strong> user</strong> and password <strong>password</strong>.
           </p>
           <p className="mb-4">
-            Keep the current sign-in flow for demos, or replace it with your production auth
-            layer when integrating the template into a real product.
+            All visitors use the same demo account.
           </p>
           <Link className="btn btn-danger" to="/login">
             Back to login

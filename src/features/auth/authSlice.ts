@@ -1,6 +1,6 @@
-import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
+import { createAsyncThunk, createSlice, type PayloadAction } from '@reduxjs/toolkit';
 
-import { clearSession, createDemoSession, readSession, type Session } from './session';
+import { createSession, endSession, readSession, type Session } from './session';
 
 type LoginCredentials = {
   login: string;
@@ -25,26 +25,30 @@ export const loginUser = createAsyncThunk<
   { rejectValue: string }
 >('auth/loginUser', async (credentials, { rejectWithValue }) => {
   try {
-    return await createDemoSession(credentials);
+    return await createSession(credentials);
   } catch (error) {
     const message = error instanceof Error ? error.message : 'Unable to log in';
     return rejectWithValue(message);
   }
 });
 
+export const logoutUser = createAsyncThunk('auth/logoutUser', async () => endSession());
+
 const authSlice = createSlice({
   name: 'auth',
   initialState,
   reducers: {
-    logoutUser(state) {
-      clearSession();
-      state.session = null;
-      state.status = 'idle';
-      state.error = null;
+    sessionRestored(state, action: PayloadAction<Session | null>) {
+      state.session = action.payload;
     },
   },
   extraReducers: (builder) => {
     builder
+      .addCase(logoutUser.fulfilled, (state) => {
+        state.session = null;
+        state.status = 'idle';
+        state.error = null;
+      })
       .addCase(loginUser.pending, (state) => {
         state.status = 'loading';
         state.error = null;
@@ -61,6 +65,6 @@ const authSlice = createSlice({
   },
 });
 
-export const { logoutUser } = authSlice.actions;
+export const { sessionRestored } = authSlice.actions;
 
 export default authSlice.reducer;

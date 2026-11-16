@@ -8,7 +8,7 @@ import {
   List,
   Search,
 } from 'react-bootstrap-icons';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useNavigate } from 'react-router-dom';
 
 import { useAppDispatch, useAppSelector } from '../../app/hooks';
 import { logoutUser } from '../../features/auth/authSlice';
@@ -17,6 +17,8 @@ import s from './Header.module.scss';
 
 const Header = ({ sidebarOpen, sidebarToggle }) => {
   const dispatch = useAppDispatch();
+  const navigate = useNavigate();
+  const [logoutError, setLogoutError] = useState(null);
   const session = useAppSelector((state) => state.auth.session);
   const [dropdownOpen, setDropdownOpen] = useState(false);
 
@@ -24,6 +26,7 @@ const Header = ({ sidebarOpen, sidebarToggle }) => {
 
   return (
     <header className={cx('navbar', s.root)}>
+      {logoutError && <span role="alert" className="text-danger">{logoutError}</span>}
       <div className="d-flex align-items-center gap-3">
         <button
           aria-controls="dashboard-sidebar"
@@ -96,9 +99,14 @@ const Header = ({ sidebarOpen, sidebarToggle }) => {
             </NavLink>
             <button
               className="dropdown-item"
-              onClick={() => {
+              onClick={async () => {
+                const result = await dispatch(logoutUser());
+                if (logoutUser.rejected.match(result)) {
+                  setLogoutError(result.error.message);
+                  return;
+                }
                 setDropdownOpen(false);
-                dispatch(logoutUser());
+                navigate('/login');
               }}
               type="button"
             >

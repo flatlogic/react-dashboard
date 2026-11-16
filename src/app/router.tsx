@@ -7,7 +7,10 @@ import {
 } from 'react-router-dom';
 
 import Layout from '../components/Layout';
-import { hasActiveSession } from '../features/auth/session';
+import { refreshSession } from '../features/auth/session';
+import { sessionRestored } from '../features/auth/authSlice';
+import { store } from './store';
+import { backendEnabled } from '../features/backend';
 
 const DashboardPage = lazy(() => import('../pages/dashboard/Dashboard'));
 const ButtonsPage = lazy(() => import('../pages/buttons/Buttons'));
@@ -26,17 +29,23 @@ const PostNewPage = lazy(() => import('../pages/posts/new/PostNew'));
 const NotFoundPage = lazy(() => import('../pages/notFound/NotFound'));
 const TermsPage = lazy(() => import('../pages/terms/Terms'));
 
+const hasActiveSession = async () => {
+  const session = await refreshSession();
+  store.dispatch(sessionRestored(session));
+  return session !== null;
+};
+
 const routeLoader =
-  (predicate: () => boolean, targetPath: string) =>
+  (predicate: () => Promise<boolean>, targetPath: string) =>
   async () => {
-    if (predicate()) {
+    if (await predicate()) {
       return redirect(targetPath);
     }
 
     return null;
   };
 
-const rootRedirectLoader = async () => redirect(hasActiveSession() ? '/app/main' : '/login');
+const rootRedirectLoader = async () => redirect(await hasActiveSession() ? '/app/main' : '/login');
 
 const PageFallback = () => (
   <div className="d-flex min-vh-100 align-items-center justify-content-center">
@@ -75,20 +84,28 @@ export const routes: RouteObject[] = [
   {
     path: '/',
     loader: rootRedirectLoader,
+    element: <PageFallback />,
+    HydrateFallback: PageFallback,
+    errorElement: <RouteErrorBoundary />,
   },
   {
     path: '/login',
+    HydrateFallback: PageFallback,
+    errorElement: <RouteErrorBoundary />,
     loader: routeLoader(hasActiveSession, '/app/main'),
     element: renderLazyPage(LoginPage),
   },
   {
     path: '/register',
+    HydrateFallback: PageFallback,
+    errorElement: <RouteErrorBoundary />,
     loader: routeLoader(hasActiveSession, '/app/main'),
     element: renderLazyPage(RegisterPage),
   },
   {
     path: '/app',
-    loader: routeLoader(() => !hasActiveSession(), '/login'),
+    HydrateFallback: PageFallback,
+    loader: routeLoader(async () => !await hasActiveSession(), '/login'),
     element: <Layout />,
     errorElement: <RouteErrorBoundary />,
     children: [
@@ -102,7 +119,7 @@ export const routes: RouteObject[] = [
       { path: 'components/icons', element: renderLazyPage(IconsPage) },
       { path: 'components/maps', element: renderLazyPage(MapsPage) },
       { path: 'posts', element: renderLazyPage(PostListPage) },
-      { path: 'posts/new', element: renderLazyPage(PostNewPage) },
+      { path: 'posts/new', loader: () => backendEnabled ? redirect('/app/posts') : null, element: renderLazyPage(PostNewPage) },
       { path: 'profile', element: renderLazyPage(ProfilePage) },
       { path: 'privacy', element: renderLazyPage(PrivacyPage) },
       { path: 'tos', element: renderLazyPage(TermsPage) },

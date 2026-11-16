@@ -9,7 +9,7 @@ type CreatePostInput = {
 
 type PostsState = {
   items: PostRecord[];
-  fetchStatus: 'idle' | 'loading' | 'failed';
+  fetchStatus: 'idle' | 'loading' | 'succeeded' | 'failed';
   createStatus: 'idle' | 'loading' | 'failed';
   message: string | null;
   error: string | null;
@@ -55,12 +55,12 @@ const postsSlice = createSlice({
         state.error = null;
       })
       .addCase(fetchPosts.fulfilled, (state, action) => {
-        state.fetchStatus = 'idle';
+        state.fetchStatus = 'succeeded';
         state.items = action.payload;
       })
-      .addCase(fetchPosts.rejected, (state) => {
+      .addCase(fetchPosts.rejected, (state, action) => {
         state.fetchStatus = 'failed';
-        state.error = 'Unable to load posts';
+        state.error = action.error.message || 'Unable to load posts';
       })
       .addCase(createPost.pending, (state) => {
         state.createStatus = 'loading';

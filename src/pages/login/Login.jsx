@@ -12,6 +12,7 @@ import {
 
 import { useAppDispatch, useAppSelector } from '../../app/hooks';
 import { loginUser } from '../../features/auth/authSlice';
+import { backendEnabled } from '../../features/backend';
 import Footer from '../../components/Footer';
 import Widget from '../../components/Widget';
 import s from './Login.module.scss';
@@ -68,6 +69,7 @@ const Login = () => {
                 <Input
                   className="no-border"
                   name="username"
+                  aria-label="Username"
                   onChange={(event) =>
                     setCredentials((current) => ({ ...current, login: event.target.value }))
                   }
@@ -81,6 +83,7 @@ const Login = () => {
                 <Input
                   className="no-border"
                   name="password"
+                  aria-label="Password"
                   onChange={(event) =>
                     setCredentials((current) => ({ ...current, password: event.target.value }))
                   }
@@ -91,7 +94,7 @@ const Login = () => {
                 />
               </FormGroup>
               <div className="d-flex justify-content-between align-items-center">
-                <span className="fs-sm text-muted">Local demo session with no backend required.</span>
+                <span className="fs-sm text-muted">{backendEnabled ? 'Sign in to the demo workspace.' : 'Local demo session with no backend required.'}</span>
                 <div className="d-flex gap-2">
                   <Button color="default" size="sm" tag={Link} to="/register">
                     Create account

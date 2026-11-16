@@ -73,6 +73,7 @@ const Dashboard = () => {
   const dispatch = useAppDispatch();
   const posts = useAppSelector((state) => state.posts.items);
   const fetchStatus = useAppSelector((state) => state.posts.fetchStatus);
+  const postsError = useAppSelector((state) => state.posts.error);
   const [isDropdownOpened, setIsDropdownOpened] = useState(false);
 
   useEffect(() => {
@@ -181,10 +182,11 @@ const Dashboard = () => {
                     {recentPosts.length}
                   </Badge>
                 </h5>
-                <p className={s.recentPostsHint}>Latest entries from the local demo feed.</p>
+                <p className={s.recentPostsHint}>Latest posts in this workspace.</p>
               </div>
             )}
           >
+            {postsError && <p className="alert alert-danger" role="alert">{postsError}</p>}
             <table className={`table table-sm table-no-border mb-0 ${s.recentPostsTable}`}>
               <tbody>
                 {recentPosts.map((post) => (
@@ -204,7 +206,7 @@ const Dashboard = () => {
                     </td>
                   </tr>
                 ) : null}
-                {fetchStatus !== 'loading' && recentPosts.length === 0 ? (
+                {fetchStatus === 'succeeded' && recentPosts.length === 0 ? (
                   <tr>
                     <td className={s.recentPostsState} colSpan="2">
                       No posts yet.

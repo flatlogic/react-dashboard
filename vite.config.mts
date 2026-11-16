@@ -10,6 +10,12 @@ export default defineConfig(({ mode }) => {
     server: {
       port: 3000,
       open: false,
+      proxy: {
+        '/login': { target: 'http://127.0.0.1:5000', bypass: (req) => req.method === 'GET' ? '/index.html' : undefined },
+        '/logout': 'http://127.0.0.1:5000',
+        '/session': 'http://127.0.0.1:5000',
+        '/graphql': 'http://127.0.0.1:5000',
+      },
     },
     preview: {
       port: 4173,

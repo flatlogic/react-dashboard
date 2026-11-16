@@ -25,3 +25,6 @@ yarn-error.log*
 
 # Editors and IDEs
 .idea
+/*.sqlite*
+/test-results
+/playwright-report
