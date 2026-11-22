@@ -9,9 +9,181 @@
 
  @use '../../styles/app' as *;
 
- .root {
-   // styles here
- }
+.root {
+  // styles here
+}
+
+.pageHeader {
+  align-items: center;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  justify-content: space-between;
+  margin-bottom: 1.5rem;
+}
+
+.timeframeGroup {
+  border-radius: 0.375rem;
+  box-shadow: 0 1px 3px rgba($gray-900, 0.08);
+
+  :global(.btn) {
+    border-color: rgba($gray-400, 0.5);
+    font-size: 0.875rem;
+    font-weight: $font-weight-semi-bold;
+    padding: 0.5rem 1rem;
+    transition: all 0.15s ease;
+
+    &:first-child {
+      border-top-left-radius: 0.375rem;
+      border-bottom-left-radius: 0.375rem;
+    }
+
+    &:last-child {
+      border-top-right-radius: 0.375rem;
+      border-bottom-right-radius: 0.375rem;
+    }
+
+    &.active,
+    &:not(.btn-outline-secondary):not(.btn-outline-primary) {
+      background-color: $brand-primary;
+      border-color: $brand-primary;
+      color: $white;
+    }
+
+    &.btn-outline-secondary {
+      background-color: $white;
+      color: $gray-600;
+
+      &:hover {
+        background-color: $gray-100;
+        border-color: $gray-400;
+        color: $gray-700;
+      }
+    }
+  }
+}
+
+.timeframeButton {
+  min-width: 70px;
+}
+
+.statCard {
+  border: 1px solid rgba($brand-primary, 0.08);
+  border-radius: 1rem;
+  box-shadow: 0 2px 8px rgba($gray-900, 0.04);
+  padding: 1.25rem;
+  transition:
+    box-shadow 0.2s ease,
+    transform 0.2s ease;
+
+  &:hover {
+    box-shadow: 0 4px 16px rgba($gray-900, 0.08);
+    transform: translateY(-2px);
+  }
+}
+
+.statCardInner {
+  align-items: flex-start;
+  display: flex;
+  gap: 1rem;
+}
+
+.statCardIcon {
+  align-items: center;
+  border-radius: 0.75rem;
+  display: flex;
+  height: 3rem;
+  justify-content: center;
+  width: 3rem;
+}
+
+.statCardContent {
+  flex: 1;
+}
+
+.statCardTitle {
+  color: $gray-500;
+  font-size: 0.8125rem;
+  font-weight: $font-weight-normal;
+  letter-spacing: 0.02em;
+  margin-bottom: 0.25rem;
+  text-transform: uppercase;
+}
+
+.statCardValue {
+  color: $gray-800;
+  font-size: 1.75rem;
+  font-weight: $font-weight-bold;
+  line-height: 1.2;
+  margin-bottom: 0.5rem;
+}
+
+.statCardGrowth {
+  align-items: center;
+  display: inline-flex;
+  font-size: 0.8125rem;
+  gap: 0.25rem;
+
+  &Positive {
+    color: $brand-success;
+  }
+
+  &Negative {
+    color: $brand-danger;
+  }
+}
+
+.statCardGrowthLabel {
+  color: $gray-400;
+  font-weight: $font-weight-normal;
+  margin-left: 0.125rem;
+}
+
+.chartTitle {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.chartSubtitle {
+  color: $gray-400;
+  font-size: 0.8125rem;
+}
+
+.emptyState {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  justify-content: center;
+  padding: 4rem 2rem;
+  text-align: center;
+}
+
+.emptyStateIcon {
+  align-items: center;
+  background-color: rgba($gray-300, 0.2);
+  border-radius: 50%;
+  color: $gray-400;
+  display: flex;
+  height: 5rem;
+  justify-content: center;
+  width: 5rem;
+}
+
+.emptyStateTitle {
+  color: $gray-700;
+  font-size: 1.125rem;
+  font-weight: $font-weight-semi-bold;
+  margin: 0;
+}
+
+.emptyStateMessage {
+  color: $gray-500;
+  font-size: 0.875rem;
+  margin: 0;
+  max-width: 20rem;
+}
  
  .usersTable {
    th,
