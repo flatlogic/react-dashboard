@@ -1,6 +1,14 @@
 # Changelog
 
-## [Unreleased]
+## [2.1.0] - 26/11/2026
+
+### Added
+
+- Restored optional server-side login, session cookies and read-only GraphQL queries on the React 19 dashboard. Existing SQLite databases and login cookies can be reused.
+
+### Changed
+
+- Aligned the deployment branch with the React 19 and Vite 8 template. The Docker build and runtime now share the same pinned Node.js 24.22.3 image.
 
 ### Security
 

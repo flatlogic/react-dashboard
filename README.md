@@ -25,7 +25,7 @@ Modern dashboard starter rebuilt on top of `Vite`, `React 19`, `React Router 7`,
 
 ## Requirements
 
-- `Node.js 24+`
+- `Node.js 24.22.3` or later
 - `npm 10+`
 
 ## Getting started
@@ -85,7 +85,7 @@ The server reads the legacy `Post` table without altering the database. Missing 
 
 ### Preparing a deployment
 
-The Dockerfile builds the UI with `VITE_BACKEND=true` and starts the API on port 5000 using Node 24. It does not create a database or supply a JWT secret. Server mode is served at the site root; `VITE_BASE_PATH` is for the static demo.
+The Dockerfile builds the UI with `VITE_BACKEND=true` and starts the API on port 5000 using Node.js 24.22.3. It does not create a database or supply a JWT secret. Server mode is served at the site root; `VITE_BASE_PATH` is for the static demo.
 
 Before a future deployment:
 
